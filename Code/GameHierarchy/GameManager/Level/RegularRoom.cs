@@ -27,11 +27,11 @@ namespace Engine
             HealthUp hpItem = new HealthUp(new Vector2(600, 400), 1.5f);
             //gameObjects.Add(hpItem);
             ShieldUp shield = new ShieldUp(new Vector2(300, 600), 1.5f);
-            //gameObjects.Add(shield);
+            gameObjects.Add(shield);
             ShieldUp shield2 = new ShieldUp(new Vector2(200, 100), 1.5f);
             //gameObjects.Add(shield2);
             DashRefill dash = new DashRefill(new Vector2(100, 500), 1.5f);
-            //gameObjects.Add(dash);
+            gameObjects.Add(dash);
 
         }
 

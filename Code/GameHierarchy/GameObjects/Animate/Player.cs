@@ -138,6 +138,7 @@ namespace Engine
             {
                 normalAbilityCooldownTimer = 0;
                 canNormalAbility = true;
+                return;
             }
             if (item.shield)
             {
