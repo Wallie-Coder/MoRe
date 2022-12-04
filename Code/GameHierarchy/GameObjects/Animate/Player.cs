@@ -49,7 +49,7 @@ namespace Engine
         internal Player(Vector2 location, float scale, string assetName = "Player") : base(location, scale, assetName)
         {
             weapon2 = new Shotgun(location, 1f);
-            weapon1 = new Minigun(location, 1f);
+            weapon1 = new Pistol(location, 1f);
             weaponList[0] = weapon1;
             weaponList[1] = weapon2;
             currentWeapon = weaponList[0];
