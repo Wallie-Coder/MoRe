@@ -7,12 +7,12 @@ namespace MoRe
 {
     public class Game1 : Game
     {
-        private static GraphicsDeviceManager _graphics;
+        internal static GraphicsDeviceManager _graphics { get; private set; }
         private SpriteBatch _spriteBatch;
         public static Game1 GameInstance;
 
-
-        Level l;
+        GameStateManager GSM = new GameStateManager();
+        GameState gameState;
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -26,7 +26,11 @@ namespace MoRe
         {
             // TODO: Add your initialization logic here
 
-            l = new Level(2);
+            _graphics.PreferredBackBufferWidth = 1280;
+            _graphics.PreferredBackBufferHeight = 720;
+            _graphics.ApplyChanges();
+
+            gameState = new MenuState();
 
             base.Initialize();
         }
@@ -47,7 +51,11 @@ namespace MoRe
 
             InputHelper.Update();
 
-            l.Update(gameTime);
+            gameState.Update(gameTime);
+            if (gameState.nextState != GameState.States.None)
+            {
+                gameState = GSM.Update(gameState);
+            }
 
             base.Update(gameTime);
         }
@@ -59,7 +67,8 @@ namespace MoRe
             // TODO: Add your drawing code here
             _spriteBatch.Begin();
 
-            l.Draw(_spriteBatch);
+            _spriteBatch.Draw(getSprite("background"), Vector2.Zero, null, Color.White, 0f, Vector2.Zero, 1f / ((float)getSprite("background").Width / (float)_graphics.PreferredBackBufferWidth), SpriteEffects.None, 0f); ;
+            gameState.Draw(_spriteBatch);
 
             _spriteBatch.End();
 

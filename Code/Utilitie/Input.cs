@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using SharpDX.Direct3D9;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,8 @@ namespace Engine
     {
         public static Keys[] currentKeys = { };
         public static Keys[] previousKeys = { };
+        public static MouseState previousMouseState;
+        public static MouseState currentMouseState;
 
 
         
@@ -19,26 +22,68 @@ namespace Engine
         {
             currentKeys = Keyboard.GetState().GetPressedKeys();
             previousKeys = currentKeys;
+
+            currentMouseState = Mouse.GetState();
+            previousMouseState = currentMouseState;
         }
         public static void Update() 
         {
             previousKeys = currentKeys;
             currentKeys= Keyboard.GetState().GetPressedKeys();
+
+            previousMouseState = currentMouseState;
+            currentMouseState = Mouse.GetState();
         }
 
         public static bool IsKeyJustReleased(Keys key)
+        {
+            if (previousKeys.Contains(key) && !currentKeys.Contains(key))
+                return true;
+            else
+                return false;
+        }
+        public static bool IsKeyJustPressed(Keys key)
         {
             if (!previousKeys.Contains(key) && currentKeys.Contains(key))
                 return true;
             else
                 return false;
         }
-        public static bool IsKeyPressed(Keys key)
+        public static bool IsKeyDown(Keys key)
         {
             if (currentKeys.Contains(key))
                 return true;
             else
                 return false;
+        }
+
+        public static Vector2 MousePosition
+        {
+            get
+            {
+                return new Vector2(Mouse.GetState().Position.X, Mouse.GetState().Position.Y);
+            }
+        }
+
+        internal static bool IsMouseOver(GameObject g)
+        {
+            if (MousePosition.X < g.location.X + g.sprite.Width/2 * g.ObjectScale &&
+                MousePosition.Y < g.location.Y + g.sprite.Height/2 * g.ObjectScale &&
+                MousePosition.X > g.location.X - g.sprite.Width/2 * g.ObjectScale &&
+                MousePosition.Y > g.location.Y - g.sprite.Width/2 * g.ObjectScale)
+                return true;
+            else
+                return false;
+        }
+
+        public static bool LeftMouseButtonJustRelease
+        {
+            get
+            {
+                if (previousMouseState.LeftButton == ButtonState.Pressed && currentMouseState.LeftButton == ButtonState.Released)
+                    return true;
+                return false;
+            }
         }
     }
 }

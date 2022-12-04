@@ -4,16 +4,47 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MoRe.Code.GameHierarchy.GameManager
+namespace Engine
 {
     internal class GameStateManager
     {
-        internal enum GameState { Play, startMenu, Pause};
-        private GameState oldState = GameState.Pause;
+        private GameState oldState = null;
 
         internal GameState Update(GameState currentState)
         {
+            if (currentState != null)
+            {
+                if(oldState == null)
+                {
+                    oldState = currentState;
+                    currentState = new PlayState();
+                }
+                else
+                {
+                    SwitchGameStates(currentState);
+                }
+            }
+            else
+            {
+                currentState = new MenuState();
+            }
             return currentState;
+        }
+
+        internal GameState SwitchGameStates(GameState currentState)
+        {
+            switch(currentState.nextState)
+            {
+                case GameState.States.Play:
+                    return new PlayState();
+                    break;
+                case GameState.States.Menu:
+                    break;
+                case GameState.States.GameOver:
+                    break;
+            }
+
+            return new MenuState();
         }
     }
 }
