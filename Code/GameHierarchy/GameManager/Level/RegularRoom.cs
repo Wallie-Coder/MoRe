@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Engine;
 using MoRe;
 using Microsoft.Xna.Framework.Input;
+using MoRe;
 
 namespace Engine
 {
@@ -39,28 +40,49 @@ namespace Engine
         {
             base.Update(gameTime);
 
-            foreach (GameObject g in gameObjects)
+            // update each gameobject and handle the interaction with other entities.
+            // this will be a complicated foreach loop because there are many diffent types of gameobjects.
+            // Preferably each type of object should get its own Update method within the regular room class.
+            // so the this update method is not HUGE!
+            foreach (GameObject g in gameObjects.ToArray())
             {
-                foreach (GameObject other in gameObjects)
+                g.Update(gameTime);
+                foreach (Projectile p in projectiles)
                 {
-                    if (g.ID != other.ID)
-                        g.Collision(other);
+                    if ((p.Parent != Projectile.ProjectileParent.Player && g.GetType().IsSubclassOf(typeof(Player))) || (p.Parent != Projectile.ProjectileParent.Enemy && g.GetType().IsSubclassOf(typeof(Enemy))))
+                    {
+                        if (p.Bounds.Intersects(g.Bounds))
+                        {
+                            g.HandleCollision(p);
+                            p.HitObject();
+                        }
+                    }
                 }
-            }
-
-            foreach (Door d in doors)
-            {
-                if (player.Bounds.Intersects(d.Bounds))
+                if (g.GetType().IsSubclassOf(typeof(GameEntity)))
                 {
-                    d.HandleCollision(player);
-                    if(InputHelper.IsKeyJustReleased(Keys.Enter))
-                        nextRoom = d.toRoom;
+                    GameEntity temp = (GameEntity)g;
+                    if (temp.Health < 0)
+                    {
+                        if (g.GetType().IsSubclassOf(typeof(Enemy)))
+                        {
+                            DropItem(g.location);
+                        }
+                        gameObjects.Remove(g);
+                    }
                 }
-                else
-                    d.Reset();
+                if (g.GetType().IsSubclassOf(typeof(Item)))
+                {
+                    if (g.Bounds.Intersects(player.Bounds))
+                    {
+                        Item temp = (Item)g;
+                        player.ChangeStats(temp);
+                        gameObjects.Remove(g);
+                    }
+                }
             }
         }
 
+        // a method for when the room is enter by the player. set the player location and fixes the player.
         internal void EnterRoom(Player player)
         {
             this.player.setPlayer(player);
@@ -68,16 +90,16 @@ namespace Engine
             switch(previousRoom)
             {
                 case NeighborLocation.top:
-                    this.player.setLocation(new Vector2(Game1._graphics.PreferredBackBufferWidth / 2, 32));
+                    this.player.setLocation(new Vector2(Game1.worldSize.X / 2, 32));
                     break;
                 case NeighborLocation.bottom:
-                    this.player.setLocation(new Vector2(Game1._graphics.PreferredBackBufferWidth / 2, Game1._graphics.PreferredBackBufferHeight - 32));
+                    this.player.setLocation(new Vector2(Game1.worldSize.X / 2, Game1.worldSize.Y - 32));
                     break;
                 case NeighborLocation.right:
-                    this.player.setLocation(new Vector2(Game1._graphics.PreferredBackBufferWidth - 32, Game1._graphics.PreferredBackBufferHeight / 2));
+                    this.player.setLocation(new Vector2(Game1.worldSize.X - 32, Game1.worldSize.Y / 2));
                     break;
                 case NeighborLocation.left:
-                    this.player.setLocation(new Vector2(32, Game1._graphics.PreferredBackBufferHeight / 2));
+                    this.player.setLocation(new Vector2(32, Game1.worldSize.Y / 2));
                     break;
             }
         }

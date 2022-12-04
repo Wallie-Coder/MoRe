@@ -319,6 +319,7 @@ namespace Engine
 
         }
 
+        // copies al the stats for the player of the previous room to the player of this room.
         public void setPlayer(Player p)
         {
             Health = p.Health;

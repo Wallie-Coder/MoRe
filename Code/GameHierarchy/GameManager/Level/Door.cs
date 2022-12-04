@@ -6,6 +6,7 @@ using MoRe;
 
 namespace Engine
 {
+    // Door class for switching rooms.
     internal class Door : GameObject
     {
         protected internal Room.NeighborLocation toRoom { get; protected set; }

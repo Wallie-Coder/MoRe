@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Engine
 {
+    // a EmptyRoom class used by the FloorRandomizer.
     internal class EmptyRoom
     {
         public Vector2 Location;

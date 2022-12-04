@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Engine
 {
+    // a button class. pretty straight forward.
     internal class Button : GameObject
     {
         internal protected bool pressed { get; protected set; }

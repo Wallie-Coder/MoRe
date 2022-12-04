@@ -6,6 +6,7 @@ using MoRe;
 
 namespace Engine
 {
+    // item class, this item drops on the floor an can be pickedup by the player.
     class Item : InAnimate
     {
         public enum itemTypes

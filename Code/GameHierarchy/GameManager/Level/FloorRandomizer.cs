@@ -7,6 +7,8 @@ using MoRe;
 
 namespace Engine
 {
+    // a FloorRandomizer, cleates a Floor of a desired size.
+    // give a list or rooms with, which contain its location and corresponding neighbors.
     public class FloorRandomizer
     {
         Random rnd = new Random();

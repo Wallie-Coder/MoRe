@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Engine
 {
+    // static InputHandler class. (still missing some methods, but has the essential ones.
     public static class InputHelper
     {
         public static Keys[] currentKeys = { };
@@ -61,7 +62,7 @@ namespace Engine
         {
             get
             {
-                return new Vector2(Mouse.GetState().Position.X, Mouse.GetState().Position.Y);
+                return new Vector2(Mouse.GetState().Position.X, Mouse.GetState().Position.Y) / GameObject.WorldScale;
             }
         }
 

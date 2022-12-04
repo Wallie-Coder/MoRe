@@ -11,15 +11,16 @@ using Engine;
 
 namespace MoRe
 {
+    // a projectile class, move in a straight direction toward its destination.
     internal class Projectile : Animate
     {
-        public enum ProjectileParent { Player, Enemy}
+        public enum ProjectileParent { Player, Enemy }
         internal protected ProjectileParent Parent { get; protected set; }
         public float gunRange { get; protected set; }
 
         public Vector2 startPosition;
 
-        public Projectile(Vector2 location, Vector2 direction, float moveSpeed, int damage, string assetName, float range, float scale, ProjectileParent Parent = ProjectileParent.Player) : base (location, scale, "Projectiles\\" + assetName)
+        public Projectile(Vector2 location, Vector2 direction, float moveSpeed, int damage, string assetName, float range, float scale, ProjectileParent Parent = ProjectileParent.Player) : base(location, scale, "Projectiles\\" + assetName)
         {
             Damage = damage;
             baseSpeed = moveSpeed;

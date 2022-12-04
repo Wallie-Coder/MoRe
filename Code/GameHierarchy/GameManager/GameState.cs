@@ -8,9 +8,13 @@ using System.Threading.Tasks;
 
 namespace Engine
 {
+    // the based class for every GameState.
     internal abstract class GameState
     {
-        public enum States { Menu, Play, GameOver, None}
+        // the Different GameState options.
+        public enum States { Menu, Play, None}
+
+        // the next State, None by default, if changed it means the state will go to the desired state.
         internal protected States nextState { get; protected set; }
         internal GameState()
         {

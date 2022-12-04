@@ -7,11 +7,14 @@ using System;
 
 namespace Engine
 {
+    // the base of all Objects.
     abstract class GameObject
     {
-        internal static int WorldScale = 1;
+        // the world scale this a stacic scale used by each Gameobject.
+        internal static float WorldScale = 1;
         static int Gameid = 1;
 
+        // the object ID. do differ each gameobject.
         public int ID { get; protected set; }
         public string assetName { get; protected set; }
         public Vector2 location { get; protected set; }
@@ -50,19 +53,21 @@ namespace Engine
                 batch.Draw(sprite, location * WorldScale, null, Color.White, MathHelper.ToRadians(rotationInDegrees), Origin, WorldScale * ObjectScale, spriteEffect, Depth);
         }
 
+        // returns the boundingbox of the GameObject.
         public Rectangle Bounds
         {
             get
             {
                 Rectangle rec = new Rectangle();
 
-                rec = new Rectangle(sprite.Bounds.X, sprite.Bounds.Y, (int)(sprite.Width * ObjectScale), (int)(sprite.Height * ObjectScale));
+                rec = new Rectangle(sprite.Bounds.X, sprite.Bounds.Y, (int)(sprite.Width * ObjectScale * WorldScale), (int)(sprite.Height * ObjectScale * WorldScale));
                 rec.Offset((location - (Origin * ObjectScale)) * WorldScale);
 
                 return rec;
             }
         }
 
+        //cheks if object collides with other object.
         internal virtual void Collision(GameObject collider)
         {
             if (collider.Bounds.Intersects(Bounds))
@@ -75,6 +80,7 @@ namespace Engine
             }
         }
 
+        // emtpy collisionhandler, manu object have their own reactions to collision dependent on the collider.
         internal virtual void HandleCollision(GameEntity collider)
         {
 

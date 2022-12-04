@@ -6,6 +6,7 @@ using Engine;
 
 namespace MoRe
 {
+    // and class for objects rotating arround the player.
     internal class Orbital : InAnimate
     {
         public Vector2 rotationPosition;

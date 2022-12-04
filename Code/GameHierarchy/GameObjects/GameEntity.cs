@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Engine
 {
+    // a class for any gameobject that is interactable/alive/destructable
     public enum EntityOrientation { Up, Left, Right, Down };
 
     internal class GameEntity : GameObject
@@ -39,6 +40,7 @@ namespace Engine
                 Health = MaxHealth;
         }
 
+        //the base collisionhandler, if hit it loses health depenent on the colliders damage and powerMultiplier.
         internal override void HandleCollision(GameEntity collider)
         {
             this.Health -= collider.Damage * collider.PowerMultiplier;

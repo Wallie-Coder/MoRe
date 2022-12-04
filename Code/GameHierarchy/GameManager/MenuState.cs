@@ -5,10 +5,13 @@ using MoRe;
 
 namespace Engine
 {
+    // the Menustate of the game.
     internal class MenuState : GameState
     {
         List<GameObject> gameObjects = new List<GameObject>();
-        Button play = new Button(new Vector2(Game1._graphics.PreferredBackBufferWidth/2, 200), 0.2f, "playbutton");
+
+        // a play button to start the game;
+        Button play = new Button(new Vector2(Game1.worldSize.X /2, 200), 0.2f, "playbutton");
 
         internal MenuState()
         {
@@ -19,6 +22,7 @@ namespace Engine
         {
             play.Update(gameTime);
 
+            // if play button has been pressed have play state as desired state.
             if (play.pressed)
                 nextState = States.Play;
         }

@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Engine
 {
+    // a class for every Animate Entity that has a animation like walking.
     internal class Animated : Animate
     {
         protected ConditionalSprite conditionalSprite;

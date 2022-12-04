@@ -5,6 +5,7 @@ using MoRe;
 
 namespace Engine
 {
+    // a class for every GameEntity that can move.
     internal class Animate : GameEntity
     {
         protected float MoveSpeed;

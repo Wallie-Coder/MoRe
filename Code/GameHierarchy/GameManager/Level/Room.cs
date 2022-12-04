@@ -4,28 +4,39 @@ using System.Linq;
 using Engine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using MoRe;
 
 namespace Engine
 {
+    // the base class for each room.
     internal class Room
     {
+        // possible neighborslocations.
         public enum NeighborLocation { top, bottom, left, right, Null }
+
+        // the locaiton where the player wants to go and from which room the player enter to set the corresponding player location.
         internal protected NeighborLocation nextRoom;
         internal protected NeighborLocation previousRoom;
 
+        // the location and sprite of the room for the minimap.
         internal Vector2 Location;
         internal Texture2D sprite;
 
+
+        // booleans for possible room states.
         private bool isBossRoom = false;
         private bool safeRoom = false;
         internal bool Discovered = false;
-        private bool Beaten = false;
+        protected bool Beaten = false;
 
+        // string with the neighbors. example: "NE", "ESW" (compas locations).
         private string neighbors = " ";
 
+        // each room needs a player, why else would it be a room.
         internal protected Player player { get; protected set; }
 
+        // Lists for the gamobjects, doors and projectiles in the room.
         internal List<GameObject> gameObjects= new List<GameObject>();
         protected List<Door> doors = new List<Door>();
         protected static List<Projectile> projectiles = new List<Projectile>();
@@ -40,61 +51,42 @@ namespace Engine
             this.isBossRoom = isBossRoom;
             this.safeRoom = safeRoom;
 
+            // set the sprite of the room for the minimap depentent on the neighbors
             setRoomSprite(neighbors);
 
+
+            // add doors to the room dependent on the neighbors. so there are no doors to rooms that dont exsist.
             if(neighbors.Contains('N'))
-                doors.Add(new Door(new Vector2(Game1._graphics.PreferredBackBufferWidth / 2, 32), 1f, NeighborLocation.top));
+                doors.Add(new Door(new Vector2(Game1.worldSize.X / 2, 32), 1f, NeighborLocation.top));
             if (neighbors.Contains('E'))
-                doors.Add(new Door(new Vector2(Game1._graphics.PreferredBackBufferWidth - 32, Game1._graphics.PreferredBackBufferHeight/2), 1f, NeighborLocation.right));
+                doors.Add(new Door(new Vector2(Game1.worldSize.X - 32, Game1.worldSize.Y/ 2), 1f, NeighborLocation.right));
             if (neighbors.Contains('S'))
-                doors.Add(new Door(new Vector2(Game1._graphics.PreferredBackBufferWidth / 2, Game1._graphics.PreferredBackBufferHeight - 32), 1f, NeighborLocation.bottom));
+                doors.Add(new Door(new Vector2(Game1.worldSize.X / 2, Game1.worldSize.Y - 32), 1f, NeighborLocation.bottom));
             if (neighbors.Contains('W'))
-                doors.Add(new Door(new Vector2(32, Game1._graphics.PreferredBackBufferHeight / 2), 1f, NeighborLocation.left));
+                doors.Add(new Door(new Vector2(32, Game1.worldSize.Y / 2), 1f, NeighborLocation.left));
         }
 
         internal virtual void Update(GameTime gameTime)
         {
-            foreach (GameObject g in gameObjects.ToArray())
-            {
-                g.Update(gameTime);
-                foreach(Projectile p in projectiles)
-                {
-                    if ((p.Parent != Projectile.ProjectileParent.Player && g.GetType().IsSubclassOf(typeof(Player))) || (p.Parent != Projectile.ProjectileParent.Enemy && g.GetType().IsSubclassOf(typeof(Enemy))))
-                    {
-                        if (p.Bounds.Intersects(g.Bounds))
-                        {
-                            g.HandleCollision(p);
-                            p.HitObject();
-                        }
-                    }
-                }
-                if(g.GetType().IsSubclassOf(typeof(GameEntity)))
-                {
-                    GameEntity temp = (GameEntity)g;
-                    if (temp.Health < 0)
-                    {
-                        if (g.GetType().IsSubclassOf(typeof(Enemy)))
-                        {
-                            DropItem(g.location);
-                        }
-                        gameObjects.Remove(g);
-                    }
-                }
-                if(g.GetType().IsSubclassOf(typeof(Item)))
-                {
-                    if(g.Bounds.Intersects(player.Bounds))
-                    {
-                        Item temp = (Item)g;
-                        player.ChangeStats(temp);
-                        gameObjects.Remove(g);
-                    }
-                }
-            }
+            // Update each projectile
             foreach (Projectile p in projectiles.ToArray())
             {
                 p.Update(gameTime);
                 if (p.Health <= 0 || p.IsAlive == false)
                     projectiles.Remove(p);
+            }
+
+            // update all the doors in the room.
+            foreach (Door d in doors)
+            {
+                if (player.Bounds.Intersects(d.Bounds))
+                {
+                    d.HandleCollision(player);
+                    if (InputHelper.IsKeyJustReleased(Keys.Enter))
+                        nextRoom = d.toRoom;
+                }
+                else
+                    d.Reset();
             }
         }
         

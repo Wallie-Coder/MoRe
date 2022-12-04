@@ -12,6 +12,7 @@ using MoRe;
 
 namespace Engine
 {
+    // the base for every weapon usable by the player (in the furure maby used by enemies)
     internal class Weapon : InAnimate
     {
         public float weaponFireRate { get; protected set; }
