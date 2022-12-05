@@ -85,9 +85,21 @@ namespace Engine
         // a method for when the room is enter by the player. set the player location and fixes the player.
         internal void EnterRoom(Player player)
         {
-            this.player.setPlayer(player);
             Discovered = true;
-            switch(previousRoom)
+            foreach(GameObject p in gameObjects)
+            {
+                if (p.GetType().IsSubclassOf(typeof(Player)))
+                {
+                    if (p.GetType() == typeof(Warrior))
+                        this.player = new Warrior(player.location, player.ObjectScale);
+                    if (p.GetType() == typeof(Assassin))
+                        this.player = new Assassin(player.location, player.ObjectScale);
+                    if (p.GetType() == typeof(Healer))
+                        this.player = new Healer(player.location, player.ObjectScale);
+                }
+            }
+            this.player.setPlayer(player);
+            switch (previousRoom)
             {
                 case NeighborLocation.top:
                     this.player.setLocation(new Vector2(Game1.worldSize.X / 2, 32));
@@ -102,6 +114,12 @@ namespace Engine
                     this.player.setLocation(new Vector2(32, Game1.worldSize.Y / 2));
                     break;
             }
+            foreach (GameObject g in gameObjects.ToArray())
+            {
+                if(g.GetType().IsSubclassOf(typeof(Player)))
+                    gameObjects.Remove(g);
+            }
+            gameObjects.Add(this.player);
         }
     }
 }

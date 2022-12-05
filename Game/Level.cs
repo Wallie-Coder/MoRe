@@ -55,7 +55,8 @@ namespace MoRe
         internal void SetActiveRoom(Room.NeighborLocation toRoom)
         {
             activeRoom.nextRoom = Room.NeighborLocation.Null;
-            Player temp = activeRoom.player;
+            Player temp = new Player(activeRoom.player.location, activeRoom.player.ObjectScale);
+            temp.setPlayer(activeRoom.player);
 
             foreach (Room r in _rooms)
             {
