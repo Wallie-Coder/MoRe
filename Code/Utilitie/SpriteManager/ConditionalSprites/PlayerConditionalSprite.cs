@@ -14,7 +14,7 @@ namespace Engine
 
         internal PlayerConditionalSprite(string assetName) : base(assetName) { }
         
-        internal new void Update(GameTime time)
+        internal void Update(GameTime time)
         {
             //base.Update(time);
 

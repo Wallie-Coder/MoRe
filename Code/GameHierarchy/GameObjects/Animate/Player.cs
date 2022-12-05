@@ -317,30 +317,6 @@ namespace Engine
                     SwapWeapon();
             }
 
-        }
-
-        // copies al the stats for the player of the previous room to the player of this room.
-        public void setPlayer(Player p)
-        {
-            Health = p.Health;
-            MaxHealth = p.MaxHealth;
-            Damage = p.Damage;
-            PowerMultiplier = p.PowerMultiplier;
-            SpecialAbilityCooldownTimer = p.SpecialAbilityCooldownTimer;
-            NormalAbilityCooldownTimer = p.NormalAbilityCooldownTimer;
-            canNormalAbility = p.canNormalAbility;
-            canSpecialAbility = p.canSpecialAbility;
-
-            for(int i = 0; i < p.weaponList.Length; i++)
-                weaponList[i] = p.weaponList[i];
-
-            foreach (Item i in p.items)
-            {
-                ChangeStats(i);
-            }
-
-            currentWeapon = p.currentWeapon;
-            location = p.location;
-        }
+        }        
     }
 }

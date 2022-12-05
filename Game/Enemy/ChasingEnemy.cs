@@ -19,7 +19,7 @@ namespace MoRe
         {
             setdirection();
 
-            if (location.X + Origin.X > this.room.player.location.X + Origin.X)
+            if (location.X + Origin.X > room.level.player.location.X + room.level.player.Origin.X)
                 orientation = EntityOrientation.Left;
             else
                 orientation = EntityOrientation.Right;
@@ -31,7 +31,7 @@ namespace MoRe
         // calculate the direction to move in to reach the player.
         internal virtual void setdirection()
         {
-            Vector2 Distance = room.player.location - location + room.player.Origin - Origin;
+            Vector2 Distance = room.level.player.location - location + room.level.player.Origin - Origin;
 
             angle = (float)Math.Atan2(Distance.X, Distance.Y);
 
