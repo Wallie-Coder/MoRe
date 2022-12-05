@@ -29,8 +29,6 @@ namespace Engine
 
         internal override void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
-
             // update each gameobject and handle the interaction with other entities.
             // this will be a complicated foreach loop because there are many diffent types of gameobjects.
             // Preferably each type of object should get its own Update method within the regular room class.
@@ -71,6 +69,9 @@ namespace Engine
                     }
                 }
             }
+
+            base.Update(gameTime);
+
         }
     }
 }

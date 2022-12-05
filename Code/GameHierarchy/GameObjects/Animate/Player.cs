@@ -36,9 +36,6 @@ namespace Engine
         bool canSpecialAbility;
         bool specialAbilityActive;
 
-        //Projectile list and variables
-        public List<Projectile> projectiles;
-
         //Lists for collected Items and orbitals
         public List<Item> items;
         public List<Orbital> orbitals;
@@ -49,7 +46,7 @@ namespace Engine
         internal Player(Vector2 location, float scale, string assetName = "Player") : base(location, scale, assetName)
         {
             weapon2 = new Shotgun(location, 1f);
-            weapon1 = new Pistol(location, 1f);
+            weapon1 = new LaserGun(location, 1f);
             weaponList[0] = weapon1;
             weaponList[1] = weapon2;
             currentWeapon = weaponList[0];
@@ -61,8 +58,6 @@ namespace Engine
             //item2 = new healthUp(new Vector2(200, 100), 32, 32, "damageUpSprite");
 
             orbitals.Add(new Orbital(location, 1, 1, 100, 10, "Projectiles\\BlueProjectile"));
-
-            projectiles = new List<Projectile>();
 
             //initializes the normal ability. (The 10 stands for 10 seconds, the 1000 converts from seconds to milliseconds).
             normalAbilityCooldown = 10 * 1000;
@@ -86,24 +81,10 @@ namespace Engine
 
         internal override void Update(GameTime gameTime)
         {
-            HandleLasers();
-
-            foreach (Projectile p in projectiles.ToArray())
-            {
-                if (p.Health <= 0)
-                    projectiles.Remove(p);
-            }
-
             currentWeapon.Update(gameTime);
 
             //Update the cooldown timers
             Cooldowns(gameTime);
-
-            //Update the inputs
-            InputManager(gameTime);
-
-            foreach (Projectile p in projectiles)
-                p.Update(gameTime);
 
             foreach (Orbital o in orbitals)
                 o.updatePosition(location);
@@ -112,6 +93,9 @@ namespace Engine
 
             foreach (Weapon w in weaponList)
                 w.updatePosition(location + new Vector2(5f, 7.5f) * ObjectScale);
+
+            //Update the inputs
+            InputManager(gameTime);
         }
 
         internal override void Draw(SpriteBatch batch)
@@ -122,9 +106,6 @@ namespace Engine
                 orbital.Draw(batch);
 
             currentWeapon.Draw(batch);
-
-            foreach (Projectile p in projectiles)
-                p.Draw(batch);
         }
 
         //Changes the player's stats when picking up an item
@@ -224,16 +205,6 @@ namespace Engine
             specialAbilityTimer = 0;
             specialAbilityCooldownTimer = specialAbilityCooldown;
             specialAbilityActive = false;
-        }
-        void HandleLasers()
-        {
-            foreach (Projectile p in projectiles.ToArray())
-            {
-                if (p.assetName == "Projectiles\\laser")
-                {
-                    projectiles.Remove(p);
-                }
-            }
         }
 
         internal void setLocation(Vector2 location)

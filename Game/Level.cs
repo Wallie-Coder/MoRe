@@ -37,10 +37,12 @@ namespace MoRe
 
         public void Update(GameTime gameTime)
         {
+            activeRoom.Update(gameTime);
             player.Update(gameTime);
 
-            activeRoom.Update(gameTime);
-            if(activeRoom.nextRoom != Room.NeighborLocation.Null)
+
+
+            if (activeRoom.nextRoom != Room.NeighborLocation.Null)
             {
                 SetActiveRoom(activeRoom.nextRoom);
             }
@@ -50,6 +52,7 @@ namespace MoRe
         {
             activeRoom.Draw(batch);
             player.Draw(batch);
+
 
             foreach (RegularRoom r in _rooms)
             {
@@ -104,6 +107,7 @@ namespace MoRe
                     }
                 }
             }
+            EnterRoom();
         }
 
         // a method for when the room is enter by the player. set the player location and fixes the player.

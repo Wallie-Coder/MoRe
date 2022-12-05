@@ -25,7 +25,7 @@ namespace Engine
 
         protected virtual void Move(GameTime time)
         {
-            if (this.MoveSpeed > 0)
+            if (this.MoveSpeed > 0 && Direction.Length() != 0)
             {
                 float xOffset = (this.MoveSpeed * this.Direction.X) / this.Direction.Length() * speedScale / ((float)time.ElapsedGameTime.TotalMilliseconds + 1);
                 float yOffset = (this.MoveSpeed * this.Direction.Y) / this.Direction.Length() * speedScale / ((float)time.ElapsedGameTime.TotalMilliseconds + 1);

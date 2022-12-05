@@ -67,13 +67,14 @@ namespace Engine
 
         internal virtual void Update(GameTime gameTime)
         {
-            // Update each projectile
+            // Update each projectile, and handel lazers
             foreach (Projectile p in projectiles.ToArray())
             {
                 p.Update(gameTime);
                 if (p.Health <= 0 || p.IsAlive == false)
                     projectiles.Remove(p);
             }
+            HandleLazers();
 
             // update all the doors in the room.
             foreach (Door d in doors)
@@ -107,6 +108,18 @@ namespace Engine
         internal static void ShootProjectile(Projectile p)
         {
             projectiles.Add(p);
+        }
+        internal void HandleLazers()
+        {
+            bool lazer = false;
+            for (int i = projectiles.Count - 1; i >= 0; i--)
+                if (projectiles[i].assetName == "Projectiles\\laser")
+                {
+                    if (lazer == true || !InputHelper.IsKeyDown(Keys.Space) || 1 == 1)
+                        projectiles.RemoveAt(i);
+                    else
+                        lazer = true;
+                }
         }
         internal void DropItem(Vector2 location)
         {
