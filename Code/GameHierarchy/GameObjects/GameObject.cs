@@ -60,7 +60,8 @@ namespace Engine
             {
                 Rectangle rec = new Rectangle(new Point((int)location.X, (int)location.Y), new Point((int)(Size.X * ObjectScale * sprite.Width * WorldScale), (int)(Size.Y * ObjectScale * sprite.Height * WorldScale)));
                 batch.Draw(sprite, rec, null, Color.White, MathHelper.ToRadians(rotationInDegrees), Origin, spriteEffect, Depth);
-            } }
+            } 
+        }
 
         // returns the boundingbox of the GameObject.
         public Rectangle Bounds
