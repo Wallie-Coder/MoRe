@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Engine.Room;
 
 namespace MoRe
 {
@@ -14,15 +15,20 @@ namespace MoRe
         private List<RegularRoom> _rooms = new List<RegularRoom>();
         internal protected RegularRoom activeRoom { get; protected set; }
 
+        // each room needs a player, why else would it be a room.
+        internal protected Player player { get; protected set; }
+
         internal Level(int size)
         {
+            player = new Warrior(new Vector2(200, 200), 2f);
+
             FloorRandomizer fr = new FloorRandomizer();
             List<EmptyRoom> templist = new List<EmptyRoom>();
             templist = fr.CreateFloor(size);
 
             foreach(EmptyRoom r in templist)
             {
-                _rooms.Add(new RegularRoom(r.Location, "0", r.neighbors));
+                _rooms.Add(new RegularRoom(r.Location, "0", r.neighbors, this));
             }
 
             activeRoom = _rooms[0];
@@ -32,7 +38,11 @@ namespace MoRe
         public void Update(GameTime gameTime)
         {
             activeRoom.Update(gameTime);
-            if(activeRoom.nextRoom != Room.NeighborLocation.Null)
+            player.Update(gameTime);
+
+
+
+            if (activeRoom.nextRoom != Room.NeighborLocation.Null)
             {
                 SetActiveRoom(activeRoom.nextRoom);
             }
@@ -41,6 +51,8 @@ namespace MoRe
         public void Draw(SpriteBatch batch)
         {
             activeRoom.Draw(batch);
+            player.Draw(batch);
+
 
             foreach (RegularRoom r in _rooms)
             {
@@ -55,8 +67,6 @@ namespace MoRe
         internal void SetActiveRoom(Room.NeighborLocation toRoom)
         {
             activeRoom.nextRoom = Room.NeighborLocation.Null;
-            Player temp = new Player(activeRoom.player.location, activeRoom.player.ObjectScale);
-            temp.setPlayer(activeRoom.player);
 
             foreach (Room r in _rooms)
             {
@@ -97,7 +107,28 @@ namespace MoRe
                     }
                 }
             }
-            activeRoom.EnterRoom(temp);
+            EnterRoom();
+        }
+
+        // a method for when the room is enter by the player. set the player location and fixes the player.
+        internal void EnterRoom()
+        {
+            activeRoom.Discovered = true;
+            switch (activeRoom.previousRoom)
+            {
+                case NeighborLocation.top:
+                    this.player.setLocation(new Vector2(Game1.worldSize.X / 2, 32));
+                    break;
+                case NeighborLocation.bottom:
+                    this.player.setLocation(new Vector2(Game1.worldSize.X / 2, Game1.worldSize.Y - 32));
+                    break;
+                case NeighborLocation.right:
+                    this.player.setLocation(new Vector2(Game1.worldSize.X - 32, Game1.worldSize.Y / 2));
+                    break;
+                case NeighborLocation.left:
+                    this.player.setLocation(new Vector2(32, Game1.worldSize.Y / 2));
+                    break;
+            }
         }
     }
 }

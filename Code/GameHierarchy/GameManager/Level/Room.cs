@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using Engine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -12,6 +10,9 @@ namespace Engine
     // the base class for each room.
     internal class Room
     {
+        // each room has a level in which is exists
+        internal protected Level level { get; protected set; }
+
         // possible neighborslocations.
         public enum NeighborLocation { top, bottom, left, right, Null }
 
@@ -33,17 +34,14 @@ namespace Engine
         // string with the neighbors. example: "NE", "ESW" (compas locations).
         private string neighbors = " ";
 
-        // each room needs a player, why else would it be a room.
-        internal protected Player player { get; protected set; }
-
         // Lists for the gamobjects, doors and projectiles in the room.
         internal List<GameObject> gameObjects= new List<GameObject>();
         protected List<Door> doors = new List<Door>();
         protected static List<Projectile> projectiles = new List<Projectile>();
 
-        internal Room(Vector2 location, bool isBossRoom, bool safeRoom, string neighbors)
+        internal Room(Vector2 location, bool isBossRoom, bool safeRoom, string neighbors, Level level)
         {
-            player = new Warrior(new Vector2(200, 200), 2f);
+            this.level = level;
 
             nextRoom = NeighborLocation.Null;
 
@@ -54,6 +52,7 @@ namespace Engine
             // set the sprite of the room for the minimap depentent on the neighbors
             setRoomSprite(neighbors);
 
+            this.neighbors = neighbors;
 
             // add doors to the room dependent on the neighbors. so there are no doors to rooms that dont exsist.
             if(neighbors.Contains('N'))
@@ -68,20 +67,21 @@ namespace Engine
 
         internal virtual void Update(GameTime gameTime)
         {
-            // Update each projectile
+            // Update each projectile, and handel lazers
             foreach (Projectile p in projectiles.ToArray())
             {
                 p.Update(gameTime);
                 if (p.Health <= 0 || p.IsAlive == false)
                     projectiles.Remove(p);
             }
+            HandleLazers();
 
             // update all the doors in the room.
             foreach (Door d in doors)
             {
-                if (player.Bounds.Intersects(d.Bounds))
+                if (level.player.Bounds.Intersects(d.Bounds))
                 {
-                    d.HandleCollision(player);
+                    d.HandleCollision(level.player);
                     if (InputHelper.IsKeyJustReleased(Keys.Enter))
                         nextRoom = d.toRoom;
                 }
@@ -108,6 +108,18 @@ namespace Engine
         internal static void ShootProjectile(Projectile p)
         {
             projectiles.Add(p);
+        }
+        internal void HandleLazers()
+        {
+            bool lazer = false;
+            for (int i = projectiles.Count - 1; i >= 0; i--)
+                if (projectiles[i].assetName == "Projectiles\\laser")
+                {
+                    if (lazer == true || !InputHelper.IsKeyDown(Keys.Space) || 1 == 1)
+                        projectiles.RemoveAt(i);
+                    else
+                        lazer = true;
+                }
         }
         internal void DropItem(Vector2 location)
         {

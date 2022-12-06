@@ -64,5 +64,16 @@ namespace MoRe
         {
             Die(this);
         }
+
+        internal override void Draw(SpriteBatch batch)
+        {
+            if (assetName != "Projectiles\\laser")
+                base.Draw(batch);
+            else
+            {
+                this.location = (InputHelper.MousePosition - startPosition) / 2 + startPosition;
+                DrawCustomSize(batch, new Vector2(1, (float)Math.Sqrt((double)((InputHelper.MousePosition - startPosition).LengthSquared())) / sprite.Height * 2));
+            }
+        }
     }
 }

@@ -26,7 +26,7 @@ namespace Engine
         {
             // Update the level, if player in the active room dies, have the menu state as desired state.
             level.Update(gameTime);
-            if (level.activeRoom.player.Health <= 0)
+            if (level.player.Health <= 0)
                 nextState = States.Menu;
         }
 

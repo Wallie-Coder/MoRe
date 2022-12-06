@@ -25,7 +25,7 @@ namespace MoRe
         {
             if (shot <= 0)
             {
-                Projectile p = new Projectile(location - Origin, new Vector2(room.player.location.X - location.X, room.player.location.Y - location.Y), 10, 5, projectileName, 500, 1f, Projectile.ProjectileParent.Enemy);
+                Projectile p = new Projectile(location - Origin, new Vector2(room.level.player.location.X - location.X, room.level.player.location.Y - location.Y), 10, 5, projectileName, 500, 1f, Projectile.ProjectileParent.Enemy);
                 Room.ShootProjectile(p);
                 shot = 60;
             }
@@ -45,7 +45,7 @@ namespace MoRe
         {
             base.setdirection();
 
-            Vector2 Distance = room.player.location - location;
+            Vector2 Distance = room.level.player.location - location;
 
 
             // if the player is in range stop moving

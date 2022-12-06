@@ -20,7 +20,7 @@ namespace Engine
         public itemTypes type;
 
         public string name { get; protected set; }
-        public int Damage { get; protected set; }
+        //public int Damage { get; protected set; }
         public float MoveSpeed { get; protected set; }
         public bool Dash { get; protected set; }
         public bool shield { get; protected set; }

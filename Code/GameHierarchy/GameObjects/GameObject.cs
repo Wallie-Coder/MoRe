@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Security.Policy;
 using MoRe;
 using System;
+using System.Configuration;
 
 namespace Engine
 {
@@ -51,6 +52,15 @@ namespace Engine
         {
             if (Visible)
                 batch.Draw(sprite, location * WorldScale, null, Color.White, MathHelper.ToRadians(rotationInDegrees), Origin, WorldScale * ObjectScale, spriteEffect, Depth);
+        }
+
+        internal virtual void DrawCustomSize(SpriteBatch batch, Vector2 Size)
+        {
+            if (Visible)
+            {
+                Rectangle rec = new Rectangle(new Point((int)location.X, (int)location.Y), new Point((int)(Size.X * ObjectScale * sprite.Width * WorldScale), (int)(Size.Y * ObjectScale * sprite.Height * WorldScale)));
+                batch.Draw(sprite, rec, null, Color.White, MathHelper.ToRadians(rotationInDegrees), Origin, spriteEffect, Depth);
+            } 
         }
 
         // returns the boundingbox of the GameObject.

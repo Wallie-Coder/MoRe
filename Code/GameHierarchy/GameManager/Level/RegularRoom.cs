@@ -1,23 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Engine;
 using MoRe;
-using Microsoft.Xna.Framework.Input;
-using MoRe;
+
 
 namespace Engine
 {
     internal class RegularRoom : Room
     {
-
-        internal RegularRoom(Vector2 location, string roomTemplate, string neighbors) : base(location, false, false, neighbors)
+        internal RegularRoom(Vector2 location, string roomTemplate, string neighbors, Level level) : base(location, false, false, neighbors, level)
         {
-            gameObjects.Add(player);
-
             RangedEnemy ranged = new RangedEnemy(new Vector2(500, 200), 2, 450, 1, 20, this);
             gameObjects.Add(ranged);
             ChasingEnemy chasing = new ChasingEnemy(new Vector2(800, 400), 2, 1, 20, this);
@@ -38,8 +29,6 @@ namespace Engine
 
         internal override void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
-
             // update each gameobject and handle the interaction with other entities.
             // this will be a complicated foreach loop because there are many diffent types of gameobjects.
             // Preferably each type of object should get its own Update method within the regular room class.
@@ -72,54 +61,17 @@ namespace Engine
                 }
                 if (g.GetType().IsSubclassOf(typeof(Item)))
                 {
-                    if (g.Bounds.Intersects(player.Bounds))
+                    if (g.Bounds.Intersects(level.player.Bounds))
                     {
                         Item temp = (Item)g;
-                        player.ChangeStats(temp);
+                        level.player.ChangeStats(temp);
                         gameObjects.Remove(g);
                     }
                 }
             }
-        }
 
-        // a method for when the room is enter by the player. set the player location and fixes the player.
-        internal void EnterRoom(Player player)
-        {
-            Discovered = true;
-            foreach(GameObject p in gameObjects)
-            {
-                if (p.GetType().IsSubclassOf(typeof(Player)))
-                {
-                    if (p.GetType() == typeof(Warrior))
-                        this.player = new Warrior(player.location, player.ObjectScale);
-                    if (p.GetType() == typeof(Assassin))
-                        this.player = new Assassin(player.location, player.ObjectScale);
-                    if (p.GetType() == typeof(Healer))
-                        this.player = new Healer(player.location, player.ObjectScale);
-                }
-            }
-            this.player.setPlayer(player);
-            switch (previousRoom)
-            {
-                case NeighborLocation.top:
-                    this.player.setLocation(new Vector2(Game1.worldSize.X / 2, 32));
-                    break;
-                case NeighborLocation.bottom:
-                    this.player.setLocation(new Vector2(Game1.worldSize.X / 2, Game1.worldSize.Y - 32));
-                    break;
-                case NeighborLocation.right:
-                    this.player.setLocation(new Vector2(Game1.worldSize.X - 32, Game1.worldSize.Y / 2));
-                    break;
-                case NeighborLocation.left:
-                    this.player.setLocation(new Vector2(32, Game1.worldSize.Y / 2));
-                    break;
-            }
-            foreach (GameObject g in gameObjects.ToArray())
-            {
-                if(g.GetType().IsSubclassOf(typeof(Player)))
-                    gameObjects.Remove(g);
-            }
-            gameObjects.Add(this.player);
+            base.Update(gameTime);
+
         }
     }
 }
