@@ -20,7 +20,7 @@ namespace MoRe
 
         internal Level(int size)
         {
-            player = new Warrior(new Vector2(200, 200), 2f);
+            player = new Warrior(new Vector2(200, 200), 1f);
 
             FloorRandomizer fr = new FloorRandomizer();
             List<EmptyRoom> templist = new List<EmptyRoom>();

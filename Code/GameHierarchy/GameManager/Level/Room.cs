@@ -32,7 +32,7 @@ namespace Engine
         protected bool Beaten = false;
 
         // string with the neighbors. example: "NE", "ESW" (compas locations).
-        private string neighbors = " ";
+        protected string neighbors = " ";
 
         // Lists for the gamobjects, doors and projectiles in the room.
         internal List<GameObject> gameObjects= new List<GameObject>();
@@ -55,14 +55,14 @@ namespace Engine
             this.neighbors = neighbors;
 
             // add doors to the room dependent on the neighbors. so there are no doors to rooms that dont exsist.
-            if(neighbors.Contains('N'))
-                doors.Add(new Door(new Vector2(Game1.worldSize.X / 2, 32), 1f, NeighborLocation.top));
-            if (neighbors.Contains('E'))
-                doors.Add(new Door(new Vector2(Game1.worldSize.X - 32, Game1.worldSize.Y/ 2), 1f, NeighborLocation.right));
-            if (neighbors.Contains('S'))
-                doors.Add(new Door(new Vector2(Game1.worldSize.X / 2, Game1.worldSize.Y - 32), 1f, NeighborLocation.bottom));
-            if (neighbors.Contains('W'))
-                doors.Add(new Door(new Vector2(32, Game1.worldSize.Y / 2), 1f, NeighborLocation.left));
+            //if(neighbors.Contains('N'))
+            //    doors.Add(new Door(new Vector2(Game1.worldSize.X / 2, 32), 1f, NeighborLocation.top));
+            //if (neighbors.Contains('E'))
+            //    doors.Add(new Door(new Vector2(Game1.worldSize.X - 32, Game1.worldSize.Y/ 2), 1f, NeighborLocation.right));
+            //if (neighbors.Contains('S'))
+            //    doors.Add(new Door(new Vector2(Game1.worldSize.X / 2, Game1.worldSize.Y - 32), 1f, NeighborLocation.bottom));
+            //if (neighbors.Contains('W'))
+            //    doors.Add(new Door(new Vector2(32, Game1.worldSize.Y / 2), 1f, NeighborLocation.left));
         }
 
         internal virtual void Update(GameTime gameTime)
