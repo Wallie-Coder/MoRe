@@ -37,7 +37,7 @@ namespace Engine
         // Lists for the gamobjects, doors and projectiles in the room.
         internal List<GameObject> gameObjects= new List<GameObject>();
         protected List<Door> doors = new List<Door>();
-        protected static List<Projectile> projectiles = new List<Projectile>();
+        public static List<Projectile> projectiles = new List<Projectile>();
 
         internal Room(Vector2 location, bool isBossRoom, bool safeRoom, string neighbors, Level level)
         {

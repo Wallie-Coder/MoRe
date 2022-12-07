@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,10 +17,10 @@ namespace Engine
         // a play state has a level.
         internal Level level;
 
-        public PlayState()
+        public PlayState(Player player)
         {
             // set the level with the desired size(number of rooms);
-            level = new Level(9);
+            level = new Level(9, player, s_hardmodeSelected, s_fastmodeSelected);
         }
 
         internal override void Update(GameTime gameTime)
@@ -32,6 +33,8 @@ namespace Engine
 
         internal override void Draw(SpriteBatch batch)
         {
+            batch.Draw(Game1.GameInstance.getSprite("background"), new Rectangle(0, 0, (int)(Game1.worldSize.X * GameObject.WorldScale), (int)(Game1.worldSize.Y * GameObject.WorldScale)), Color.White);
+
             level.Draw(batch);
         }
     }

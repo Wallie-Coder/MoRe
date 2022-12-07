@@ -15,6 +15,7 @@ namespace MoRe
         internal string projectileName = "RedProjectile";
         internal List<Projectile> projectiles = new List<Projectile>();
         internal int shot = 30;
+        internal float shotSpeed = 10;
 
         internal RangedEnemy(Vector2 location, float scale, int range, int damage, int health, RegularRoom room, string assetName = "DroneEnemy") : base(location, scale, 0, health, room, assetName)
         {
@@ -25,7 +26,7 @@ namespace MoRe
         {
             if (shot <= 0)
             {
-                Projectile p = new Projectile(location - Origin, new Vector2(room.level.player.location.X - location.X, room.level.player.location.Y - location.Y), 10, 5, projectileName, 500, 1f, Projectile.ProjectileParent.Enemy);
+                Projectile p = new Projectile(location - Origin, new Vector2(room.level.player.location.X - location.X, room.level.player.location.Y - location.Y), shotSpeed, 5, projectileName, 500, 1f, Projectile.ProjectileParent.Enemy);
                 Room.ShootProjectile(p);
                 shot = 60;
             }

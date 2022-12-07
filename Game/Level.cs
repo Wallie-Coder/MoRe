@@ -1,8 +1,10 @@
 ﻿using Engine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,13 +20,16 @@ namespace MoRe
         // each room needs a player, why else would it be a room.
         internal protected Player player { get; protected set; }
 
-        internal Level(int size)
-        {
-            player = new Warrior(new Vector2(200, 200), 2f);
+        private Random rnd;
 
+        private bool hardmodeSelected, fastmodeSelected;
+
+        internal Level(int size, Player player, bool hardmodeSelected, bool fastmodeSelected)
+        {
             FloorRandomizer fr = new FloorRandomizer();
             List<EmptyRoom> templist = new List<EmptyRoom>();
             templist = fr.CreateFloor(size);
+            rnd = new Random();
 
             foreach(EmptyRoom r in templist)
             {
@@ -33,14 +38,40 @@ namespace MoRe
 
             activeRoom = _rooms[0];
             _rooms[0].Discovered = true;
+            
+            this.player = player;
+            if (this.player == null)
+                this.player = new Warrior(new Vector2(200, 200), 2f);
+
+            this.hardmodeSelected = hardmodeSelected;
+            this.fastmodeSelected = fastmodeSelected;
+
+            if (hardmodeSelected)
+            {
+                this.player.Health = 1;
+                this.player.PowerMultiplier *= (float)rnd.NextDouble();
+                Debug.Write(this.player.PowerMultiplier);
+            }
+
+            if (fastmodeSelected)
+            {
+                this.player.baseSpeed = 8;
+                foreach (Weapon w in this.player.weaponList)
+                    w.shotSpeed *= 2f;
+                foreach (GameObject g in activeRoom.gameObjects)
+                {
+                    if (g is Enemy)
+                        (g as Enemy).baseSpeed = rnd.Next(4, 8);
+                    if (g is RangedEnemy)
+                        (g as RangedEnemy).shotSpeed *= (float)(rnd.NextDouble() + 1);
+                }
+            }
         }
 
         public void Update(GameTime gameTime)
         {
             activeRoom.Update(gameTime);
             player.Update(gameTime);
-
-
 
             if (activeRoom.nextRoom != Room.NeighborLocation.Null)
             {
@@ -128,6 +159,17 @@ namespace MoRe
                 case NeighborLocation.left:
                     this.player.setLocation(new Vector2(32, Game1.worldSize.Y / 2));
                     break;
+            }
+
+            if (fastmodeSelected)
+            {
+                foreach (GameObject g in activeRoom.gameObjects)
+                {
+                    if (g is Enemy)
+                        (g as Enemy).baseSpeed = rnd.Next(4, 8);
+                    if (g is RangedEnemy)
+                        (g as RangedEnemy).shotSpeed *= (float)(rnd.NextDouble() + 1);
+                }
             }
         }
     }

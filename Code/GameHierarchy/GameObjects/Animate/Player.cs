@@ -18,7 +18,7 @@ namespace Engine
         //All variables for weapons
         Weapon weapon1;
         Weapon weapon2;
-        Weapon[] weaponList = new Weapon[2];
+        internal Weapon[] weaponList = new Weapon[2];
         Weapon currentWeapon;
         float weaponSwapCooldown;
         bool canSwapWeapon;
@@ -45,8 +45,8 @@ namespace Engine
 
         internal Player(Vector2 location, float scale, string assetName = "Player") : base(location, scale, assetName)
         {
-            weapon2 = new Shotgun(location, 1f);
-            weapon1 = new LaserGun(location, 1f);
+            weapon2 = new Pistol(location, 1f);
+            weapon1 = new Sniper(location, 1f);
             weaponList[0] = weapon1;
             weaponList[1] = weapon2;
             currentWeapon = weaponList[0];
@@ -73,6 +73,7 @@ namespace Engine
             Health = 200;
             MaxHealth = Health;
             baseSpeed = 5;
+            orientation = EntityOrientation.Down;
 
             this.Depth = 1f;
 

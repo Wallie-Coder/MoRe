@@ -5,6 +5,7 @@ using System.Security.Policy;
 using MoRe;
 using System;
 using System.Configuration;
+using System.Diagnostics;
 
 namespace Engine
 {
@@ -18,10 +19,11 @@ namespace Engine
         // the object ID. do differ each gameobject.
         public int ID { get; protected set; }
         public string assetName { get; protected set; }
-        public Vector2 location { get; protected set; }
+        public Vector2 location { get; set; }
         internal protected Vector2 Origin { get; protected set; }
         internal protected float ObjectScale { get; protected set; }
         internal protected Texture2D sprite { get; protected set; }
+        internal protected Color color { get; protected set; }
 
 
         protected SpriteEffects spriteEffect;
@@ -40,7 +42,8 @@ namespace Engine
 
             this.location = location;
             this.assetName = assetName;
-            this.sprite = Game1.GameInstance.getSprite(assetName);
+            sprite = Game1.GameInstance.getSprite(assetName);
+            this.color = Color.White;
 
             Origin = new Vector2(sprite.Width / 2, sprite.Height / 2);
         }
@@ -51,15 +54,15 @@ namespace Engine
         internal virtual void Draw(SpriteBatch batch)
         {
             if (Visible)
-                batch.Draw(sprite, location * WorldScale, null, Color.White, MathHelper.ToRadians(rotationInDegrees), Origin, WorldScale * ObjectScale, spriteEffect, Depth);
+                batch.Draw(sprite, location * WorldScale, null, color, MathHelper.ToRadians(rotationInDegrees), Origin, WorldScale * ObjectScale, spriteEffect, Depth);
         }
 
         internal virtual void DrawCustomSize(SpriteBatch batch, Vector2 Size)
         {
             if (Visible)
             {
-                Rectangle rec = new Rectangle(new Point((int)location.X, (int)location.Y), new Point((int)(Size.X * ObjectScale * sprite.Width * WorldScale), (int)(Size.Y * ObjectScale * sprite.Height * WorldScale)));
-                batch.Draw(sprite, rec, null, Color.White, MathHelper.ToRadians(rotationInDegrees), Origin, spriteEffect, Depth);
+                Rectangle rec = new Rectangle(new Point((int)(location.X*WorldScale), (int)(location.Y*WorldScale)), new Point((int)(Size.X * ObjectScale * sprite.Width * WorldScale), (int)(Size.Y * ObjectScale * sprite.Height * WorldScale)));
+                batch.Draw(sprite, rec, null, color, MathHelper.ToRadians(rotationInDegrees), Origin, spriteEffect, Depth);
             } 
         }
 

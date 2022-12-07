@@ -16,7 +16,7 @@ namespace Engine
     internal class Weapon : InAnimate
     {
         public float weaponFireRate { get; protected set; }
-        public float shotSpeed { get; protected set; }
+        public float shotSpeed { get; set; }
         public float projectileSize { get; protected set; }
         public float gunRange { get; protected set; }
         public int spreadStrength { get; protected set; }

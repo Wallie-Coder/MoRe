@@ -2,13 +2,15 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Diagnostics;
 
 namespace MoRe
 {
     public class Game1 : Game
     {
-        private GraphicsDeviceManager _graphics;
+        public GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        public SpriteFont font;
 
         // a static version of the game class to access game wide methods like getSprite();
         public static Game1 GameInstance;
@@ -16,10 +18,12 @@ namespace MoRe
         // the worldSize as seen by the game objects, with 16:9 ratio.
         public static Vector2 worldSize = new Vector2(1600, 900);
 
-        // a GameState and GameStateManager to Update the current state if neccesairy.
-        GameStateManager GSM = new GameStateManager();
+        // a GameState and GameStateManager to Update the current state if neccesary.
+        private GameStateManager GSM = new GameStateManager();
         GameState gameState;
 
+        internal GameStateManager GSMState { get { return GSM; } }
+        
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -34,8 +38,8 @@ namespace MoRe
             // TODO: Add your initialization logic here
 
             // screen size, changing this will make no changes to the play ability of the game.
-            _graphics.PreferredBackBufferWidth = 1600;
-            _graphics.PreferredBackBufferHeight = 900;
+            _graphics.PreferredBackBufferWidth = (int)worldSize.X;
+            _graphics.PreferredBackBufferHeight = (int)worldSize.Y;
             _graphics.ApplyChanges();
 
             // set the world scale. this scales every object to fit accordingly in the screen.
@@ -52,6 +56,7 @@ namespace MoRe
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            font = Content.Load<SpriteFont>("File");
 
             // TODO: use this.Content to load your game content here
         }
@@ -75,18 +80,19 @@ namespace MoRe
                 gameState = GSM.Update(gameState);
             }
 
+            _graphics.ApplyChanges();
+
+            GameObject.WorldScale = _graphics.PreferredBackBufferWidth / worldSize.X;
+            if (_graphics.PreferredBackBufferHeight / worldSize.Y < GameObject.WorldScale)
+                GameObject.WorldScale = _graphics.PreferredBackBufferHeight / worldSize.Y;
+
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
-
             // TODO: Add your drawing code here
             _spriteBatch.Begin();
-
-            // Draw the background sprite with the correct size.
-            _spriteBatch.Draw(getSprite("background"), new Rectangle(0, 0, (int)(worldSize.X * GameObject.WorldScale), (int)(worldSize.Y * GameObject.WorldScale)), Color.White); ;
             
             // Draw the current GameState.
             gameState.Draw(_spriteBatch);
