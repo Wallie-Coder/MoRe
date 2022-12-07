@@ -15,6 +15,7 @@ namespace MoRe
         public BearTrap(Vector2 location, float scale, string assetName = "BearTrap") : base(location, scale, assetName)
         {
             Health = 1;
+            duration = 3;
         }
 
         internal override void ActivateTrap(GameObject collider)

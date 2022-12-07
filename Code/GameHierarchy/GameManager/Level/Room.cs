@@ -38,7 +38,7 @@ namespace Engine
         internal List<GameObject> gameObjects= new List<GameObject>();
         internal List<Trap> traps = new List<Trap>();
         protected List<Door> doors = new List<Door>();
-        protected static List<Projectile> projectiles = new List<Projectile>();
+        internal static List<Projectile> projectiles = new List<Projectile>();
 
         internal Room(Vector2 location, bool isBossRoom, bool safeRoom, string neighbors, Level level)
         {
@@ -68,15 +68,6 @@ namespace Engine
 
         internal virtual void Update(GameTime gameTime)
         {
-            // Update each projectile, and handel lazers
-            foreach (Projectile p in projectiles.ToArray())
-            {
-                p.Update(gameTime);
-                if (p.Health <= 0 || p.IsAlive == false)
-                    projectiles.Remove(p);
-            }
-            HandleLazers();
-
             // update all the doors in the room.
             foreach (Door d in doors)
             {
@@ -89,8 +80,6 @@ namespace Engine
                 else
                     d.Reset();
             }
-            foreach (Trap t in traps)
-                t.Update(gameTime);
         }
         
         internal virtual void Draw(SpriteBatch batch)

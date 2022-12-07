@@ -2,6 +2,7 @@
 using Engine;
 using MoRe;
 using SharpDX.Direct2D1;
+using System.Collections.Generic;
 
 namespace Engine
 {
@@ -9,10 +10,13 @@ namespace Engine
     {
         internal RegularRoom(Vector2 location, string roomTemplate, string neighbors, Level level) : base(location, false, false, neighbors, level)
         {
-            //RangedEnemy ranged = new RangedEnemy(new Vector2(500, 200), 2, 450, 1, 20, this);
-            //gameObjects.Add(ranged);
-            ChasingEnemy chasing = new ChasingEnemy(new Vector2(800, 400), 2, 1, 20, this);
-            gameObjects.Add(chasing);
+            RangedEnemy ranged = new RangedEnemy(new Vector2(500, 200), 2, 450, 1, 20, this);
+            gameObjects.Add(ranged);
+            //ChasingEnemy chasing = new ChasingEnemy(new Vector2(800, 400), 2, 1, 20, this);
+            //gameObjects.Add(chasing);
+            FreezeEnemy freeze = new FreezeEnemy(new Vector2(100, 300), 2, 20, this);
+            gameObjects.Add(freeze);
+
 
             //DamageUp DamageItem = new DamageUp(new Vector2(900, 200), 1.5f);
             ////gameObjects.Add(DamageItem);
@@ -39,9 +43,10 @@ namespace Engine
             foreach (GameObject g in gameObjects.ToArray())
             {
                 g.Update(gameTime);
+
                 foreach (Projectile p in projectiles)
                 {
-                    if ((p.Parent != Projectile.ProjectileParent.Player && g.GetType().IsSubclassOf(typeof(Player))) || (p.Parent != Projectile.ProjectileParent.Enemy && g.GetType().IsSubclassOf(typeof(Enemy))))
+                    if (p.Parent != Projectile.ProjectileParent.Enemy && g.GetType().IsSubclassOf(typeof(Enemy)))
                     {
                         if (p.Bounds.Intersects(g.Bounds))
                         {
@@ -75,14 +80,37 @@ namespace Engine
 
             foreach (Trap t in traps.ToArray())
             {
-                if(t.duration < 0)
-                    traps.Remove(t);
+                t.Update(gameTime);
                 if (level.player.Bounds.Intersects(t.Bounds))
                 {
                     t.Activated = true;
                     t.ActivateTrap(level.player);
                 }
+                if (t.duration < 0)
+                {
+                    traps.Remove(t);
+                }
             }
+
+            // Update each projectile, and handel lazers
+            foreach (Projectile p in projectiles.ToArray())
+            {
+                p.Update(gameTime);
+                if (p.Health <= 0 || p.IsAlive == false)
+                {
+                    projectiles.Remove(p);
+                    break;
+                }
+                if(p.Parent != Projectile.ProjectileParent.Player)
+                {
+                    if (p.Bounds.Intersects(level.player.Bounds))
+                    {
+                        level.player.HandleCollision(p);
+                        p.HitObject();
+                    }
+                }
+            }
+            HandleLazers();
 
             base.Update(gameTime);
 

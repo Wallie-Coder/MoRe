@@ -23,22 +23,25 @@ namespace MoRe
 
         internal override void Update(GameTime time)
         {
-            if (shot <= 0)
+            if (room.level.levelState == Level.LevelState.Play)
             {
-                Projectile p = new Projectile(location - Origin, new Vector2(room.level.player.location.X - location.X, room.level.player.location.Y - location.Y), 10, 5, projectileName, 500, 1f, Projectile.ProjectileParent.Enemy);
-                Room.ShootProjectile(p);
-                shot = 60;
-            }
-            shot--; ;
+                if (shot <= 0)
+                {
+                    Projectile p = new Projectile(location - Origin, new Vector2(room.level.player.location.X - location.X, room.level.player.location.Y - location.Y), 10, 5, projectileName, 500, 1f, Projectile.ProjectileParent.Enemy);
+                    Room.ShootProjectile(p);
+                    shot = 60;
+                }
+                shot--; ;
 
-            foreach (Projectile p in projectiles.ToArray())
-            {
-                p.Update(time);
-                if (p.Health <= 0)
-                    projectiles.Remove(p);
-            }
+                foreach (Projectile p in projectiles.ToArray())
+                {
+                    p.Update(time);
+                    if (p.Health <= 0)
+                        projectiles.Remove(p);
+                }
 
-            base.Update(time);
+                base.Update(time);
+            }
         }
 
         internal override void setdirection()
