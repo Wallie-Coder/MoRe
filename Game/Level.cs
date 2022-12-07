@@ -35,8 +35,10 @@ namespace MoRe
                 _rooms.Add(new RegularRoom(r.Location, "0", r.neighbors, this));
             }
 
-            activeRoom = _rooms[0];
-            _rooms[0].Discovered = true;
+            Random rnd = new Random();
+            int i = rnd.Next(0, _rooms.Count);
+            activeRoom = _rooms[i];
+            _rooms[i].Discovered = true;
         }
 
         public void Update(GameTime gameTime)

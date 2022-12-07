@@ -14,8 +14,6 @@ namespace Engine
             gameObjects.Add(ranged);
             //ChasingEnemy chasing = new ChasingEnemy(new Vector2(800, 400), 2, 1, 20, this);
             //gameObjects.Add(chasing);
-            FreezeEnemy freeze = new FreezeEnemy(new Vector2(100, 300), 2, 20, this);
-            gameObjects.Add(freeze);
 
 
             //DamageUp DamageItem = new DamageUp(new Vector2(900, 200), 1.5f);
@@ -31,6 +29,8 @@ namespace Engine
 
             Trap beartrap = new BearTrap(new Vector2(500, 500), 2);
             traps.Add(beartrap);
+            FreezeTrap freeze = new FreezeTrap(new Vector2(100, 300), 2, this);
+            traps.Add(freeze);
 
         }
 
@@ -57,8 +57,7 @@ namespace Engine
                 }
                 if (g.GetType().IsSubclassOf(typeof(GameEntity)))
                 {
-                    GameEntity temp = (GameEntity)g;
-                    if (temp.Health < 0)
+                    if ((g as GameEntity).Health < 0)
                     {
                         if (g.GetType().IsSubclassOf(typeof(Enemy)))
                         {
@@ -71,8 +70,7 @@ namespace Engine
                 {
                     if (g.Bounds.Intersects(level.player.Bounds))
                     {
-                        Item temp = (Item)g;
-                        level.player.ChangeStats(temp);
+                        level.player.ChangeStats(g as Item);
                         gameObjects.Remove(g);
                     }
                 }
@@ -86,7 +84,7 @@ namespace Engine
                     t.Activated = true;
                     t.ActivateTrap(level.player);
                 }
-                if (t.duration < 0)
+                if (t.duration <= 0)
                 {
                     traps.Remove(t);
                 }

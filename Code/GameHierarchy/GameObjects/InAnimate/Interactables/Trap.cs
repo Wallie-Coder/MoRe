@@ -19,14 +19,6 @@ namespace Engine
 
         }
 
-        internal override void Collision(GameObject collider)
-        {
-            if(collider.GetType().IsSubclassOf(typeof(Animated)) && Activated == false) 
-            {
-                Activated = true;
-            }
-        }
-
         internal virtual void ActivateTrap(GameObject collider)
         {
 

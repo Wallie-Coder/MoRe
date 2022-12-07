@@ -8,29 +8,26 @@ using Microsoft.Xna.Framework;
 
 namespace MoRe
 {
-    internal class FreezeEnemy : Enemy
+    internal class FreezeTrap : Trap
     {
         internal float PowerCountTimer;
         internal float PowerCount = 5;
         internal float PowerDuration = 3;
         internal float PowerDurationTimer;
         bool powerActive = false;
+        Room room;
 
-        internal FreezeEnemy(Vector2 location, float scale, int health, RegularRoom room, string assetName = "ColdBotEnemy") : base(location, scale, 0, health, room, assetName)
+        internal FreezeTrap(Vector2 location, float scale, Room room, string assetName = "FreezeTrap") : base(location, scale, assetName)
         {
             PowerCountTimer = PowerCount;
             PowerDurationTimer = PowerDuration;
-            CanMove = false;
+            this.duration = 3;
+            this.room = room;
         }
 
         internal override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-
-            if (location.X + Origin.X > room.level.player.location.X + room.level.player.Origin.X)
-                orientation = EntityOrientation.Left;
-            else
-                orientation = EntityOrientation.Right;
 
             if (PowerDurationTimer > 0 && powerActive == true)
             {
@@ -38,6 +35,7 @@ namespace MoRe
             }
             else if (PowerDurationTimer < 0 && powerActive == true)
             {
+                duration--;
                 DeActivatePower();
                 PowerDurationTimer = PowerDuration;
             }
@@ -50,16 +48,15 @@ namespace MoRe
                 PowerCountTimer = PowerCount;
                 ActivatePower();
             }
-                
+
         }
-        
+
         internal void ActivatePower()
         {
             powerActive = true;
 
             Room.projectiles = new List<Projectile>();
             room.level.levelState = Level.LevelState.Frozen;
-
         }
         internal void DeActivatePower()
         {
