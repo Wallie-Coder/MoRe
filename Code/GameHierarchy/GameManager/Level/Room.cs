@@ -36,6 +36,7 @@ namespace Engine
 
         // Lists for the gamobjects, doors and projectiles in the room.
         internal List<GameObject> gameObjects= new List<GameObject>();
+        internal List<Trap> traps = new List<Trap>();
         protected List<Door> doors = new List<Door>();
         protected static List<Projectile> projectiles = new List<Projectile>();
 
@@ -88,6 +89,8 @@ namespace Engine
                 else
                     d.Reset();
             }
+            foreach (Trap t in traps)
+                t.Update(gameTime);
         }
         
         internal virtual void Draw(SpriteBatch batch)
@@ -98,6 +101,8 @@ namespace Engine
                 g.Draw(batch);
             foreach (Projectile p in projectiles)
                 p.Draw(batch);
+            foreach (Trap t in traps)
+                t.Draw(batch);
         }
 
         private void setRoomSprite(string neighbors) 

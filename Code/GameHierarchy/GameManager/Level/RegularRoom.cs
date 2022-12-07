@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Engine;
 using MoRe;
-
+using SharpDX.Direct2D1;
 
 namespace Engine
 {
@@ -9,21 +9,24 @@ namespace Engine
     {
         internal RegularRoom(Vector2 location, string roomTemplate, string neighbors, Level level) : base(location, false, false, neighbors, level)
         {
-            RangedEnemy ranged = new RangedEnemy(new Vector2(500, 200), 2, 450, 1, 20, this);
-            gameObjects.Add(ranged);
+            //RangedEnemy ranged = new RangedEnemy(new Vector2(500, 200), 2, 450, 1, 20, this);
+            //gameObjects.Add(ranged);
             ChasingEnemy chasing = new ChasingEnemy(new Vector2(800, 400), 2, 1, 20, this);
             gameObjects.Add(chasing);
 
-            DamageUp DamageItem = new DamageUp(new Vector2(900, 200), 1.5f);
-            //gameObjects.Add(DamageItem);
-            HealthUp hpItem = new HealthUp(new Vector2(600, 400), 1.5f);
-            //gameObjects.Add(hpItem);
-            ShieldUp shield = new ShieldUp(new Vector2(300, 600), 1.5f);
-            gameObjects.Add(shield);
-            ShieldUp shield2 = new ShieldUp(new Vector2(200, 100), 1.5f);
-            //gameObjects.Add(shield2);
-            DashRefill dash = new DashRefill(new Vector2(100, 500), 1.5f);
-            gameObjects.Add(dash);
+            //DamageUp DamageItem = new DamageUp(new Vector2(900, 200), 1.5f);
+            ////gameObjects.Add(DamageItem);
+            //HealthUp hpItem = new HealthUp(new Vector2(600, 400), 1.5f);
+            ////gameObjects.Add(hpItem);
+            //ShieldUp shield = new ShieldUp(new Vector2(300, 600), 1.5f);
+            //gameObjects.Add(shield);
+            //ShieldUp shield2 = new ShieldUp(new Vector2(200, 100), 1.5f);
+            ////gameObjects.Add(shield2);
+            //DashRefill dash = new DashRefill(new Vector2(100, 500), 1.5f);
+            //gameObjects.Add(dash);
+
+            Trap beartrap = new BearTrap(new Vector2(500, 500), 2);
+            traps.Add(beartrap);
 
         }
 
@@ -67,6 +70,17 @@ namespace Engine
                         level.player.ChangeStats(temp);
                         gameObjects.Remove(g);
                     }
+                }
+            }
+
+            foreach (Trap t in traps.ToArray())
+            {
+                if(t.duration < 0)
+                    traps.Remove(t);
+                if (level.player.Bounds.Intersects(t.Bounds))
+                {
+                    t.Activated = true;
+                    t.ActivateTrap(level.player);
                 }
             }
 
