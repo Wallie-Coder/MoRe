@@ -113,5 +113,21 @@ namespace MoRe
 
             return sprite;
         }
+
+        public SpriteFont getFont(string assetName)
+        {
+            SpriteFont font;
+            try
+            {
+                font = GameInstance.Content.Load<SpriteFont>(assetName);
+
+            }
+            catch
+            {
+                font = GameInstance.Content.Load<SpriteFont>("missing_font");
+            }
+
+            return font;
+        }
     }
 }
