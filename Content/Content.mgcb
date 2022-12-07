@@ -133,6 +133,13 @@
 /processorParam:TextureFormat=Color
 /build:Enemy/KnifeRoombaEnemyR.png
 
+#begin File.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:File.spritefont
+
 #begin GridObjects/Buttons/0/0.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -253,13 +260,6 @@
 /processorParam:TextureFormat=Color
 /build:GridObjects/Wall.png
 
-#begin File.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:File.spritefont
-
 #begin Item/DamageUp.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -356,18 +356,6 @@
 /processorParam:TextureFormat=Color
 /build:Player/Assassin/AssassinPlayer.png
 
-#begin Player/Assassin/AssassinPlayer.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Assassin/AssassinPlayer.png
-
 #begin Player/Assassin/AssassinPlayerD1.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -379,30 +367,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Player/Assassin/AssassinPlayerD1.png
-
-#begin Player/Assassin/AssassinPlayerD1.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Assassin/AssassinPlayerD1.png
-
-#begin Player/Assassin/AssassinPlayerD2.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Assassin/AssassinPlayerD2.png
 
 #begin Player/Assassin/AssassinPlayerD2.png
 /importer:TextureImporter
@@ -428,18 +392,6 @@
 /processorParam:TextureFormat=Color
 /build:Player/Assassin/AssassinPlayerD3.png
 
-#begin Player/Assassin/AssassinPlayerD3.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Assassin/AssassinPlayerD3.png
-
 #begin Player/Assassin/AssassinPlayerD4.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -451,30 +403,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Player/Assassin/AssassinPlayerD4.png
-
-#begin Player/Assassin/AssassinPlayerD4.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Assassin/AssassinPlayerD4.png
-
-#begin Player/Assassin/AssassinPlayerL1.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Assassin/AssassinPlayerL1.png
 
 #begin Player/Assassin/AssassinPlayerL1.png
 /importer:TextureImporter
@@ -500,18 +428,6 @@
 /processorParam:TextureFormat=Color
 /build:Player/Assassin/AssassinPlayerL2.png
 
-#begin Player/Assassin/AssassinPlayerL2.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Assassin/AssassinPlayerL2.png
-
 #begin Player/Assassin/AssassinPlayerL3.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -523,30 +439,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Player/Assassin/AssassinPlayerL3.png
-
-#begin Player/Assassin/AssassinPlayerL3.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Assassin/AssassinPlayerL3.png
-
-#begin Player/Assassin/AssassinPlayerL4.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Assassin/AssassinPlayerL4.png
 
 #begin Player/Assassin/AssassinPlayerL4.png
 /importer:TextureImporter
@@ -572,18 +464,6 @@
 /processorParam:TextureFormat=Color
 /build:Player/Assassin/AssassinPlayerR1.png
 
-#begin Player/Assassin/AssassinPlayerR1.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Assassin/AssassinPlayerR1.png
-
 #begin Player/Assassin/AssassinPlayerR2.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -595,30 +475,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Player/Assassin/AssassinPlayerR2.png
-
-#begin Player/Assassin/AssassinPlayerR2.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Assassin/AssassinPlayerR2.png
-
-#begin Player/Assassin/AssassinPlayerR3.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Assassin/AssassinPlayerR3.png
 
 #begin Player/Assassin/AssassinPlayerR3.png
 /importer:TextureImporter
@@ -644,30 +500,6 @@
 /processorParam:TextureFormat=Color
 /build:Player/Assassin/AssassinPlayerR4.png
 
-#begin Player/Assassin/AssassinPlayerR4.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Assassin/AssassinPlayerR4.png
-
-#begin Player/Assassin/AssassinPlayerU1.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Assassin/AssassinPlayerU1.png
-
 #begin Player/Assassin/AssassinPlayerU1.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -692,18 +524,6 @@
 /processorParam:TextureFormat=Color
 /build:Player/Assassin/AssassinPlayerU2.png
 
-#begin Player/Assassin/AssassinPlayerU2.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Assassin/AssassinPlayerU2.png
-
 #begin Player/Assassin/AssassinPlayerU3.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -715,30 +535,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Player/Assassin/AssassinPlayerU3.png
-
-#begin Player/Assassin/AssassinPlayerU3.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Assassin/AssassinPlayerU3.png
-
-#begin Player/Assassin/AssassinPlayerU4.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Assassin/AssassinPlayerU4.png
 
 #begin Player/Assassin/AssassinPlayerU4.png
 /importer:TextureImporter
@@ -776,18 +572,6 @@
 /processorParam:TextureFormat=Color
 /build:Player/Healer/HealerPlayer.png
 
-#begin Player/Healer/HealerPlayer.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Healer/HealerPlayer.png
-
 #begin Player/Healer/HealerPlayerD1.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -799,30 +583,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Player/Healer/HealerPlayerD1.png
-
-#begin Player/Healer/HealerPlayerD1.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Healer/HealerPlayerD1.png
-
-#begin Player/Healer/HealerPlayerD2.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Healer/HealerPlayerD2.png
 
 #begin Player/Healer/HealerPlayerD2.png
 /importer:TextureImporter
@@ -848,18 +608,6 @@
 /processorParam:TextureFormat=Color
 /build:Player/Healer/HealerPlayerD3.png
 
-#begin Player/Healer/HealerPlayerD3.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Healer/HealerPlayerD3.png
-
 #begin Player/Healer/HealerPlayerD4.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -871,30 +619,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Player/Healer/HealerPlayerD4.png
-
-#begin Player/Healer/HealerPlayerD4.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Healer/HealerPlayerD4.png
-
-#begin Player/Healer/HealerPlayerL1.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Healer/HealerPlayerL1.png
 
 #begin Player/Healer/HealerPlayerL1.png
 /importer:TextureImporter
@@ -920,18 +644,6 @@
 /processorParam:TextureFormat=Color
 /build:Player/Healer/HealerPlayerL2.png
 
-#begin Player/Healer/HealerPlayerL2.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Healer/HealerPlayerL2.png
-
 #begin Player/Healer/HealerPlayerL3.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -943,30 +655,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Player/Healer/HealerPlayerL3.png
-
-#begin Player/Healer/HealerPlayerL3.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Healer/HealerPlayerL3.png
-
-#begin Player/Healer/HealerPlayerL4.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Healer/HealerPlayerL4.png
 
 #begin Player/Healer/HealerPlayerL4.png
 /importer:TextureImporter
@@ -992,18 +680,6 @@
 /processorParam:TextureFormat=Color
 /build:Player/Healer/HealerPlayerR1.png
 
-#begin Player/Healer/HealerPlayerR1.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Healer/HealerPlayerR1.png
-
 #begin Player/Healer/HealerPlayerR2.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1015,30 +691,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Player/Healer/HealerPlayerR2.png
-
-#begin Player/Healer/HealerPlayerR2.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Healer/HealerPlayerR2.png
-
-#begin Player/Healer/HealerPlayerR3.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Healer/HealerPlayerR3.png
 
 #begin Player/Healer/HealerPlayerR3.png
 /importer:TextureImporter
@@ -1064,30 +716,6 @@
 /processorParam:TextureFormat=Color
 /build:Player/Healer/HealerPlayerR4.png
 
-#begin Player/Healer/HealerPlayerR4.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Healer/HealerPlayerR4.png
-
-#begin Player/Healer/HealerPlayerU1.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Healer/HealerPlayerU1.png
-
 #begin Player/Healer/HealerPlayerU1.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1112,18 +740,6 @@
 /processorParam:TextureFormat=Color
 /build:Player/Healer/HealerPlayerU2.png
 
-#begin Player/Healer/HealerPlayerU2.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Healer/HealerPlayerU2.png
-
 #begin Player/Healer/HealerPlayerU3.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1135,30 +751,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Player/Healer/HealerPlayerU3.png
-
-#begin Player/Healer/HealerPlayerU3.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Healer/HealerPlayerU3.png
-
-#begin Player/Healer/HealerPlayerU4.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Healer/HealerPlayerU4.png
 
 #begin Player/Healer/HealerPlayerU4.png
 /importer:TextureImporter
@@ -1196,18 +788,6 @@
 /processorParam:TextureFormat=Color
 /build:Player/Warrior/WarriorPlayer.png
 
-#begin Player/Warrior/WarriorPlayer.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Warrior/WarriorPlayer.png
-
 #begin Player/Warrior/WarriorPlayerD1.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1219,30 +799,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Player/Warrior/WarriorPlayerD1.png
-
-#begin Player/Warrior/WarriorPlayerD1.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Warrior/WarriorPlayerD1.png
-
-#begin Player/Warrior/WarriorPlayerD2.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Warrior/WarriorPlayerD2.png
 
 #begin Player/Warrior/WarriorPlayerD2.png
 /importer:TextureImporter
@@ -1268,18 +824,6 @@
 /processorParam:TextureFormat=Color
 /build:Player/Warrior/WarriorPlayerD3.png
 
-#begin Player/Warrior/WarriorPlayerD3.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Warrior/WarriorPlayerD3.png
-
 #begin Player/Warrior/WarriorPlayerD4.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1291,30 +835,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Player/Warrior/WarriorPlayerD4.png
-
-#begin Player/Warrior/WarriorPlayerD4.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Warrior/WarriorPlayerD4.png
-
-#begin Player/Warrior/WarriorPlayerL1.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Warrior/WarriorPlayerL1.png
 
 #begin Player/Warrior/WarriorPlayerL1.png
 /importer:TextureImporter
@@ -1340,18 +860,6 @@
 /processorParam:TextureFormat=Color
 /build:Player/Warrior/WarriorPlayerL2.png
 
-#begin Player/Warrior/WarriorPlayerL2.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Warrior/WarriorPlayerL2.png
-
 #begin Player/Warrior/WarriorPlayerL3.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1363,30 +871,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Player/Warrior/WarriorPlayerL3.png
-
-#begin Player/Warrior/WarriorPlayerL3.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Warrior/WarriorPlayerL3.png
-
-#begin Player/Warrior/WarriorPlayerL4.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Warrior/WarriorPlayerL4.png
 
 #begin Player/Warrior/WarriorPlayerL4.png
 /importer:TextureImporter
@@ -1412,18 +896,6 @@
 /processorParam:TextureFormat=Color
 /build:Player/Warrior/WarriorPlayerR1.png
 
-#begin Player/Warrior/WarriorPlayerR1.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Warrior/WarriorPlayerR1.png
-
 #begin Player/Warrior/WarriorPlayerR2.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1435,30 +907,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Player/Warrior/WarriorPlayerR2.png
-
-#begin Player/Warrior/WarriorPlayerR2.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Warrior/WarriorPlayerR2.png
-
-#begin Player/Warrior/WarriorPlayerR3.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Warrior/WarriorPlayerR3.png
 
 #begin Player/Warrior/WarriorPlayerR3.png
 /importer:TextureImporter
@@ -1484,30 +932,6 @@
 /processorParam:TextureFormat=Color
 /build:Player/Warrior/WarriorPlayerR4.png
 
-#begin Player/Warrior/WarriorPlayerR4.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Warrior/WarriorPlayerR4.png
-
-#begin Player/Warrior/WarriorPlayerU1.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Warrior/WarriorPlayerU1.png
-
 #begin Player/Warrior/WarriorPlayerU1.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1532,18 +956,6 @@
 /processorParam:TextureFormat=Color
 /build:Player/Warrior/WarriorPlayerU2.png
 
-#begin Player/Warrior/WarriorPlayerU2.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Warrior/WarriorPlayerU2.png
-
 #begin Player/Warrior/WarriorPlayerU3.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1555,30 +967,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Player/Warrior/WarriorPlayerU3.png
-
-#begin Player/Warrior/WarriorPlayerU3.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Warrior/WarriorPlayerU3.png
-
-#begin Player/Warrior/WarriorPlayerU4.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Warrior/WarriorPlayerU4.png
 
 #begin Player/Warrior/WarriorPlayerU4.png
 /importer:TextureImporter
@@ -1819,6 +1207,39 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:RoomSprites/RoomSprite(W).png
+
+#begin RoomTemplates/Room_E_1.txt
+/copy:RoomTemplates/Room_E_1.txt
+
+#begin RoomTemplates/Room_ES_1.txt
+/copy:RoomTemplates/Room_ES_1.txt
+
+#begin RoomTemplates/Room_EW_1.txt
+/copy:RoomTemplates/Room_EW_1.txt
+
+#begin RoomTemplates/Room_N_1.txt
+/copy:RoomTemplates/Room_N_1.txt
+
+#begin RoomTemplates/Room_NE_1.txt
+/copy:RoomTemplates/Room_NE_1.txt
+
+#begin RoomTemplates/Room_NESW_1.txt
+/copy:RoomTemplates/Room_NESW_1.txt
+
+#begin RoomTemplates/Room_NS_1.txt
+/copy:RoomTemplates/Room_NS_1.txt
+
+#begin RoomTemplates/Room_NW_1.txt
+/copy:RoomTemplates/Room_NW_1.txt
+
+#begin RoomTemplates/Room_S_1.txt
+/copy:RoomTemplates/Room_S_1.txt
+
+#begin RoomTemplates/Room_SW_1.txt
+/copy:RoomTemplates/Room_SW_1.txt
+
+#begin RoomTemplates/Room_W_1.txt
+/copy:RoomTemplates/Room_W_1.txt
 
 #begin UI/BarHolder.png
 /importer:TextureImporter

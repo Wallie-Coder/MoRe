@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using MoRe;
 using System.Diagnostics;
+using MoRe.Code.Utility;
 
 namespace Engine
 {
@@ -12,7 +13,7 @@ namespace Engine
         private List<GameObject> gameObjects;
 
         private Button play, settings, exit, selectWarrior, selectAssassin, selectHealer;
-        private Box selectBox;
+        private StartScreenBox selectBox;
 
         internal MenuState()
         {
@@ -22,7 +23,7 @@ namespace Engine
             settings = new Button(new Vector2(Game1.worldSize.X / 2, 475), 3f, "button", "Settings");
             exit = new Button(new Vector2(Game1.worldSize.X / 2, 600), 3f, "button", "Exit");
 
-            selectBox = new Box(selectBoxPos, 3f, "button");
+            selectBox = new StartScreenBox(selectBoxPos, 3f, "button");
             selectWarrior = new Button(new Vector2(100, 100), 3f, "Player/Warrior/Warrior", "");
             selectAssassin = new Button(new Vector2(100, 200), 3f, "Player/Assassin/Assassin", "");
             selectHealer = new Button(new Vector2(100, 300), 3f, "Player/Healer/Healer", "");

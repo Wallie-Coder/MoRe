@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Engine;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MoRe;
 using System;
@@ -8,15 +9,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Engine
+namespace MoRe.Code.Utility
 {
     // a button class. pretty straight forward.
     internal class Button : GameObject
     {
-        internal protected bool turnedOn { get; set; }  
+        internal protected bool turnedOn { get; set; }
         internal protected bool clicked { get; set; }
         internal protected bool soloButton { get; private set; }
-        internal protected string text { get; protected set; } 
+        internal protected string text { get; protected set; }
         internal protected Vector2 textSize { get { return Game1.GameInstance.font.MeasureString(text) * WorldScale; } set {; } }
         public Button(Vector2 location, float scale, string assetName = " ", string text = "", bool turnedOn = false, bool soloButton = false) : base(location, scale, assetName)
         {
@@ -32,29 +33,29 @@ namespace Engine
             {
                 clicked = true;
                 if (soloButton)
-                switch (turnedOn)
-                {
-                    case true:
-                        turnedOn = false;
-                        break;
-                    case false:
-                        turnedOn = true;
-                        break;
-                }
+                    switch (turnedOn)
+                    {
+                        case true:
+                            turnedOn = false;
+                            break;
+                        case false:
+                            turnedOn = true;
+                            break;
+                    }
 
             }
             else
                 clicked = false;
 
-            if (this.turnedOn)
-                this.color = Color.Green;
+            if (turnedOn)
+                color = Color.Green;
             else
-                this.color = Color.White;
+                color = Color.White;
         }
 
         internal override void Draw(SpriteBatch batch)
         {
-            batch.DrawString(Game1.GameInstance.font, text, (location * WorldScale - textSize / 2), Color.White, MathHelper.ToRadians(rotationInDegrees), Vector2.Zero, 1 * WorldScale, spriteEffect, Depth);
+            batch.DrawString(Game1.GameInstance.font, text, location * WorldScale - textSize / 2, Color.White, MathHelper.ToRadians(rotationInDegrees), Vector2.Zero, 1 * WorldScale, spriteEffect, Depth);
         }
     }
 }

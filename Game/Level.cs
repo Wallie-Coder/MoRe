@@ -21,9 +21,6 @@ namespace MoRe
         internal protected Player player { get; protected set; }
 
         private Random rnd;
-        internal Level(int size)
-        {
-            player = new Warrior(new Vector2(200, 200), 1f);
 
         private bool hardmodeSelected, fastmodeSelected;
 

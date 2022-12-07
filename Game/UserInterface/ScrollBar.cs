@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 using Engine;
 using SharpDX.MediaFoundation;
+using MoRe.Code.Utility;
 
 namespace MoRe
 {

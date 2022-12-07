@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using MoRe;
 using System.Xml.Serialization;
+using MoRe.Code.Utility;
 
 namespace Engine
 {

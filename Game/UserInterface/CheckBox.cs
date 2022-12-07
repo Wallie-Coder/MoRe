@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 using Engine;
+using MoRe.Code.Utility;
 
 namespace MoRe
 {
@@ -27,7 +28,7 @@ namespace MoRe
         internal override void Update(GameTime time)
         {
             location = relativePos + menu.menuPos;
-            if (pressed) { sprite = normalSprite; } else { sprite = checkedSprite; }
+            if (turnedOn) { sprite = normalSprite; } else { sprite = checkedSprite; }
             base.Update(time);
         }
     }

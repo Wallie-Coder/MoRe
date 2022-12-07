@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using MoRe;
 using System.Diagnostics;
+using MoRe.Code.Utility;
 
 namespace Engine
 {
@@ -12,7 +13,7 @@ namespace Engine
         private List<GameObject> gameObjects;
 
         private Button exit, fullscreen, windowed, hardmode, fastmode;
-        private Box settingsBox;
+        private StartScreenBox settingsBox;
 
         internal SettingsState()
         {
@@ -24,7 +25,7 @@ namespace Engine
             hardmode = new Button(new Vector2(400, 225), 3f, "button", "Hardmode", s_hardmodeSelected, true);
             fastmode = new Button(new Vector2(500, 225), 3f, "button", "Fastmode", s_fastmodeSelected, true);
 
-            settingsBox = new Box(new Vector2(800, 450), 1f, "button");
+            settingsBox = new StartScreenBox(new Vector2(800, 450), 1f, "button");
 
             gameObjects.Add(settingsBox);
             gameObjects.Add(exit);
@@ -77,7 +78,7 @@ namespace Engine
                 
                 if (g is Button)
                     g.DrawCustomSize(batch, new Vector2(1, 1));
-                if(g is Box)
+                if(g is StartScreenBox)
                     g.DrawCustomSize(batch, new Vector2(30, 25));
 
                 g.Draw(batch);
