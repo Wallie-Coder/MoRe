@@ -16,7 +16,7 @@ namespace Engine
 
         public Trap(Vector2 location, float scale, string assetName = " ") : base(location, scale, "Traps\\" + assetName)
         {
-
+            
         }
 
         internal virtual void ActivateTrap(GameObject collider)
