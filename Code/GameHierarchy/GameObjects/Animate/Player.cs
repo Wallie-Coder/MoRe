@@ -4,11 +4,15 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using MoRe;
+using System.Xml.Serialization;
 
 namespace Engine
 {
     internal class Player : Animated
     {
+        //temp?
+        public float Mana { get; protected set; }
+
         protected enum characterType
         {
             assassin, healer, warrior
@@ -42,6 +46,11 @@ namespace Engine
 
         public float SpecialAbilityCooldownTimer { get { return specialAbilityCooldownTimer; } protected set { specialAbilityCooldownTimer = value; } }
         public float NormalAbilityCooldownTimer { get { return normalAbilityCooldownTimer; } protected set { normalAbilityCooldownTimer = value; } }
+
+        /// <summary>
+        /// Used crudely for moving the player back. Bad implementation.
+        /// </summary>
+        internal Vector2 prevLocation;
 
         internal Player(Vector2 location, float scale, string assetName = "Player") : base(location, scale, assetName)
         {
@@ -82,6 +91,9 @@ namespace Engine
 
         internal override void Update(GameTime gameTime)
         {
+            //temp
+            prevLocation = location;
+
             currentWeapon.Update(gameTime);
 
             //Update the cooldown timers
@@ -289,6 +301,17 @@ namespace Engine
                     SwapWeapon();
             }
 
-        }        
+        }
+
+        internal override void HandleCollision(GameEntity collider)
+        {
+            if (collider is Wall) { location = prevLocation; }
+            else
+            if (collider is Spike) { Heal(-1); }
+            else
+            if ((collider as Gate).isClosed) { location = prevLocation; }
+            else
+            if ((collider as GateButton).isDown) { (collider as GateButton).Switch(); }
+        }
     }
 }
