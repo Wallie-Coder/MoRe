@@ -65,22 +65,6 @@ namespace Engine
             else if (symbol == 'D')
                 LoadDoor(x, y);
         }
-        Tile StaticTile(int x, int y, char symbol)
-        {
-            switch (symbol)
-            {
-                case '-':
-                    return new Tile(Tile.Type.Void, GetCellPosition(x,y));
-                case '#':
-                    return new Tile(Tile.Type.Wall, GetCellPosition(x, y));
-                case '^':
-                    return new Tile(Tile.Type.Spike, GetCellPosition(x, y));
-                case 'D':
-                    return new Tile(Tile.Type.Door, GetCellPosition(x, y));
-                default:
-                    return new Tile(Tile.Type.Floor, GetCellPosition(x, y));
-            }
-        }
 
         private void LoadChasingEnemy(int x, int y)
         {
