@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace MoRe
 {
-    internal class Tile : GameObject
+    internal class TileTest : GameObject
     {
         public enum Type { Empty, Wall, Void, Door, Spike, Floor };
         public enum SurfaceType { Normal };
@@ -20,7 +20,7 @@ namespace MoRe
 
         InAnimate image;
 
-        public Tile(Type type, Vector2 location, float notStuck = 1) : base(location, 1)
+        public TileTest(Type type, Vector2 location, float notStuck = 1) : base(location, 1)
         {
 
             if (type == Type.Wall)
