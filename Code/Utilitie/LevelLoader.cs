@@ -1,26 +1,21 @@
-﻿using SharpDX.Direct2D1.Effects;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MoRe;
 
-namespace MoRe
+namespace Engine
 {
-    internal class LevelLoader
+    internal partial class RegularRoom
     {
         Tile[,] tiles;
 
-        string fileLocation;
-        internal LevelLoader(string fileLocation)
-        {
-            this.fileLocation = fileLocation;
-        }
-
         public void LoadFile(string filename)
         {
-            StreamReader sr = new StreamReader(fileLocation + "/" + filename);
+            StreamReader sr = new StreamReader(filename);
 
             int width = 0;
 
@@ -43,7 +38,7 @@ namespace MoRe
 
         private void MakeGrid(List<string> rows, int width, int heigth)
         {
-            Tile[,] tiles = new Tile[width, heigth];
+            tiles = new Tile[width, heigth];
 
             for (int y = 0; y < heigth; y++)
             {
@@ -61,7 +56,62 @@ namespace MoRe
 
         private void CreateTile(int x, int y, char symbol)
         {
+            if (symbol == 'C')
+                LoadChasingEnemy(x, y);
+            else if (symbol == 'R')
+                LoadRangedEnemy(x, y);
+            else if (symbol == '#')
+                LoadWall(x, y);
+            else if (symbol == 'D')
+                LoadDoor(x, y);
+        }
+        Tile StaticTile(int x, int y, char symbol)
+        {
+            switch (symbol)
+            {
+                case '-':
+                    return new Tile(Tile.Type.Void, GetCellPosition(x,y));
+                case '#':
+                    return new Tile(Tile.Type.Wall, GetCellPosition(x, y));
+                case '^':
+                    return new Tile(Tile.Type.Spike, GetCellPosition(x, y));
+                case 'D':
+                    return new Tile(Tile.Type.Door, GetCellPosition(x, y));
+                default:
+                    return new Tile(Tile.Type.Floor, GetCellPosition(x, y));
+            }
+        }
 
+        private void LoadChasingEnemy(int x, int y)
+        {
+            ChasingEnemy enemy = new ChasingEnemy(GetCellPosition(x, y), 1, 10, 10, this);
+            gameObjects.Add(enemy);
+        }
+        private void LoadRangedEnemy(int x, int y)
+        {
+            RangedEnemy enemy = new RangedEnemy(GetCellPosition(x, y), 1, 100, 10, 10, this);
+            gameObjects.Add(enemy);
+        }
+        private void LoadWall(int x, int y)
+        {
+            InAnimate wall = new InAnimate(GetCellPosition(x, y), 1, "Item\\Dash");
+            gameObjects.Add(wall);
+        }
+        private void LoadDoor(int x, int y)
+        {
+            if (neighbors.Contains('N'))
+                doors.Add(new Door(GetCellPosition(x, y), 1f, NeighborLocation.top));
+            if (neighbors.Contains('E'))
+                doors.Add(new Door(GetCellPosition(x, y), 1f, NeighborLocation.right));
+            if (neighbors.Contains('S'))
+                doors.Add(new Door(GetCellPosition(x, y), 1f, NeighborLocation.bottom));
+            if (neighbors.Contains('W'))
+                doors.Add(new Door(GetCellPosition(x, y), 1f, NeighborLocation.left));
+        }
+
+        public Vector2 GetCellPosition(int x, int y)
+        {
+            return new Vector2(x * 32 /*TileWidth*/, y * 32 /*TileHeight*/);
         }
     }
 }
