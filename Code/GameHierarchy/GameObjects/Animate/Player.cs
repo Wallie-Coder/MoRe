@@ -59,8 +59,8 @@ namespace Engine
 
             orbitals.Add(new Orbital(location, 1, 1, 100, 10, "Projectiles\\BlueProjectile"));
 
-            //initializes the normal ability. (The 10 stands for 10 seconds, the 1000 converts from seconds to milliseconds).
-            normalAbilityCooldown = 10 * 1000;
+            //initializes the normal ability. (The 10 stands for 10 seconds).
+            normalAbilityCooldown = 10;
             //normalAbilityCooldownTimer = normalAbilityCooldown;
             canNormalAbility = true;
 
@@ -166,7 +166,7 @@ namespace Engine
 
             if (!canNormalAbility)
             {
-                normalAbilityCooldownTimer -= gameTime.ElapsedGameTime.Milliseconds;
+                normalAbilityCooldownTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
                 if (normalAbilityCooldownTimer <= 0)
                 {
                     canNormalAbility = true;

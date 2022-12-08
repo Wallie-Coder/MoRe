@@ -103,18 +103,7 @@ namespace Engine
         {
             projectiles.Add(p);
         }
-        internal void HandleLazers()
-        {
-            bool lazer = false;
-            for (int i = projectiles.Count - 1; i >= 0; i--)
-                if (projectiles[i].assetName == "Projectiles\\laser")
-                {
-                    if (lazer == true || !InputHelper.IsKeyDown(Keys.Space) || 1 == 1)
-                        projectiles.RemoveAt(i);
-                    else
-                        lazer = true;
-                }
-        }
+
         internal void DropItem(Vector2 location)
         {
             Random rnd = new Random();

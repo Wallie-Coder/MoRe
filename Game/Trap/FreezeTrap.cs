@@ -10,18 +10,13 @@ namespace MoRe
 {
     internal class FreezeTrap : Trap
     {
-        internal float PowerCountTimer;
-        internal float PowerCount = 5;
-        internal float PowerDuration = 3;
-        internal float PowerDurationTimer;
-        bool powerActive = false;
-        Room room;
-
         internal FreezeTrap(Vector2 location, float scale, Room room, string assetName = "FreezeTrap") : base(location, scale, assetName)
         {
-            PowerCountTimer = PowerCount;
-            PowerDurationTimer = PowerDuration;
-            this.duration = 3;
+            duration = 2;
+            delay = 5;
+            durationTimer = duration;
+            delayTimer = delay;
+            uses = 3;
             this.room = room;
         }
 
@@ -29,38 +24,39 @@ namespace MoRe
         {
             base.Update(gameTime);
 
-            if (PowerDurationTimer > 0 && powerActive == true)
+            if (durationTimer > 0 && activated == true)
             {
-                PowerDurationTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+                durationTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
-            else if (PowerDurationTimer < 0 && powerActive == true)
+            else if (durationTimer < 0 && activated == true)
             {
                 duration--;
-                DeActivatePower();
-                PowerDurationTimer = PowerDuration;
+                DeActivateTrap();
+                uses--;
+                durationTimer = duration;
             }
-            else if (PowerCountTimer > 0)
+            else if (delayTimer > 0)
             {
-                PowerCountTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+                delayTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
             else
             {
-                PowerCountTimer = PowerCount;
-                ActivatePower();
+                delayTimer = delay;
+                ActivateTrap();
             }
 
         }
 
-        internal void ActivatePower()
+        internal override void ActivateTrap(GameObject collider = null)
         {
-            powerActive = true;
+            activated = true;
 
             Room.projectiles = new List<Projectile>();
             room.level.levelState = Level.LevelState.Frozen;
         }
-        internal void DeActivatePower()
+        internal override void DeActivateTrap(GameObject collider = null)
         {
-            powerActive = false;
+            activated = false;
 
             room.level.levelState = Level.LevelState.Play;
         }

@@ -18,21 +18,33 @@ namespace MoRe
             duration = 3;
         }
 
-        internal override void ActivateTrap(GameObject collider)
+        internal override void HandleCollision(GameEntity collider)
         {
-            base.ActivateTrap(collider);
+            if(collider is Animated)
+            {
+                ActivateTrap(collider);
+            }
+        }
+
+        internal override void ActivateTrap(GameObject collider = null)
+        {
+            activated = true;
             sprite = Game1.GameInstance.getSprite("Traps\\BearTrapActivated");
             entity = (Animated)collider;
         }
 
         internal override void Update(GameTime gameTime)
         {
-            if (Activated)
+            if (activated)
             {
                 duration -= (float)gameTime.ElapsedGameTime.TotalSeconds;
                 entity.CanMove = false;
                 if (duration < 0)
+                {
                     entity.CanMove = true;
+                    activated = false;
+                    uses--;
+                }
             }
 
         }

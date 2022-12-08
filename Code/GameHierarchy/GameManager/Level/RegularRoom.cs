@@ -3,6 +3,7 @@ using Engine;
 using MoRe;
 using SharpDX.Direct2D1;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework.Input;
 
 namespace Engine
 {
@@ -10,27 +11,29 @@ namespace Engine
     {
         internal RegularRoom(Vector2 location, string roomTemplate, string neighbors, Level level) : base(location, false, false, neighbors, level)
         {
-            RangedEnemy ranged = new RangedEnemy(new Vector2(500, 200), 2, 450, 1, 20, this);
-            gameObjects.Add(ranged);
+            //RangedEnemy ranged = new RangedEnemy(new Vector2(500, 200), 2, 450, 1, 20, this);
+            //gameObjects.Add(ranged);
             //ChasingEnemy chasing = new ChasingEnemy(new Vector2(800, 400), 2, 1, 20, this);
             //gameObjects.Add(chasing);
 
 
-            //DamageUp DamageItem = new DamageUp(new Vector2(900, 200), 1.5f);
+            //DamageUp DamageItem = new DamageUp(new Vector2(900, 200), 1f);
             ////gameObjects.Add(DamageItem);
-            //HealthUp hpItem = new HealthUp(new Vector2(600, 400), 1.5f);
+            //HealthUp hpItem = new HealthUp(new Vector2(600, 400), 1f);
             ////gameObjects.Add(hpItem);
-            //ShieldUp shield = new ShieldUp(new Vector2(300, 600), 1.5f);
+            //ShieldUp shield = new ShieldUp(new Vector2(300, 600), 1f);
             //gameObjects.Add(shield);
-            //ShieldUp shield2 = new ShieldUp(new Vector2(200, 100), 1.5f);
+            //ShieldUp shield2 = new ShieldUp(new Vector2(200, 100), 1f);
             ////gameObjects.Add(shield2);
-            //DashRefill dash = new DashRefill(new Vector2(100, 500), 1.5f);
+            //DashRefill dash = new DashRefill(new Vector2(100, 500), 1f);
             //gameObjects.Add(dash);
 
             Trap beartrap = new BearTrap(new Vector2(500, 500), 2);
             traps.Add(beartrap);
             FreezeTrap freeze = new FreezeTrap(new Vector2(100, 300), 2, this);
             traps.Add(freeze);
+            Barrel barrel = new Barrel(new Vector2(100, 500), 2);
+            traps.Add(barrel);
 
         }
 
@@ -46,7 +49,7 @@ namespace Engine
 
                 foreach (Projectile p in projectiles)
                 {
-                    if (p.Parent != Projectile.ProjectileParent.Enemy && g.GetType().IsSubclassOf(typeof(Enemy)))
+                    if (p.Parent != Projectile.ProjectileParent.Enemy && g is Enemy)
                     {
                         if (p.Bounds.Intersects(g.Bounds))
                         {
@@ -55,18 +58,18 @@ namespace Engine
                         }
                     }
                 }
-                if (g.GetType().IsSubclassOf(typeof(GameEntity)))
+                if (g is GameEntity)
                 {
                     if ((g as GameEntity).Health < 0)
                     {
-                        if (g.GetType().IsSubclassOf(typeof(Enemy)))
+                        if (g is Enemy)
                         {
                             DropItem(g.location);
                         }
                         gameObjects.Remove(g);
                     }
                 }
-                if (g.GetType().IsSubclassOf(typeof(Item)))
+                if (g is Item)
                 {
                     if (g.Bounds.Intersects(level.player.Bounds))
                     {
@@ -81,16 +84,15 @@ namespace Engine
                 t.Update(gameTime);
                 if (level.player.Bounds.Intersects(t.Bounds))
                 {
-                    t.Activated = true;
-                    t.ActivateTrap(level.player);
+                    t.HandleCollision(level.player);
                 }
-                if (t.duration <= 0)
+                if (t.uses <= 0)
                 {
                     traps.Remove(t);
                 }
             }
 
-            // Update each projectile, and handel lazers
+            // Update each projectile, and handle lazers
             foreach (Projectile p in projectiles.ToArray())
             {
                 p.Update(gameTime);
@@ -111,7 +113,19 @@ namespace Engine
             HandleLazers();
 
             base.Update(gameTime);
+        }
 
+        internal void HandleLazers()
+        {
+            bool lazer = false;
+            for (int i = projectiles.Count - 1; i >= 0; i--)
+                if (projectiles[i].assetName == "Projectiles\\laser")
+                {
+                    if (lazer == true || !InputHelper.IsKeyDown(Keys.Space) || 1 == 1)
+                        projectiles.RemoveAt(i);
+                    else
+                        lazer = true;
+                }
         }
     }
 }
