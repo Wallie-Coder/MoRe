@@ -77,13 +77,13 @@ namespace MoRe
 
             if (fastmodeSelected)
             {
-                this.player.baseSpeed = 8;
+                this.player.BaseSpeed = 8;
                 foreach (Weapon w in this.player.weaponList)
                     w.shotSpeed *= 2f;
                 foreach (GameObject g in activeRoom.gameObjects)
                 {
                     if (g is Enemy)
-                        (g as Enemy).baseSpeed = rnd.Next(4, 8);
+                        (g as Enemy).BaseSpeed = rnd.Next(4, 8);
                     if (g is RangedEnemy)
                         (g as RangedEnemy).shotSpeed *= (float)(rnd.NextDouble() + 1);
                 }
@@ -192,7 +192,7 @@ namespace MoRe
                 foreach (GameObject g in activeRoom.gameObjects)
                 {
                     if (g is Enemy)
-                        (g as Enemy).baseSpeed = rnd.Next(4, 8);
+                        (g as Enemy).BaseSpeed = rnd.Next(4, 8);
                     if (g is RangedEnemy)
                         (g as RangedEnemy).shotSpeed *= (float)(rnd.NextDouble() + 1);
                 }
