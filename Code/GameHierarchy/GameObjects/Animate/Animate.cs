@@ -9,7 +9,7 @@ namespace Engine
     internal class Animate : GameEntity
     {
         protected float MoveSpeed;
-        protected float baseSpeed = 2;
+        internal float baseSpeed = 2;
         private float speedScale = 16.666667f;
         protected Vector2 Direction;
 

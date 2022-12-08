@@ -13,8 +13,8 @@ namespace Engine
         {
             //RangedEnemy ranged = new RangedEnemy(new Vector2(500, 200), 2, 450, 1, 20, this);
             //gameObjects.Add(ranged);
-            //ChasingEnemy chasing = new ChasingEnemy(new Vector2(800, 400), 2, 1, 20, this);
-            //gameObjects.Add(chasing);
+            ChasingEnemy chasing = new ChasingEnemy(new Vector2(800, 400), 2, 1, 20, this);
+            gameObjects.Add(chasing);
 
 
             //DamageUp DamageItem = new DamageUp(new Vector2(900, 200), 1f);
@@ -28,12 +28,14 @@ namespace Engine
             //DashRefill dash = new DashRefill(new Vector2(100, 500), 1f);
             //gameObjects.Add(dash);
 
-            Trap beartrap = new BearTrap(new Vector2(500, 500), 2);
-            traps.Add(beartrap);
-            FreezeTrap freeze = new FreezeTrap(new Vector2(100, 300), 2, this);
-            traps.Add(freeze);
-            Barrel barrel = new Barrel(new Vector2(100, 500), 2);
-            traps.Add(barrel);
+            //Trap beartrap = new BearTrap(new Vector2(500, 500), 2);
+            //traps.Add(beartrap);
+            //FreezeTrap freeze = new FreezeTrap(new Vector2(100, 300), 2, this);
+            //traps.Add(freeze);
+            //Barrel barrel = new Barrel(new Vector2(100, 500), 2);
+            //traps.Add(barrel);
+            EnemyBooster enemybooster = new EnemyBooster(new Vector2(600, 200), 2, this);
+            traps.Add(enemybooster);
 
         }
 

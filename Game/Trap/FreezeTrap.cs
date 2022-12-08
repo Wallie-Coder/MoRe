@@ -44,7 +44,6 @@ namespace MoRe
                 delayTimer = delay;
                 ActivateTrap();
             }
-
         }
 
         internal override void ActivateTrap(GameObject collider = null)
