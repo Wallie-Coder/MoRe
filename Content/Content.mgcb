@@ -776,6 +776,12 @@
 /processorParam:TextureFormat=Color
 /build:Player/Warrior/Warrior.png
 
+#begin Player/Saves/Autosaves/PlayerStats.txt
+/copy:Player/Saves/Autosaves/PlayerStats.txt
+
+#begin Player/Saves/PlayerStats.txt
+/copy:Player/Saves/PlayerStats.txt
+
 #begin Player/Warrior/WarriorPlayer.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1208,11 +1214,17 @@
 /processorParam:TextureFormat=Color
 /build:RoomSprites/RoomSprite(W).png
 
+#begin RoomTemplates/Room_Boss.txt
+/copy:RoomTemplates/Room_Boss.txt
+
 #begin RoomTemplates/Room_E_1.txt
 /copy:RoomTemplates/Room_E_1.txt
 
 #begin RoomTemplates/Room_ES_1.txt
 /copy:RoomTemplates/Room_ES_1.txt
+
+#begin RoomTemplates/Room_ESW_1.txt
+/copy:RoomTemplates/Room_ESW_1.txt
 
 #begin RoomTemplates/Room_EW_1.txt
 /copy:RoomTemplates/Room_EW_1.txt
@@ -1223,17 +1235,29 @@
 #begin RoomTemplates/Room_NE_1.txt
 /copy:RoomTemplates/Room_NE_1.txt
 
+#begin RoomTemplates/Room_NES_1.txt
+/copy:RoomTemplates/Room_NES_1.txt
+
 #begin RoomTemplates/Room_NESW_1.txt
 /copy:RoomTemplates/Room_NESW_1.txt
 
+#begin RoomTemplates/Room_NEW_1.txt
+/copy:RoomTemplates/Room_NEW_1.txt
+
 #begin RoomTemplates/Room_NS_1.txt
 /copy:RoomTemplates/Room_NS_1.txt
+
+#begin RoomTemplates/Room_NSW_1.txt
+/copy:RoomTemplates/Room_NSW_1.txt
 
 #begin RoomTemplates/Room_NW_1.txt
 /copy:RoomTemplates/Room_NW_1.txt
 
 #begin RoomTemplates/Room_S_1.txt
 /copy:RoomTemplates/Room_S_1.txt
+
+#begin RoomTemplates/Room_Start.txt
+/copy:RoomTemplates/Room_Start.txt
 
 #begin RoomTemplates/Room_SW_1.txt
 /copy:RoomTemplates/Room_SW_1.txt

@@ -11,9 +11,9 @@ namespace Engine
 {
     internal partial class RegularRoom
     {
-        Tile[,] tiles;
+        Tile[,] tilegrid;
 
-        public void LoadFile(string filename)
+        public void LoadFileLevel(string filename)
         {
             StreamReader sr = new StreamReader(filename);
 
@@ -38,7 +38,7 @@ namespace Engine
 
         private void MakeGrid(List<string> rows, int width, int heigth)
         {
-            tiles = new Tile[width, heigth];
+            tilegrid = new Tile[width, heigth];
 
             for (int y = 0; y < heigth; y++)
             {
@@ -64,38 +64,72 @@ namespace Engine
                 LoadWall(x, y);
             else if (symbol == 'D')
                 LoadDoor(x, y);
+            else if (symbol == '^')
+                LoadSpike(x, y);
+            else if (symbol == 'G')
+                LoadGate(x, y);
+            else if (symbol == 'B')
+                LoadGateButton(x, y);
         }
 
         private void LoadChasingEnemy(int x, int y)
         {
-            ChasingEnemy enemy = new ChasingEnemy(GetCellPosition(x, y), 1, 10, 10, this);
+            ChasingEnemy enemy = new ChasingEnemy(GetCellPositionVector(x, y), 1, 10, 10, this);
             gameObjects.Add(enemy);
         }
         private void LoadRangedEnemy(int x, int y)
         {
-            RangedEnemy enemy = new RangedEnemy(GetCellPosition(x, y), 1, 100, 10, 10, this);
+            RangedEnemy enemy = new RangedEnemy(GetCellPositionVector(x, y), 1, 100, 10, 10, this);
             gameObjects.Add(enemy);
         }
         private void LoadWall(int x, int y)
         {
-            InAnimate wall = new InAnimate(GetCellPosition(x, y), 1, "Item\\Dash");
-            gameObjects.Add(wall);
+            Wall wall = new Wall(GetCellPositionPoint(x, y));
+            tiles.Add(wall);
+        }
+        private void LoadSpike(int x, int y)
+        {
+            Spike spike = new Spike(GetCellPositionPoint(x, y));
+            tiles.Add(spike);
+        }
+        private void LoadGate(int x, int y)
+        {
+            Gate gate = new Gate(GetCellPositionPoint(x, y), 0);
+            tiles.Add(gate);
+        }
+        private void LoadGateButton(int x, int y)
+        {
+            GateButton gateButton = new GateButton(GetCellPositionPoint(x, y), 0);
+            tiles.Add(gateButton);
         }
         private void LoadDoor(int x, int y)
         {
-            if (neighbors.Contains('N'))
-                doors.Add(new Door(GetCellPosition(x, y), 1f, NeighborLocation.top));
-            if (neighbors.Contains('E'))
-                doors.Add(new Door(GetCellPosition(x, y), 1f, NeighborLocation.right));
-            if (neighbors.Contains('S'))
-                doors.Add(new Door(GetCellPosition(x, y), 1f, NeighborLocation.bottom));
-            if (neighbors.Contains('W'))
-                doors.Add(new Door(GetCellPosition(x, y), 1f, NeighborLocation.left));
+            if (y == 0 && neighbors.Contains('N'))
+                doors.Add(new Door(GetCellPositionVector(x, y), 1f, NeighborLocation.top));
+            else if (x == tilegrid.GetLength(0) - 1 && neighbors.Contains('E'))
+                doors.Add(new Door(GetCellPositionVector(x, y), 1f, NeighborLocation.right));
+            else if (y == tilegrid.GetLength(1) - 1 && neighbors.Contains('S'))
+                doors.Add(new Door(GetCellPositionVector(x, y), 1f, NeighborLocation.bottom));
+            else if (x == 0 && neighbors.Contains('W'))
+                doors.Add(new Door(GetCellPositionVector(x, y), 1f, NeighborLocation.left));
+
+            else if (y == 0)
+                tiles.Add(new Wall(GetCellPositionPoint(x, y)));
+            else if (x == tilegrid.GetLength(0) - 1)
+                tiles.Add(new Wall(GetCellPositionPoint(x, y)));
+            else if (y == tilegrid.GetLength(1) - 1)
+                tiles.Add(new Wall(GetCellPositionPoint(x, y)));
+            else if (x == 0)
+                tiles.Add(new Wall(GetCellPositionPoint(x, y)));
         }
 
-        public Vector2 GetCellPosition(int x, int y)
+        public Point GetCellPositionPoint(int x, int y)
         {
-            return new Vector2(x * 32 /*TileWidth*/, y * 32 /*TileHeight*/);
+            return new Point(x * 32 /*TileWidth*/ + 16, y * 32 /*TileHeight*/ + 16);
+        }
+        public Vector2 GetCellPositionVector(int x, int y)
+        {
+            return new Vector2(x * 32 /*TileWidth*/ + 16, y * 32 /*TileHeight*/ + 16);
         }
     }
 }

@@ -7,26 +7,20 @@ namespace Engine
 {
     internal partial class RegularRoom : Room
     {
-        
-        internal RegularRoom(Vector2 location, string roomTemplate, string neighbors, Level level) : base(location, false, false, neighbors, level)
+        public Level.RoomTypes roomType;
+        internal RegularRoom(Vector2 location, Level.RoomTypes roomType, string neighbors, Level level) : base(location, false, false, neighbors, level)
         {
-            //RangedEnemy ranged = new RangedEnemy(new Vector2(500, 200), 2, 450, 1, 20, this);
-            //gameObjects.Add(ranged);
-            //ChasingEnemy chasing = new ChasingEnemy(new Vector2(800, 400), 2, 1, 20, this);
-            //gameObjects.Add(chasing);
-
-            //DamageUp DamageItem = new DamageUp(new Vector2(900, 200), 1.5f);
-            //gameObjects.Add(DamageItem);
-            //HealthUp hpItem = new HealthUp(new Vector2(600, 400), 1.5f);
-            //gameObjects.Add(hpItem);
-            //ShieldUp shield = new ShieldUp(new Vector2(300, 600), 1.5f);
-            //gameObjects.Add(shield);
-            //ShieldUp shield2 = new ShieldUp(new Vector2(200, 100), 1.5f);
-            //gameObjects.Add(shield2);
-            //DashRefill dash = new DashRefill(new Vector2(100, 500), 1.5f);
-            //gameObjects.Add(dash);
-
-            LoadFile("C:\\Users\\danie\\source\\repos\\MoRe\\Content\\RoomTemplates\\Room_E_1.txt");
+            this.roomType = roomType;
+            if (roomType == Level.RoomTypes.start)
+            {
+                LoadFileLevel("Content/RoomTemplates/Room_Start.txt");
+            }
+            if (roomType == Level.RoomTypes.boss)
+            {
+                LoadFileLevel("Content/RoomTemplates/Room_Boss.txt");
+            }
+            else
+                LoadFileLevel("Content/RoomTemplates/Room_" + neighbors + "_1.txt");
         }
 
         internal override void Update(GameTime gameTime)

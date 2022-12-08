@@ -5,6 +5,10 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using MoRe;
 using System.Xml.Serialization;
+using System.IO;
+using System.Linq;
+using System.Reflection.Metadata;
+using SharpDX.Direct3D9;
 using MoRe.Code.Utility;
 
 namespace Engine
@@ -40,6 +44,11 @@ namespace Engine
         float specialAbilityTimer;
         bool canSpecialAbility;
         bool specialAbilityActive;
+
+        //Autosave variables
+        float AutosaveCooldownTimer;
+        float AutosaveCooldown;
+        bool canAutosave;
 
         //Lists for collected Items and orbitals
         public List<Item> items;
@@ -82,10 +91,13 @@ namespace Engine
             PowerMultiplier = 1;
             Health = 200;
             MaxHealth = Health;
-            baseSpeed = 5;
+            BaseSpeed = 5;
             orientation = EntityOrientation.Down;
-
             this.Depth = 1f;
+
+            AutosaveCooldown = 60;
+            AutosaveCooldownTimer = AutosaveCooldown;
+            canAutosave = true;
 
             this.StartMoving();
         }
@@ -211,6 +223,16 @@ namespace Engine
                     canSwapWeapon = true;
                 }
             }
+
+            if (canAutosave)
+            {
+                AutosaveCooldownTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+                if (AutosaveCooldownTimer <= 0)
+                {
+                    SaveStats(true);
+                    AutosaveCooldownTimer = AutosaveCooldown;
+                }
+            }
         }
 
         //Resets the special abilities
@@ -225,6 +247,81 @@ namespace Engine
         {
             this.location = location;
             orientation = EntityOrientation.Down;
+        }
+
+        private void SaveStats(bool autosave = false)
+        {
+            StreamWriter streamWriter;
+            if (!autosave)
+                streamWriter = new StreamWriter("Content/Player/Saves/PlayerStats.txt", false);
+            else
+            {
+                string[] files = Directory.GetFiles("Content/Player/Saves/Autosaves");
+                int number = files.Count() + 1;
+                streamWriter = new StreamWriter("Content/Player/Saves/Autosaves/PlayerStats_" + number + ".txt");
+            }
+
+            streamWriter.WriteLine("Class: " + currentClass);
+            streamWriter.WriteLine("MaxHealth: " + MaxHealth);
+            streamWriter.WriteLine("Health: " + Health);
+            streamWriter.WriteLine("PowerMultiplier: " + PowerMultiplier);
+            streamWriter.WriteLine("BaseSpeed: " + BaseSpeed);
+            streamWriter.WriteLine("AttackSpeed: " + AttackSpeed);
+            streamWriter.WriteLine("SpecialAbilityCooldown: " + specialAbilityCooldown);
+            streamWriter.WriteLine("SpecialAbilityDuration: " + specialAbilityDuration);
+
+            streamWriter.Close();
+        }
+
+        private void LoadStats(bool autosave = false)
+        {
+            StreamReader streamReader;
+            if (!autosave)
+                streamReader = new StreamReader("Content/Player/Saves/PlayerStats.txt", false);
+            else
+            {
+                string[] files = Directory.GetFiles("Content/Player/Saves/Autosaves");
+                int number = files.Count();
+                streamReader = new StreamReader("Content/Player/Saves/Autosaves/PlayerStats_" + number + ".txt");
+            }
+
+            string line = streamReader.ReadLine();
+            while (line != null)
+            {
+                LoadRightStats(line);
+                line = streamReader.ReadLine();
+            }
+
+            streamReader.Close();
+        }
+
+        private void LoadRightStats(string line)
+        {
+            string[] temp = line.Split(':');
+            switch (temp[0])
+            {
+                case ("MaxHealth"):
+                    MaxHealth = (float)Convert.ToDouble(temp[1]);
+                    break;
+                case ("Health"):
+                    Health = (float)Convert.ToDouble(temp[1]);
+                    break;
+                case ("PowerMultiplier"):
+                    PowerMultiplier = (float)Convert.ToDouble(temp[1]);
+                    break;
+                case ("BaseSpeed"):
+                    BaseSpeed = (float)Convert.ToDouble(temp[1]);
+                    break;
+                case ("AttackSpeed"):
+                    AttackSpeed = (float)Convert.ToDouble(temp[1]);
+                    break;
+                case ("SpecialAbilityCooldown"):
+                    specialAbilityCooldown = (float)Convert.ToDouble(temp[1]);
+                    break;
+                case ("SpecialAbilityDuration"):
+                    specialAbilityCooldown = (float)Convert.ToDouble(temp[1]);
+                    break;
+            }
         }
 
         //Helps with the inputs
@@ -295,13 +392,27 @@ namespace Engine
             if (InputHelper.IsKeyJustPressed(Keys.F))
                 if (canSpecialAbility)
                     SpecialAbility();
-
             if (InputHelper.IsKeyJustPressed(Keys.Q))
             {
                 if (canSwapWeapon)
                     SwapWeapon();
             }
-
+            if (InputHelper.IsKeyJustPressed(Keys.M))
+            {
+                SaveStats(false);
+            }
+            if (InputHelper.IsKeyJustPressed(Keys.N))
+            {
+                SaveStats(true);
+            }
+            if (InputHelper.IsKeyJustPressed(Keys.J))
+            {
+                LoadStats(true);
+            }
+            if (InputHelper.IsKeyJustPressed(Keys.K))
+            {
+                LoadStats(false);
+            }
         }
 
         internal override void HandleCollision(GameEntity collider)
