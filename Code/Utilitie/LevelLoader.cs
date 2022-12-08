@@ -13,7 +13,7 @@ namespace Engine
     {
         Tile[,] tilegrid;
 
-        public void LoadFile(string filename)
+        public void LoadFileLevel(string filename)
         {
             StreamReader sr = new StreamReader(filename);
 

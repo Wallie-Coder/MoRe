@@ -13,14 +13,14 @@ namespace Engine
             this.roomType = roomType;
             if (roomType == Level.RoomTypes.start)
             {
-                LoadFile("C:\\Users\\Max\\Source\\Repos\\Wallie-Coder\\MoRe\\Content\\RoomTemplates\\Room_Start.txt");
+                LoadFileLevel("Content/RoomTemplates/Room_Start.txt");
             }
             if (roomType == Level.RoomTypes.boss)
             {
-                LoadFile("C:\\Users\\Max\\Source\\Repos\\Wallie-Coder\\MoRe\\Content\\RoomTemplates\\Room_Boss.txt");
+                LoadFileLevel("Content/RoomTemplates/Room_Boss.txt");
             }
             else
-                LoadFile("C:\\Users\\Max\\Source\\Repos\\Wallie-Coder\\MoRe\\Content\\RoomTemplates\\Room_" + neighbors + "_1.txt");
+                LoadFileLevel("Content/RoomTemplates/Room_" + neighbors + "_1.txt");
         }
 
         internal override void Update(GameTime gameTime)
