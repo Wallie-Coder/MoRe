@@ -47,6 +47,7 @@ namespace Engine
         //Autosave variables
         float AutosaveCooldownTimer;
         float AutosaveCooldown;
+        bool canAutosave;
 
         //Lists for collected Items and orbitals
         public List<Item> items;
@@ -93,7 +94,9 @@ namespace Engine
 
             this.Depth = 1f;
 
-            AutosaveCooldownTimer = 60;
+            AutosaveCooldown = 60;
+            AutosaveCooldownTimer = AutosaveCooldown;
+            canAutosave = true;
 
             this.StartMoving();
         }
@@ -217,6 +220,16 @@ namespace Engine
                 if (weaponSwapCooldown <= 0)
                 {
                     canSwapWeapon = true;
+                }
+            }
+
+            if (canAutosave)
+            {
+                AutosaveCooldownTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+                if (AutosaveCooldownTimer <= 0)
+                {
+                    SaveStats(true);
+                    AutosaveCooldownTimer = AutosaveCooldown;
                 }
             }
         }
