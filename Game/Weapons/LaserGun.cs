@@ -10,7 +10,6 @@ namespace MoRe
 {
     class LaserGun : Weapon
     {
-        bool firstLaser = true;
         public LaserGun(Vector2 location, float scale, string assetName = "LaserRifle") : base(location, scale, assetName)
         {
             weaponFireRate = 1000;

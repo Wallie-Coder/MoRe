@@ -17,14 +17,17 @@ namespace MoRe
 
         internal override void Update(GameTime time)
         {
+            if (room.level.levelState != Level.LevelState.Play)
+                return;
+
+            base.Update(time);
+
             setdirection();
 
             if (location.X + Origin.X > room.level.player.location.X + room.level.player.Origin.X)
                 orientation = EntityOrientation.Left;
             else
                 orientation = EntityOrientation.Right;
-
-            base.Update(time);
         }
 
 

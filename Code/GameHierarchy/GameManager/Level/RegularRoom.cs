@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Engine;
 using MoRe;
-
+using SharpDX.Direct2D1;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework.Input;
 
 namespace Engine
 {
@@ -32,9 +34,10 @@ namespace Engine
             foreach (GameObject g in gameObjects.ToArray())
             {
                 g.Update(gameTime);
+
                 foreach (Projectile p in projectiles)
                 {
-                    if ((p.Parent != Projectile.ProjectileParent.Player && g.GetType().IsSubclassOf(typeof(Player))) || (p.Parent != Projectile.ProjectileParent.Enemy && g.GetType().IsSubclassOf(typeof(Enemy))))
+                    if (p.Parent != Projectile.ProjectileParent.Enemy && g is Enemy)
                     {
                         if (p.Bounds.Intersects(g.Bounds))
                         {
@@ -43,31 +46,74 @@ namespace Engine
                         }
                     }
                 }
-                if (g.GetType().IsSubclassOf(typeof(GameEntity)))
+                if (g is GameEntity)
                 {
-                    GameEntity temp = (GameEntity)g;
-                    if (temp.Health < 0)
+                    if ((g as GameEntity).Health < 0)
                     {
-                        if (g.GetType().IsSubclassOf(typeof(Enemy)))
+                        if (g is Enemy)
                         {
                             DropItem(g.location);
                         }
                         gameObjects.Remove(g);
                     }
                 }
-                if (g.GetType().IsSubclassOf(typeof(Item)))
+                if (g is Item)
                 {
                     if (g.Bounds.Intersects(level.player.Bounds))
                     {
-                        Item temp = (Item)g;
-                        level.player.ChangeStats(temp);
+                        level.player.ChangeStats(g as Item);
+                        gameObjects.Remove(g);
+                    }
+                }
+                if(g is Trap)
+                {
+                    (g as Trap).Update(gameTime);
+                    if (level.player.Bounds.Intersects(g.Bounds))
+                    {
+                        (g as Trap).HandleCollision(level.player);
+                    }
+                    if ((g as Trap).uses <= 0)
+                    {
+                        (g as Trap).DeActivateTrap();
                         gameObjects.Remove(g);
                     }
                 }
             }
 
-            base.Update(gameTime);
+            // Update each projectile, and handle lazers
+            foreach (Projectile p in projectiles.ToArray())
+            {
+                p.Update(gameTime);
+                if (p.Health <= 0 || p.IsAlive == false)
+                {
+                    projectiles.Remove(p);
+                    break;
+                }
+                if(p.Parent != Projectile.ProjectileParent.Player)
+                {
+                    if (p.Bounds.Intersects(level.player.Bounds))
+                    {
+                        level.player.HandleCollision(p);
+                        p.HitObject();
+                    }
+                }
+            }
+            HandleLazers();
 
+            base.Update(gameTime);
+        }
+
+        internal void HandleLazers()
+        {
+            bool lazer = false;
+            for (int i = projectiles.Count - 1; i >= 0; i--)
+                if (projectiles[i].assetName == "Projectiles\\laser")
+                {
+                    if (lazer == true || !InputHelper.IsKeyDown(Keys.Space) || 1 == 1)
+                        projectiles.RemoveAt(i);
+                    else
+                        lazer = true;
+                }
         }
     }
 }

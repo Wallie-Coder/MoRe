@@ -11,22 +11,25 @@ namespace Engine
 {
     internal class Trap : InAnimate
     {
-        protected bool Activated = false;
+        internal bool activated = false;
+        internal float duration = 10;
+        internal float durationTimer = 0;
+        internal float delay = 5;
+        internal float delayTimer = 0;
+        internal int uses = 1;
+        internal Room room;
 
-        public Trap(Vector2 location, float scale, string assetName = " ") : base(location, scale, assetName)
+        public Trap(Vector2 location, float scale, string assetName = " ") : base(location, scale, "Traps\\" + assetName)
+        {
+            
+        }
+
+        internal virtual void ActivateTrap(GameObject collider = null)
         {
 
         }
 
-        internal override void Collision(GameObject collider)
-        {
-            if(collider.GetType().IsSubclassOf(typeof(Player)) && Activated == false) 
-            {
-                Activated = true;
-            }
-        }
-
-        internal void ActivateTrap(GameObject collider)
+        internal virtual void DeActivateTrap(GameObject collider = null)
         {
 
         }

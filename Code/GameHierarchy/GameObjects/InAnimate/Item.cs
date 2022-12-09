@@ -17,8 +17,6 @@ namespace Engine
             test
         }
 
-        public itemTypes type;
-
         public string name { get; protected set; }
         //public int Damage { get; protected set; }
         public float MoveSpeed { get; protected set; }

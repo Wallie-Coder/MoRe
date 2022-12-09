@@ -19,6 +19,10 @@ namespace MoRe
 
         public enum RoomTypes { normal, start, boss }
 
+        internal enum LevelState { Play, Paused, Frozen, Slowmo}
+
+        internal LevelState levelState = LevelState.Play;
+
         // each room needs a player, why else would it be a room.
         internal protected Player player { get; protected set; }
 
@@ -93,7 +97,12 @@ namespace MoRe
         public void Update(GameTime gameTime)
         {
             activeRoom.Update(gameTime);
-            player.Update(gameTime);
+
+            if (levelState == LevelState.Play)
+            {
+                player.Update(gameTime);
+            }
+
 
             if (activeRoom.nextRoom != Room.NeighborLocation.Null)
             {
@@ -105,6 +114,8 @@ namespace MoRe
         {
             activeRoom.Draw(batch);
             player.Draw(batch);
+            if(levelState == LevelState.Frozen)
+                batch.Draw(Game1.GameInstance.getSprite("FrozenScreenEffect"), Vector2.Zero, Color.White);
 
 
             foreach (RegularRoom r in _rooms)
