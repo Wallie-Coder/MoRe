@@ -14,7 +14,7 @@ namespace MoRe
     {
         internal Texture2D selected, unSelected;
         internal bool picked;
-        internal TempHealthPot item;
+        internal Usable usable;
         internal Box(Vector2 pos) : base(pos, 1, "UI/InventoryBox")
         {
             selected = Game1.GameInstance.getSprite("UI/SelectedBox");
@@ -23,7 +23,7 @@ namespace MoRe
 
         internal override void Draw(SpriteBatch batch)
         {
-            if (item != null) item.Draw(batch);
+            if (usable != null) usable.Draw(batch);
             base.Draw(batch);
         }
 

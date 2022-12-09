@@ -24,16 +24,16 @@ namespace MoRe
             healthEnd = Game1.GameInstance.getSprite("UI/HealthEnd");
             spriteD = Game1.GameInstance.getSprite("UI/BarHolder");
             flashingSprite = Game1.GameInstance.getSprite("UI/FlashingBarHolder");
-            font = Game1.GameInstance.getFont("SpelFont");
+            font = Game1.GameInstance.font;
         }
 
         internal override void Draw(SpriteBatch batch)
         {
 
             base.Draw(batch);
-            batch.Draw(mana, new Rectangle(new Point(16, -5) + location.ToPoint(), new Point((int)player.Mana, 10)), Color.White);
-            batch.Draw(manaEnd, new Rectangle(new Point(16 + (int)player.Mana, -5) + location.ToPoint(), new Point(1, 10)), Color.White);
-            StringHelper(batch, "" + (int)player.Mana);
+            batch.Draw(mana, new Rectangle(new Point(16, -5) + location.ToPoint(), new Point((int)player.mana, 10)), Color.White);
+            batch.Draw(manaEnd, new Rectangle(new Point(16 + (int)player.mana, -5) + location.ToPoint(), new Point(1, 10)), Color.White);
+            StringHelper(batch, "" + (int)player.mana);
             location += new Vector2(0, -40);
             if (player.Health < 30)
             {
