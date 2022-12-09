@@ -39,8 +39,8 @@ namespace MoRe
             // TODO: Add your initialization logic here
 
             // screen size, changing this will make no changes to the play ability of the game.
-            _graphics.PreferredBackBufferWidth = (int)worldSize.X;
-            _graphics.PreferredBackBufferHeight = (int)worldSize.Y;
+            _graphics.PreferredBackBufferWidth = 1600;
+            _graphics.PreferredBackBufferHeight = 900;
             _graphics.ApplyChanges();
 
             // set the world scale. this scales every object to fit accordingly in the screen.

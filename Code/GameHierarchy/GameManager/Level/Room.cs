@@ -104,16 +104,16 @@ namespace Engine
             switch (r)
             {
                 case 1:
-                    gameObjects.Add(new HealthUp(location, 1.5f));
+                    gameObjects.Add(new HealthUp(location, 1f));
                     break;
                 case 2:
-                    gameObjects.Add(new DamageUp(location, 1.5f));
+                    gameObjects.Add(new DamageUp(location, 1f));
                     break;
                 case 3:
-                    gameObjects.Add(new DashRefill(location, 1.5f));
+                    gameObjects.Add(new DashRefill(location, 1f));
                     break;
                 default:
-                    gameObjects.Add(new ShieldUp(location, 1.5f));
+                    gameObjects.Add(new ShieldUp(location, 1f));
                     break;
             }
         }

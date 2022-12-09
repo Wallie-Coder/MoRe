@@ -62,12 +62,12 @@ namespace MoRe
                 _rooms.Add(new RegularRoom(templist[j].Location, roomType, templist[j].neighbors, this));
             }
 
-            activeRoom = _rooms[0];
-            _rooms[0].Discovered = true;
+            activeRoom = _rooms[startRoomInt];
+            _rooms[startRoomInt].Discovered = true;
             
             this.player = player;
             if (this.player == null)
-                this.player = new Warrior(new Vector2(200, 200), 2f);
+                this.player = new Warrior(new Vector2(200, 200), 1f);
 
             this.hardmodeSelected = hardmodeSelected;
             this.fastmodeSelected = fastmodeSelected;
