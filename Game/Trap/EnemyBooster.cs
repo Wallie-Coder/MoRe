@@ -1,5 +1,6 @@
 ﻿using Engine;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,8 @@ namespace MoRe
 {
     internal class EnemyBooster : Trap
     {
-        Room room;
-
         List<Enemy> affectedEnemies = new List<Enemy>();
-        public EnemyBooster(Vector2 location, float scale, Room room, string assetName = "FreezeTrap") : base(location, scale, assetName)
+        public EnemyBooster(Vector2 location, float scale, Room room, string assetName = "BoostEnemyTrap") : base(location, scale, assetName)
         {
             duration = 4;
             delayTimer = 4;
@@ -44,6 +43,11 @@ namespace MoRe
                 durationTimer = duration;
                 ActivateTrap();
             }
+
+            if (room.level.player.location.X > this.location.X)
+                this.spriteEffect = SpriteEffects.FlipHorizontally;
+            else
+                this.spriteEffect = SpriteEffects.None;
         }
 
         internal override void ActivateTrap(GameObject collider = null)

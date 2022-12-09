@@ -22,7 +22,7 @@ namespace Engine
             conditionalSprite.AssignType(assetName);
         }
         internal override void Update(GameTime gameTime)
-        {
+        { 
             conditionalSprite.Update(gameTime, orientation);
             if (CanMove)
                 Move(gameTime);

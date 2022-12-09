@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Engine;
 using Microsoft.Xna.Framework;
+using SharpDX.DirectWrite;
 
 namespace MoRe
 {
@@ -30,10 +31,10 @@ namespace MoRe
             }
             else if (durationTimer < 0 && activated == true)
             {
-                duration--;
                 DeActivateTrap();
                 uses--;
                 durationTimer = duration;
+                return;
             }
             else if (delayTimer > 0)
             {

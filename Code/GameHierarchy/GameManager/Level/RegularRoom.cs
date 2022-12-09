@@ -28,14 +28,14 @@ namespace Engine
             //DashRefill dash = new DashRefill(new Vector2(100, 500), 1f);
             //gameObjects.Add(dash);
 
-            //Trap beartrap = new BearTrap(new Vector2(500, 500), 2);
-            //traps.Add(beartrap);
-            //FreezeTrap freeze = new FreezeTrap(new Vector2(100, 300), 2, this);
-            //traps.Add(freeze);
-            //Barrel barrel = new Barrel(new Vector2(100, 500), 2);
-            //traps.Add(barrel);
+            Trap beartrap = new BearTrap(new Vector2(500, 500), 2);
+            gameObjects.Add(beartrap);
+            FreezeTrap freeze = new FreezeTrap(new Vector2(100, 300), 2, this);
+            gameObjects.Add(freeze);
+            Barrel barrel = new Barrel(new Vector2(100, 500), 2);
+            gameObjects.Add(barrel);
             EnemyBooster enemybooster = new EnemyBooster(new Vector2(600, 200), 2, this);
-            traps.Add(enemybooster);
+            gameObjects.Add(enemybooster);
 
         }
 
@@ -79,18 +79,18 @@ namespace Engine
                         gameObjects.Remove(g);
                     }
                 }
-            }
-
-            foreach (Trap t in traps.ToArray())
-            {
-                t.Update(gameTime);
-                if (level.player.Bounds.Intersects(t.Bounds))
+                if(g is Trap)
                 {
-                    t.HandleCollision(level.player);
-                }
-                if (t.uses <= 0)
-                {
-                    traps.Remove(t);
+                    (g as Trap).Update(gameTime);
+                    if (level.player.Bounds.Intersects(g.Bounds))
+                    {
+                        (g as Trap).HandleCollision(level.player);
+                    }
+                    if ((g as Trap).uses <= 0)
+                    {
+                        (g as Trap).DeActivateTrap();
+                        gameObjects.Remove(g);
+                    }
                 }
             }
 
