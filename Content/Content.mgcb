@@ -764,6 +764,12 @@
 /processorParam:TextureFormat=Color
 /build:Player/Healer/HealerPlayerU4.png
 
+#begin Player/Saves/Autosaves/PlayerStats.txt
+/copy:Player/Saves/Autosaves/PlayerStats.txt
+
+#begin Player/Saves/PlayerStats.txt
+/copy:Player/Saves/PlayerStats.txt
+
 #begin Player/Warrior/Warrior.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -775,12 +781,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Player/Warrior/Warrior.png
-
-#begin Player/Saves/Autosaves/PlayerStats.txt
-/copy:Player/Saves/Autosaves/PlayerStats.txt
-
-#begin Player/Saves/PlayerStats.txt
-/copy:Player/Saves/PlayerStats.txt
 
 #begin Player/Warrior/WarriorPlayer.png
 /importer:TextureImporter

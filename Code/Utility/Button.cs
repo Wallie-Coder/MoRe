@@ -17,7 +17,7 @@ namespace MoRe.Code.Utility
         internal protected bool turnedOn { get; set; }
         internal protected bool clicked { get; set; }
         internal protected bool soloButton { get; private set; }
-        internal protected string text { get; protected set; }
+        internal protected string text { get; set; }
         internal protected Vector2 textSize { get { return Game1.GameInstance.font.MeasureString(text) * WorldScale; } set {; } }
         public Button(Vector2 location, float scale, string assetName = " ", string text = "", bool turnedOn = false, bool soloButton = false) : base(location, scale, assetName)
         {
