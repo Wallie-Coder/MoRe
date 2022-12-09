@@ -12,16 +12,17 @@ namespace Engine
     {
         private List<GameObject> gameObjects;
 
-        private Button play, settings, exit, selectWarrior, selectAssassin, selectHealer;
+        private Button play, settings, exit, levelBuilder, selectWarrior, selectAssassin, selectHealer;
         private StartScreenBox selectBox;
 
         internal MenuState()
         {
             gameObjects = new List<GameObject>();
             
-            play = new Button(new Vector2(Game1.worldSize.X / 2, 350), 3f, "button", "Play");
-            settings = new Button(new Vector2(Game1.worldSize.X / 2, 475), 3f, "button", "Settings");
-            exit = new Button(new Vector2(Game1.worldSize.X / 2, 600), 3f, "button", "Exit");
+            play = new Button(new Vector2(Game1.worldSize.X / 2, Game1.worldSize.Y / 6 * 2), 2f, "button", "Play");
+            settings = new Button(new Vector2(Game1.worldSize.X / 2, Game1.worldSize.Y / 6 * 3), 2f, "button", "Settings");
+            levelBuilder = new Button(new Vector2(Game1.worldSize.X / 2, Game1.worldSize.Y / 6 * 4), 2f, "button", "Builder");
+            exit = new Button(new Vector2(Game1.worldSize.X / 2, Game1.worldSize.Y / 6 * 5), 2f, "button", "Exit");
 
             selectBox = new StartScreenBox(selectBoxPos, 3f, "button");
             selectWarrior = new Button(new Vector2(100, 100), 3f, "Player/Warrior/Warrior", "");
@@ -30,6 +31,7 @@ namespace Engine
 
             gameObjects.Add(play);
             gameObjects.Add(settings);
+            gameObjects.Add(levelBuilder);
             gameObjects.Add(exit);
             gameObjects.Add(selectBox);
             gameObjects.Add(selectWarrior);
@@ -47,14 +49,16 @@ namespace Engine
                 nextState = States.Play;
             else if (settings.clicked)
                 nextState = States.Settings;
+            else if (levelBuilder.clicked)
+                nextState = States.LevelBuilder;
             else if (exit.clicked)
                 Game1.GameInstance.Exit();
             else if (selectWarrior.clicked)
-            { Game1.GameInstance.GSMState.chosenPlayer = new Warrior(new Vector2(200, 200), 2f); selectBoxPos = selectWarrior.location; }
+            { Game1.GameInstance.GSMState.chosenPlayer = new Warrior(new Vector2(200, 200), 1f); selectBoxPos = selectWarrior.location; }
             else if (selectAssassin.clicked)
-            { Game1.GameInstance.GSMState.chosenPlayer = new Assassin(new Vector2(200, 200), 2f); selectBoxPos = selectAssassin.location; }
+            { Game1.GameInstance.GSMState.chosenPlayer = new Assassin(new Vector2(200, 200), 1f); selectBoxPos = selectAssassin.location; }
             else if (selectHealer.clicked)
-            { Game1.GameInstance.GSMState.chosenPlayer = new Healer(new Vector2(200, 200), 2f); selectBoxPos = selectHealer.location; }
+            { Game1.GameInstance.GSMState.chosenPlayer = new Healer(new Vector2(200, 200), 1f); selectBoxPos = selectHealer.location; }
 
             selectBox.location = selectBoxPos;
         }

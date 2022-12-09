@@ -24,6 +24,9 @@ namespace MoRe
 
         internal override void Update(GameTime time)
         {
+            if (room.level.levelState != Level.LevelState.Play)
+                return;
+
             if (shot <= 0)
             {
                 Projectile p = new Projectile(location - Origin, new Vector2(room.level.player.location.X - location.X, room.level.player.location.Y - location.Y), shotSpeed, 5, projectileName, 500, 1f, Projectile.ProjectileParent.Enemy);

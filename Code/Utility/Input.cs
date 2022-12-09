@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MoRe.Code.Utility
+namespace MoRe
 {
     // static InputHandler class. (still missing some methods, but has the essential ones.
     public static class InputHelper
