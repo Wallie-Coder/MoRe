@@ -24,7 +24,7 @@ namespace MoRe
         public Projectile(Vector2 location, Vector2 direction, float moveSpeed, int damage, string assetName, float range, float scale, ProjectileParent Parent = ProjectileParent.Player) : base(location, scale, "Projectiles\\" + assetName)
         {
             Damage = damage;
-            baseSpeed = moveSpeed;
+            BaseSpeed = moveSpeed;
             StartMoving();
             IsAlive = true;
             Health = 1;

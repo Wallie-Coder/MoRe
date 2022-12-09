@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MoRe;
 using MoRe.Code.Utility;
+using static MoRe.Level;
 
 namespace Engine
 {
@@ -16,6 +17,7 @@ namespace Engine
 
         // possible neighborslocations.
         public enum NeighborLocation { top, bottom, left, right, Null }
+     
 
         // the locaiton where the player wants to go and from which room the player enter to set the corresponding player location.
         internal protected NeighborLocation nextRoom;
@@ -37,6 +39,7 @@ namespace Engine
 
         // Lists for the gamobjects, doors and projectiles in the room.
         internal List<GameObject> gameObjects= new List<GameObject>();
+        internal List<Tile> tiles = new List<Tile>();
         protected List<Door> doors = new List<Door>();
         public static List<Projectile> projectiles = new List<Projectile>();
 
@@ -54,16 +57,6 @@ namespace Engine
             setRoomSprite(neighbors);
 
             this.neighbors = neighbors;
-
-            // add doors to the room dependent on the neighbors. so there are no doors to rooms that dont exsist.
-            //if(neighbors.Contains('N'))
-            //    doors.Add(new Door(new Vector2(Game1.worldSize.X / 2, 32), 1f, NeighborLocation.top));
-            //if (neighbors.Contains('E'))
-            //    doors.Add(new Door(new Vector2(Game1.worldSize.X - 32, Game1.worldSize.Y/ 2), 1f, NeighborLocation.right));
-            //if (neighbors.Contains('S'))
-            //    doors.Add(new Door(new Vector2(Game1.worldSize.X / 2, Game1.worldSize.Y - 32), 1f, NeighborLocation.bottom));
-            //if (neighbors.Contains('W'))
-            //    doors.Add(new Door(new Vector2(32, Game1.worldSize.Y / 2), 1f, NeighborLocation.left));
         }
 
         internal virtual void Update(GameTime gameTime)
@@ -97,6 +90,8 @@ namespace Engine
                 d.Draw(batch);
             foreach(GameObject g in gameObjects)
                 g.Draw(batch);
+            foreach (Tile t in tiles)
+                t.Draw(batch);
             foreach (Projectile p in projectiles)
                 p.Draw(batch);
         }

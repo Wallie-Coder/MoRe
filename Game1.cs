@@ -17,7 +17,7 @@ namespace MoRe
         public static Game1 GameInstance;
 
         // the worldSize as seen by the game objects, with 16:9 ratio.
-        public static Vector2 worldSize = new Vector2(1600, 900);
+        public static Vector2 worldSize = new Vector2(800, 352);
 
         // a GameState and GameStateManager to Update the current state if neccesary.
         private GameStateManager GSM = new GameStateManager();
