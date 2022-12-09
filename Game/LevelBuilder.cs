@@ -39,7 +39,7 @@ namespace MoRe
 
             for (int x = 0; x < gameEntitiesGrid.GetLength(0); x++)
                 for (int y = 0; y < gameEntitiesGrid.GetLength(1); y++)
-                    gameEntitiesGrid[x, y] = new LevelBuilderEntity(new Vector2(x * 32 + 100, y * 32 + 100), 1, "GridObjects/Wall");
+                    gameEntitiesGrid[x, y] = new LevelBuilderEntity(new Vector2(x * 32 + 16, y * 32 + 16), 1, "GridObjects/Wall");
 
 
             wall = new LevelBuilderEntity(new Vector2(0, 0), 1, "GridObjects/Wall");
