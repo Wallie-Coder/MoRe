@@ -12,7 +12,7 @@ namespace Engine
     {
         private List<GameObject> gameObjects;
 
-        private Button play, settings, exit, selectWarrior, selectAssassin, selectHealer;
+        private Button play, settings, exit, levelBuilder, selectWarrior, selectAssassin, selectHealer;
         private StartScreenBox selectBox;
 
         internal MenuState()
@@ -21,7 +21,8 @@ namespace Engine
             
             play = new Button(new Vector2(Game1.worldSize.X / 2, 350), 3f, "button", "Play");
             settings = new Button(new Vector2(Game1.worldSize.X / 2, 475), 3f, "button", "Settings");
-            exit = new Button(new Vector2(Game1.worldSize.X / 2, 600), 3f, "button", "Exit");
+            levelBuilder = new Button(new Vector2(Game1.worldSize.X / 2, 600), 3f, "button", "Builder");
+            exit = new Button(new Vector2(Game1.worldSize.X / 2, 725), 3f, "button", "Exit");
 
             selectBox = new StartScreenBox(selectBoxPos, 3f, "button");
             selectWarrior = new Button(new Vector2(100, 100), 3f, "Player/Warrior/Warrior", "");
@@ -30,6 +31,7 @@ namespace Engine
 
             gameObjects.Add(play);
             gameObjects.Add(settings);
+            gameObjects.Add(levelBuilder);
             gameObjects.Add(exit);
             gameObjects.Add(selectBox);
             gameObjects.Add(selectWarrior);
@@ -47,6 +49,8 @@ namespace Engine
                 nextState = States.Play;
             else if (settings.clicked)
                 nextState = States.Settings;
+            else if (levelBuilder.clicked)
+                nextState = States.LevelBuilder;
             else if (exit.clicked)
                 Game1.GameInstance.Exit();
             else if (selectWarrior.clicked)
