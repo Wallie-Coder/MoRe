@@ -65,7 +65,7 @@ namespace MoRe
             }
             foreach(Enemy e in affectedEnemies)
             {
-                e.baseSpeed *= 2;
+                e.BaseSpeed *= 2;
             }
         }
 
@@ -76,7 +76,7 @@ namespace MoRe
             foreach(Enemy e in affectedEnemies)
             {
                 if(room.gameObjects.Contains(e))
-                    e.baseSpeed /= 2;
+                    e.BaseSpeed /= 2;
             }
         }
     }
