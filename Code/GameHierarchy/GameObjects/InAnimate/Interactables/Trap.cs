@@ -19,7 +19,7 @@ namespace Engine
         internal int uses = 1;
         internal Room room;
 
-        public Trap(Vector2 location, float scale, string assetName = " ") : base(location, scale, "Traps\\" + assetName)
+        public Trap(Vector2 location, float scale, string assetName = " ") : base(location, scale, "Traps/" + assetName)
         {
             
         }

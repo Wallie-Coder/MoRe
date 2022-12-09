@@ -152,6 +152,18 @@
 /processorParam:TextureFormat=Compressed
 /build:File.spritefont
 
+#begin FrozenScreenEffect.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:FrozenScreenEffect.png
+
 #begin GridObjects/Buttons/0/0.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -776,6 +788,12 @@
 /processorParam:TextureFormat=Color
 /build:Player/Healer/HealerPlayerU4.png
 
+#begin Player/Saves/Autosaves/PlayerStats.txt
+/copy:Player/Saves/Autosaves/PlayerStats.txt
+
+#begin Player/Saves/PlayerStats.txt
+/copy:Player/Saves/PlayerStats.txt
+
 #begin Player/Warrior/Warrior.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -787,12 +805,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Player/Warrior/Warrior.png
-
-#begin Player/Saves/Autosaves/PlayerStats.txt
-/copy:Player/Saves/Autosaves/PlayerStats.txt
-
-#begin Player/Saves/PlayerStats.txt
-/copy:Player/Saves/PlayerStats.txt
 
 #begin Player/Warrior/WarriorPlayer.png
 /importer:TextureImporter
@@ -1276,6 +1288,66 @@
 
 #begin RoomTemplates/Room_W_1.txt
 /copy:RoomTemplates/Room_W_1.txt
+
+#begin Traps/BarrelTrap.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Traps/BarrelTrap.png
+
+#begin Traps/BearTrap.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Traps/BearTrap.png
+
+#begin Traps/BearTrapActivated.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Traps/BearTrapActivated.png
+
+#begin Traps/BoostEnemyTrap.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Traps/BoostEnemyTrap.png
+
+#begin Traps/FreezeTrap.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Traps/FreezeTrap.png
 
 #begin UI/BarHolder.png
 /importer:TextureImporter
