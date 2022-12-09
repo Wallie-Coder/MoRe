@@ -70,6 +70,17 @@ namespace Engine
                 LoadGate(x, y);
             else if (symbol == 'B')
                 LoadGateButton(x, y);
+
+            // added options for traps in room templates(chars can be changed if need be)
+            else if (symbol == 'f')
+                LoadFreezeTrap(x, y);
+            else if (symbol == 't')
+                LoadBearTrap(x, y);
+            else if (symbol == 'e')
+                LoadEnemyBoosterTrap(x, y);
+            else if (symbol == 'b')
+                LoadBarrel(x, y);
+
         }
 
         private void LoadChasingEnemy(int x, int y)
@@ -121,6 +132,26 @@ namespace Engine
                 tiles.Add(new Wall(GetCellPositionPoint(x, y)));
             else if (x == 0)
                 tiles.Add(new Wall(GetCellPositionPoint(x, y)));
+        }
+        private void LoadFreezeTrap(int x, int y)
+        {
+            FreezeTrap freezetrap = new FreezeTrap(GetCellPositionVector(x, y), 1f, this);
+            gameObjects.Add(freezetrap);
+        }
+        private void LoadBarrel(int x, int y)
+        {
+            Barrel barrel = new Barrel(GetCellPositionVector(x, y), 1f);
+            gameObjects.Add(barrel);
+        }
+        private void LoadBearTrap(int x, int y)
+        {
+            BearTrap beartrap = new BearTrap(GetCellPositionVector(x, y), 1f);
+            gameObjects.Add(beartrap);
+        }
+        private void LoadEnemyBoosterTrap(int x, int y)
+        {
+            EnemyBooster enemybooster = new EnemyBooster(GetCellPositionVector(x, y), 1f, this);
+            gameObjects.Add(enemybooster);
         }
 
         public Point GetCellPositionPoint(int x, int y)
