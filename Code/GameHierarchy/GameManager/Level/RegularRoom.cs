@@ -9,6 +9,7 @@ namespace Engine
 {
     internal partial class RegularRoom : Room
     {
+
         public Level.RoomTypes roomType;
         internal RegularRoom(Vector2 location, Level.RoomTypes roomType, string neighbors, Level level) : base(location, false, false, neighbors, level)
         {
