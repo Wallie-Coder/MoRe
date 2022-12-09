@@ -421,9 +421,9 @@ namespace Engine
             else
             if (collider is Spike) { Heal(-1); }
             else
-            if ((collider as Gate).isClosed) { location = prevLocation; }
+            if ((collider is Gate)) { if((collider as Gate).isClosed) { location = prevLocation; } }
             else
-            if ((collider as GateButton).isDown) { (collider as GateButton).Switch(); }
+            if ((collider is Gate)) { if((collider as GateButton).isDown) { (collider as GateButton).Switch(); } }
         }
     }
 }
