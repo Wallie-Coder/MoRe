@@ -1,7 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Engine;
+using System;
 using MoRe;
-
+using MoRe.Code.Utility;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.VisualBasic.ApplicationServices;
 
 namespace Engine
 {
@@ -22,7 +25,7 @@ namespace Engine
             else
                 LoadFileLevel("Content/RoomTemplates/Room_" + neighbors + "_1.txt");
         }
-
+        bool roomCleared;
         internal override void Update(GameTime gameTime)
         {
             // update each gameobject and handle the interaction with other entities.
@@ -31,6 +34,7 @@ namespace Engine
             // so the this update method is not HUGE!
             foreach (GameObject g in gameObjects.ToArray())
             {
+                level.player.room = this;
                 g.Update(gameTime);
                 foreach (Projectile p in projectiles)
                 {
@@ -38,8 +42,8 @@ namespace Engine
                     {
                         if (p.Bounds.Intersects(g.Bounds))
                         {
-                            g.HandleCollision(p);
-                            p.HitObject();
+                            if (p.HitObject(g))
+                                g.HandleCollision(p);
                         }
                     }
                 }
@@ -64,8 +68,65 @@ namespace Engine
                         gameObjects.Remove(g);
                     }
                 }
+                if (g is Usable)
+                {
+                    if (g.Bounds.Intersects(level.player.Bounds))
+                    {
+                        BoxMenu um = level.player.ui.usableMenu;
+                        if (um.boxes[um.selected].usable == null) 
+                        {
+                            g.location = um.boxes[um.selected].location;
+                            um.boxes[um.selected].usable = (g as Usable);
+                            gameObjects.Remove(g);
+                        }
+                    }
+                }
             }
-
+            foreach (Tile t in tiles)
+            {
+                foreach (Projectile p in projectiles)
+                {
+                    if (p.Bounds.Intersects(t.Bounds))
+                    {
+                        if (t is Wall)
+                        {
+                            p.HitWall(t);
+                        }
+                    }
+                }
+            }
+            if(roomType == Level.RoomTypes.boss && !gameObjects.Exists(obj => obj is Enemy) && !roomCleared)
+            {
+                Random r = new Random();
+                switch (r.Next(0, 2))
+                {
+                    case 0:
+                        gameObjects.Add(new PierceUp(Game1.worldSize / 2)); break;
+                    case 1:
+                        gameObjects.Add(new BounceUp(Game1.worldSize / 2)); break;
+                    default: break;
+                }
+                roomCleared = true;
+            }
+            
+            if (roomType != Level.RoomTypes.boss && !gameObjects.Exists(obj => obj is Enemy) && !roomCleared && false)
+            {
+                Random r = new Random();
+                switch (r.Next(0, 5))
+                {
+                    case 0: gameObjects.Add(new HealthPot(Game1.worldSize / 2)); break;
+                    case 1: gameObjects.Add(new TimedHealthPot(Game1.worldSize / 2)); break;
+                    case 2: gameObjects.Add(new ManaPot(Game1.worldSize / 2)); break;
+                    case 3: gameObjects.Add(new TimedManaPot(Game1.worldSize / 2)); break;
+                    case 4: gameObjects.Add(new RandomPot(Game1.worldSize / 2)); break;
+                    default: break;
+                }
+                roomCleared = true;
+            }
+            if (InputHelper.IsKeyJustPressed(Keys.P))
+            {
+                
+            }
             base.Update(gameTime);
 
         }

@@ -33,7 +33,7 @@ namespace Engine
             IsAlive = false;
         }
 
-        protected virtual void Heal(float amount)
+        public virtual void Heal(float amount)
         {
             Health += amount;
             if (Health > MaxHealth)

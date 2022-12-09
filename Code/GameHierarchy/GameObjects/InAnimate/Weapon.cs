@@ -20,6 +20,8 @@ namespace Engine
         public float projectileSize { get; protected set; }
         public float gunRange { get; protected set; }
         public int spreadStrength { get; protected set; }
+        public int pierce;
+        public int bounces;
 
         public string spriteName { get; protected set; }
 
