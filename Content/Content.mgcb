@@ -1277,6 +1277,18 @@
 /processorParam:TextureFormat=Color
 /build:UI/CheckedBox.png
 
+#begin UI/Empty.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:UI/Empty.png
+
 #begin UI/FlashingBarHolder.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1372,6 +1384,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:UI/MenuColor.png
+
+#begin UI/RedCross.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:UI/RedCross.png
 
 #begin UI/SelectedBox.png
 /importer:TextureImporter

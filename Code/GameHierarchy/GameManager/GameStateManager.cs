@@ -44,6 +44,8 @@ namespace Engine
                     return new MenuState();
                 case GameState.States.Settings:
                     return new SettingsState();
+                case GameState.States.LevelBuilder:
+                    return new LevelBuilderState();
             }
 
             // in case of error or mistake, just return a new MenuState.
