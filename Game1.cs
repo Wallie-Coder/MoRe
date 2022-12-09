@@ -1,5 +1,6 @@
 ﻿using Engine;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -20,6 +21,11 @@ namespace MoRe
         GameStateManager GSM = new GameStateManager();
         GameState gameState;
 
+        // volume for all the games sound and music, changable via the settings menu
+        public static float s_volume = 0.5f;
+
+        internal GameStateManager GSMState { get { return GSM; } }
+        
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -75,6 +81,12 @@ namespace MoRe
                 gameState = GSM.Update(gameState);
             }
 
+            _graphics.ApplyChanges();
+
+            GameObject.WorldScale = _graphics.PreferredBackBufferWidth / worldSize.X;
+            if (_graphics.PreferredBackBufferHeight / worldSize.Y < GameObject.WorldScale)
+                GameObject.WorldScale = _graphics.PreferredBackBufferHeight / worldSize.Y;
+
             base.Update(gameTime);
         }
 
@@ -112,6 +124,38 @@ namespace MoRe
             }
 
             return sprite;
+        }
+
+        public SpriteFont getFont(string assetName)
+        {
+            SpriteFont font;
+            try
+            {
+                font = GameInstance.Content.Load<SpriteFont>(assetName);
+
+            }
+            catch
+            {
+                font = GameInstance.Content.Load<SpriteFont>("missing_font");
+            }
+
+            return font;
+        }
+
+        public SoundEffect getSoundEffect(string assetName)
+        {
+            SoundEffect sf;
+            try
+            {
+                sf = GameInstance.Content.Load<SoundEffect>(assetName);
+
+            }
+            catch
+            {
+                sf = GameInstance.Content.Load<SoundEffect>("missing_soundeffect");
+            }
+
+            return sf;
         }
     }
 }

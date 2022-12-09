@@ -19,7 +19,8 @@ namespace Engine
         public PlayState()
         {
             // set the level with the desired size(number of rooms);
-            level = new Level(9);
+            level = new Level(9, player, s_hardmodeSelected, s_fastmodeSelected, s_playerName,new Color(s_red, s_green, s_blue));
+            Debug.Write(s_nameColor);
         }
 
         internal override void Update(GameTime gameTime)

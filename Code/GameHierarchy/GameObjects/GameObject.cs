@@ -22,6 +22,7 @@ namespace Engine
         internal protected Vector2 Origin { get; protected set; }
         internal protected float ObjectScale { get; protected set; }
         internal protected Texture2D sprite { get; protected set; }
+        internal protected Color color { get; set; }
 
 
         protected SpriteEffects spriteEffect;
