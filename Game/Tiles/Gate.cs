@@ -9,16 +9,16 @@ namespace MoRe
     class Gate : Tile
     {
         public bool isClosed = true;
-        public int color;
+        public int itemColor;
         internal Gate(Point tCenter, int color) : base(tCenter, "GridObjects/Gates/" + color + "/0")
         {
-            this.color = color;
+            this.itemColor = color;
         }
 
         internal void Switch()
         {
             isClosed = !isClosed;
-            sprite = Game1.GameInstance.getSprite("GridObjects/Gates/" + color + "/" + (isClosed ? 0 : 1));
+            sprite = Game1.GameInstance.getSprite("GridObjects/Gates/" + itemColor + "/" + (isClosed ? 0 : 1));
         }
     }
 }

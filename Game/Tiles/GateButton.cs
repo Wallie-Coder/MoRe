@@ -9,16 +9,16 @@ namespace MoRe
     class GateButton : Tile
     {
         public bool isDown = false;
-        public int color;
+        public int itemColor;
         internal GateButton(Point tCenter, int color) : base(tCenter, "GridObjects/Buttons/" + color + "/0")
         {
-            this.color = color;
+            this.itemColor = color;
         }
 
         internal void Switch()
         {
             isDown = !isDown;
-            sprite = Game1.GameInstance.getSprite("GridObjects/Gates/" + color + "/" + (isDown ? 1 : 0));
+            sprite = Game1.GameInstance.getSprite("GridObjects/Buttons/" + itemColor + "/" + (isDown ? 1 : 0));
         }
     }
 }

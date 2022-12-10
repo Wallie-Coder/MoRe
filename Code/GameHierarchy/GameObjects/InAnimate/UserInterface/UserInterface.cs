@@ -16,17 +16,18 @@ namespace Engine
         Player player;
         HealthandManaBar handmbar;
         internal BoxMenu usableMenu;
-        ScrollBar menu;
+        VerticalScrollBar menu;
         List<GameObject> items = new List<GameObject>();
         internal UserInterface(Player player) : base(Vector2.Zero, 0, "missing_sprite")
         {
             this.player = player;
-            handmbar = new HealthandManaBar(player);
+            handmbar = new HealthandManaBar(player, new Vector2(32, 420));
             items.Add(handmbar);
-            usableMenu = new BoxMenu(new Keys[] { Keys.D8, Keys.D9 }, new Vector2(Game1.worldSize.X - 96, Game1.worldSize.Y - 64));
-            items.Add(usableMenu);
+            // usableMenu = new BoxMenu(new Keys[] { Keys.D8, Keys.D9 }, new Vector2(Game1.worldSize.X - 96, Game1.worldSize.Y - 64));
+            // items.Add(usableMenu);
         }
 
+        /*
         internal override void Update(GameTime time)
         {
             if (InputHelper.IsKeyDown(Keys.I))
@@ -45,7 +46,7 @@ namespace Engine
                     usableMenu.boxes[usableMenu.selected].usable = null;
                 }
             }
-        }
+        }*/
 
         internal override void Draw(SpriteBatch batch)
         {

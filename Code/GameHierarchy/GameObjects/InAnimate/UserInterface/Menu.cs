@@ -15,7 +15,6 @@ namespace Engine
         internal Vector2 menuPos;
         internal List<GameObject> menuItems;
 
-        // currently broken, scale should be (500, Y screensize)
         internal Menu() : base(Game1.worldSize / 2, 1, "UI/MenuColor")
         {
             menuItems.Add(new CheckBox(this, location));
@@ -24,7 +23,7 @@ namespace Engine
             menuItems.Add(new CheckBox(this, location - new Vector2(-100, 512)));
             menuItems.Add(new Slider(this, location + 256 * Vector2.UnitY));
             menuItems.Add(new Slider(this, location + 700 * Vector2.UnitY));
-            menuItems.Add(new ScrollBar(this));
+            menuItems.Add(new VerticalScrollBar(this, 10, new Vector2(Game1.worldSize.X + 20, Game1.worldSize.Y / 2)));
         }
 
         internal override void Update(GameTime gameTime)

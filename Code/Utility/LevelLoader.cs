@@ -12,6 +12,7 @@ namespace Engine
     internal partial class RegularRoom
     {
         Tile[,] tilegrid;
+        List<Tuple<List<Gate>, List<GateButton>, int>> gateButtonPairs = new List<Tuple<List<Gate>, List<GateButton>, int>>();
 
         public void LoadFileLevel(string filename)
         {
@@ -67,9 +68,9 @@ namespace Engine
             else if (symbol == '^')
                 LoadSpike(x, y);
             else if (symbol == 'G')
-                LoadGate(x, y);
+                LoadGate(x, y, 0);
             else if (symbol == 'B')
-                LoadGateButton(x, y);
+                LoadGateButton(x, y, 0);
 
             // added options for traps in room templates(chars can be changed if need be)
             else if (symbol == 'f')
@@ -103,15 +104,25 @@ namespace Engine
             Spike spike = new Spike(GetCellPositionPoint(x, y));
             tiles.Add(spike);
         }
-        private void LoadGate(int x, int y)
+        private void LoadGate(int x, int y, int color)
         {
             Gate gate = new Gate(GetCellPositionPoint(x, y), 0);
             tiles.Add(gate);
+            foreach (Tuple<List<Gate>, List<GateButton>, int> pair in gateButtonPairs)
+            {
+                if (pair.Item3 == color) pair.Item1.Add(gate);
+            }
+            gateButtonPairs.Add(new Tuple<List<Gate>, List<GateButton>, int>(new List<Gate>() { gate }, new List<GateButton>(), color));
         }
-        private void LoadGateButton(int x, int y)
+        private void LoadGateButton(int x, int y, int color)
         {
             GateButton gateButton = new GateButton(GetCellPositionPoint(x, y), 0);
             tiles.Add(gateButton);
+            foreach (Tuple<List<Gate>, List<GateButton>, int> pair in gateButtonPairs)
+            {
+                if (pair.Item3 == color) pair.Item2.Add(gateButton);
+            }
+            gateButtonPairs.Add(new Tuple<List<Gate>, List<GateButton>, int>(new List<Gate>(), new List<GateButton>() { gateButton }, color));
         }
         private void LoadDoor(int x, int y)
         {

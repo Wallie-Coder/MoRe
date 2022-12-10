@@ -8,6 +8,7 @@ using Microsoft.VisualBasic.ApplicationServices;
 using SharpDX.Direct2D1;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework.Input;
+using System.Linq;
 
 namespace Engine
 {
@@ -110,6 +111,12 @@ namespace Engine
                         }
                     }
                 }
+                if (t.Bounds.Intersects(level.player.Bounds))
+                {
+                    if (t is Spike)
+                        level.player.Heal(-1);
+                    else if (!(t as GateButton)?.isDown ?? false) (t as GateButton).Switch();
+                }
             }
             if(roomType == Level.RoomTypes.boss && !gameObjects.Exists(obj => obj is Enemy) && !roomCleared)
             {
@@ -125,8 +132,9 @@ namespace Engine
                 roomCleared = true;
             }
             
-            if (roomType != Level.RoomTypes.boss && !gameObjects.Exists(obj => obj is Enemy) && !roomCleared && false)
+            if (roomType != Level.RoomTypes.boss && !gameObjects.Exists(obj => obj is Enemy) && !roomCleared)
             {
+                /*
                 Random r = new Random();
                 switch (r.Next(0, 5))
                 {
@@ -137,6 +145,7 @@ namespace Engine
                     case 4: gameObjects.Add(new RandomPot(Game1.worldSize / 2)); break;
                     default: break;
                 }
+                */
                 roomCleared = true;
             }
             // Update each projectile, and handle lazers
@@ -159,7 +168,19 @@ namespace Engine
             }
             HandleLazers();
             base.Update(gameTime);
+
+            foreach(Tuple<List<Gate>,List<GateButton>,int> pair in gateButtonPairs)
+            {
+                UpdateGateButtonPair(pair);
+            }
         }
+
+        internal void UpdateGateButtonPair(Tuple<List<Gate>, List<GateButton>, int> pair)
+        {
+            if (pair.Item2.All(button => button.isDown) && pair.Item1.All(gate => gate.isClosed))
+                foreach (Gate gate in pair.Item1) gate.Switch();
+        }
+
 
         internal void HandleLazers()
         {

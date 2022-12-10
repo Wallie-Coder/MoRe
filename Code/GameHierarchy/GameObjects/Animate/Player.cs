@@ -8,15 +8,15 @@ using System.Xml.Serialization;
 using System.IO;
 using System.Linq;
 using System.Reflection.Metadata;
-using SharpDX.Direct3D9;
 using MoRe.Code.Utility;
+
 
 namespace Engine
 {
     internal class Player : Animated
     {
         //temp?
-        public float mana;
+        public float mana = 50;
         public Room room;
         public UserInterface ui;
         protected enum characterType
@@ -61,7 +61,6 @@ namespace Engine
         /// <summary>
         /// Used crudely for moving the player back. Bad implementation.
         /// </summary>
-        internal Vector2 prevLocation;
 
         internal Player(Vector2 location, float scale, string assetName = "Player", Room room = null) : base(location, scale, assetName)
         {
@@ -109,8 +108,6 @@ namespace Engine
         internal override void Update(GameTime gameTime)
         {
             ui.Update(gameTime);
-            //temp
-            prevLocation = location;
 
             currentWeapon.Update(gameTime);
 
@@ -143,10 +140,10 @@ namespace Engine
         //Changes the player's stats when picking up an item
         public void ChangeStats(Item item)
         {
-            this.Health += item.Health;
+            this.MaxHealth += item.MaxHealth;
+            Heal(item.Health);
             this.PowerMultiplier += item.Damage;
             this.MoveSpeed += item.MoveSpeed;
-            this.MaxHealth += item.MaxHealth;
             if (item.Dash)
             {
                 normalAbilityCooldownTimer = 0;
@@ -421,15 +418,12 @@ namespace Engine
             }
         }
 
-        internal override void HandleCollision(GameEntity collider)
+        protected override void Move(GameTime time)
         {
-            if (collider is Wall) { location = prevLocation; }
-            else
-            if (collider is Spike) { Heal(-1); }
-            else
-            if ((collider is Gate)) { if((collider as Gate).isClosed) { location = prevLocation; } }
-            else
-            if ((collider is Gate)) { if((collider as GateButton).isDown) { (collider as GateButton).Switch(); } }
+            Vector2 previousLocation = location;
+            
+            base.Move(time);
+            WallCheck(previousLocation, room);
         }
     }
 }

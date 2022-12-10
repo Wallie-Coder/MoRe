@@ -10,7 +10,7 @@ namespace Engine
 {
     internal abstract class Usable : GameEntity
     {
-        public Usable(Vector2 location, float scale, string assetName) : base(location, scale, "Usable/" + assetName) { }
+        public Usable(Vector2 location, float scale, string assetName) : base(location, scale, "Usables/" + assetName) { }
 
         public abstract void Use(Player p, Room r);
     }
