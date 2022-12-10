@@ -209,24 +209,5 @@ namespace MoRe
                 }
             }
         }
-
-        internal Tuple<Gate[], GateButton[]> GateButtonPair(Point[] gates, Point[] buttons, int color)
-        {
-            int gateLenght = gates.Length;
-            Gate[] tempGates = new Gate[gateLenght];
-            for (int i = 0; i < gateLenght; i++)
-                tempGates[i] = new Gate(gates[i], color);
-            int buttonLenght = buttons.Length;
-            GateButton[] tempButtons = new GateButton[buttonLenght];
-            for (int i = 0; i < buttonLenght; i++)
-                tempButtons[i] = new GateButton(buttons[i], color);
-            return new Tuple<Gate[], GateButton[]>(tempGates, tempButtons);
-        }
-
-        internal void checkGateButtonPair(Tuple<Gate[], GateButton[]> pair)
-        {
-            if (Array.TrueForAll(pair.Item2, button => button.isDown))
-                foreach (Gate gate in pair.Item1) gate.Switch();
-        }
     }
 }

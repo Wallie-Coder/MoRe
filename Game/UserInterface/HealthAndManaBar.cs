@@ -13,10 +13,11 @@ namespace MoRe
         internal Texture2D hold, mana, health, manaEnd, healthEnd, flashingSprite, spriteD;
         internal SpriteFont font;
 
-        int count;
+        int count, count2;
 
-        internal HealthandManaBar(Player player) : base(new Vector2(32, 300), 1, "UI/BarHolder")
+        internal HealthandManaBar(Player player, Vector2 location) : base(location, 1, "UI/BarHolder")
         {
+            Depth = 0.01f;
             this.player = player;
             mana = Game1.GameInstance.getSprite("UI/ManaSegment");
             manaEnd = Game1.GameInstance.getSprite("UI/ManaEnd");
@@ -29,21 +30,27 @@ namespace MoRe
 
         internal override void Draw(SpriteBatch batch)
         {
-
+            if (player.mana < 30)
+            {
+                count2 = count2 % 10;
+                if (count2 == 0) { sprite = flashingSprite; }
+                count2++;
+            }
             base.Draw(batch);
-            batch.Draw(mana, new Rectangle(new Point(16, -5) + location.ToPoint(), new Point((int)player.mana, 10)), Color.White);
-            batch.Draw(manaEnd, new Rectangle(new Point(16 + (int)player.mana, -5) + location.ToPoint(), new Point(1, 10)), Color.White);
+            DrawCustomSprite(batch, new Vector2(player.mana, 1), mana, location + new Vector2(Origin.X + player.mana / 2, 0));
+            DrawCustomSprite(batch, new Vector2(1, 1), manaEnd, location + new Vector2(Origin.X + player.mana, 0));
             StringHelper(batch, "" + (int)player.mana);
             location += new Vector2(0, -40);
+            sprite = spriteD;
             if (player.Health < 30)
             {
-                count = count % 3;
+                count = count % 5;
                 if (count == 0) { sprite = flashingSprite; }
                 count++;
             }
             base.Draw(batch);
-            batch.Draw(health, new Rectangle(new Point(16, -5) + location.ToPoint(), new Point((int)player.Health, 10)), Color.White);
-            batch.Draw(healthEnd, new Rectangle(new Point(16 + (int)player.Health, -5) + location.ToPoint(), new Point(1, 10)), Color.White);
+            DrawCustomSprite(batch, new Vector2(player.Health, 1), health, location + new Vector2(Origin.X + player.Health / 2, 0));
+            DrawCustomSprite(batch, new Vector2(1, 1), healthEnd, location + new Vector2(Origin.X + player.Health, 0));
             StringHelper(batch, "" + (int)player.Health);
             location -= new Vector2(0, -40);
             sprite = spriteD;
@@ -57,7 +64,8 @@ namespace MoRe
                 multiplier = 18 / measure.X;
             else
                 multiplier = 12 / measure.Y;
-            batch.DrawString(font, s, location - ((multiplier * measure) / 2), Color.Black, 0, Vector2.Zero, multiplier, 0, 0);
+            multiplier *= WorldScale;
+            batch.DrawString(font, s, location * WorldScale, Color.Black, 0, measure / 2, multiplier, 0, 0);
         }
     }
 }

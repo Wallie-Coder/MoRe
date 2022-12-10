@@ -12,17 +12,17 @@ using MoRe.Code.Utility;
 
 namespace MoRe
 {
-    class ScrollBar : GameObject
+    class VerticalScrollBar : GameObject
     {
         Menu menu;
         bool held;
-        Texture2D menuC;
-        int prev;
-        //currently broken, scale should be (10, 200)
-        internal ScrollBar(Menu menu) : base(Game1.worldSize / 2 + Vector2.UnitX*200, 1, "UI/WhitePixel")
+        Texture2D menuColor;
+        int prev, length;
+        internal VerticalScrollBar(Menu menu, int length, Vector2 location) : base(location, 1, "UI/WhitePixel")
         {
+            this.length = length;
             this.menu = menu;
-            menuC = Game1.GameInstance.getSprite("UI/MenuColor");
+            menuColor = Game1.GameInstance.getSprite("UI/MenuColor");
         }
 
         internal override void Update(GameTime gameTime)
@@ -35,7 +35,8 @@ namespace MoRe
 
         internal override void Draw(SpriteBatch batch)
         {
-            batch.Draw(menuC, new Rectangle(new Point((int)(Game1.worldSize.X / 2 + 200 - Origin.X / 2), 0), new Point(10, (int)Game1.worldSize.Y)), Color.White);
+            DrawCustomSprite(batch, new(10, length), sprite, location);
+            batch.Draw(menuColor, new Rectangle(new Point((int)(Game1.worldSize.X / 2 + 200 - Origin.X / 2), 0), new Point(10, (int)Game1.worldSize.Y)), Color.White);
             DrawCustomSize(batch, new Vector2(10, 200));
         }
 

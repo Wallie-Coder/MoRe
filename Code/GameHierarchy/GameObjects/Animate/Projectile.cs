@@ -26,7 +26,7 @@ namespace MoRe
 
         private List<GameObject> hitObjects = new List<GameObject>();
 
-        public Projectile(Vector2 location, Vector2 direction, float moveSpeed, int damage, string assetName, float range, float scale, ProjectileParent Parent = ProjectileParent.Player, int pierce = 2, int bounces = 3) : base(location, scale, "Projectiles\\" + assetName)
+        public Projectile(Vector2 location, Vector2 direction, float moveSpeed, int damage, string assetName, float range, float scale, ProjectileParent Parent = ProjectileParent.Player, int pierce = 1, int bounces = 0) : base(location, scale, "Projectiles\\" + assetName)
         {
             Damage = damage;
             BaseSpeed = moveSpeed;

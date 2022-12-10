@@ -1541,7 +1541,7 @@
 /processorParam:TextureFormat=Color
 /build:UI/WhitePixel.png
 
-#begin Usable/HealthPot.png
+#begin Usables/HealthPot.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1551,9 +1551,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Usable/HealthPot.png
+/build:Usables/HealthPot.png
 
-#begin Usable/ManaPot.png
+#begin Usables/ManaPot.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1563,9 +1563,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Usable/ManaPot.png
+/build:Usables/ManaPot.png
 
-#begin Usable/RandomPot.png
+#begin Usables/RandomPot.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1575,9 +1575,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Usable/RandomPot.png
+/build:Usables/RandomPot.png
 
-#begin Usable/TimedHealthPot.png
+#begin Usables/TimedHealthPot.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1587,9 +1587,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Usable/TimedHealthPot.png
+/build:Usables/TimedHealthPot.png
 
-#begin Usable/TimedManaPot.png
+#begin Usables/TimedManaPot.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1599,7 +1599,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Usable/TimedManaPot.png
+/build:Usables/TimedManaPot.png
 
 #begin Weapon/LaserRifle.png
 /importer:TextureImporter
