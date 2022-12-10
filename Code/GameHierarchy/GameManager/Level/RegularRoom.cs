@@ -153,7 +153,7 @@ namespace Engine
                     if (p.Bounds.Intersects(level.player.Bounds))
                     {
                         level.player.HandleCollision(p);
-                        p.HitObject();
+                        p.HitObject(level.player);
                     }
                 }
             }
