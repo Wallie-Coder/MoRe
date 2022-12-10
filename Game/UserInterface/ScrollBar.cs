@@ -36,7 +36,7 @@ namespace MoRe
         internal override void Draw(SpriteBatch batch)
         {
             batch.Draw(menuC, new Rectangle(new Point((int)(Game1.worldSize.X / 2 + 200 - Origin.X / 2), 0), new Point(10, (int)Game1.worldSize.Y)), Color.White);
-            base.Draw(batch);
+            DrawCustomSize(batch, new Vector2(10, 200));
         }
 
         void MouseDown(MouseState mouse)

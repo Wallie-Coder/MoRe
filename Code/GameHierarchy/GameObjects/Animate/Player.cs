@@ -16,8 +16,9 @@ namespace Engine
     internal class Player : Animated
     {
         //temp?
-        public float Mana { get; protected set; }
-
+        public float mana;
+        public Room room;
+        public UserInterface ui;
         protected enum characterType
         {
             assassin, healer, warrior
@@ -62,8 +63,9 @@ namespace Engine
         /// </summary>
         internal Vector2 prevLocation;
 
-        internal Player(Vector2 location, float scale, string assetName = "Player") : base(location, scale, assetName)
+        internal Player(Vector2 location, float scale, string assetName = "Player", Room room = null) : base(location, scale, assetName)
         {
+            ui = new UserInterface(this);
             weapon2 = new Pistol(location, 1f);
             weapon1 = new Sniper(location, 1f);
             weaponList[0] = weapon1;
@@ -100,10 +102,13 @@ namespace Engine
             canAutosave = true;
 
             this.StartMoving();
+
+            this.room = room;
         }
 
         internal override void Update(GameTime gameTime)
         {
+            ui.Update(gameTime);
             //temp
             prevLocation = location;
 
@@ -132,6 +137,7 @@ namespace Engine
                 orbital.Draw(batch);
 
             currentWeapon.Draw(batch);
+            ui.Draw(batch);
         }
 
         //Changes the player's stats when picking up an item

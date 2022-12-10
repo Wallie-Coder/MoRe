@@ -37,7 +37,7 @@ namespace Engine
         {
             foreach (GameObject item in menuItems) item.Draw(batch);
             batch.Draw(sprite, new Rectangle(Point.Zero, Game1.worldSize.ToPoint()), Color.White);
-            base.Draw(batch);
+            DrawCustomSize(batch, new Vector2(500, Game1.worldSize.Y));
         }
     }
 }
