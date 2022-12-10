@@ -776,8 +776,8 @@
 /processorParam:TextureFormat=Color
 /build:Player/Healer/HealerPlayerU4.png
 
-#begin Player/Saves/Autosaves/PlayerStats.txt
-/copy:Player/Saves/Autosaves/PlayerStats.txt
+#begin Player/Saves/Autosaves/PlayerStats_1.txt
+/copy:Player/Saves/Autosaves/PlayerStats_1.txt
 
 #begin Player/Saves/PlayerStats.txt
 /copy:Player/Saves/PlayerStats.txt
@@ -1312,18 +1312,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Traps/BearTrapActivated.png
-
-#begin Traps/BoostEnemyTrap.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Traps/BoostEnemyTrap.png
 
 #begin Traps/BoostEnemyTrap.png
 /importer:TextureImporter
