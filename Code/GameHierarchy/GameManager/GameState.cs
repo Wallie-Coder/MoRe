@@ -12,7 +12,7 @@ namespace Engine
     internal abstract class GameState
     {
         // the Different GameState options.
-        public enum States { Menu, Play, None}
+        public enum States { Menu, Settings, Play, None}
 
         // the next State, None by default, if changed it means the state will go to the desired state.
         internal protected States nextState { get; protected set; }

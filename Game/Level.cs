@@ -27,11 +27,10 @@ namespace MoRe
 
         internal Level(int size, Player player, bool hardmodeSelected, bool fastmodeSelected, string playerName,Color nameColor)
         {
-            player = new Warrior(new Vector2(200, 200), 2f);
-
             FloorRandomizer fr = new FloorRandomizer();
             List<EmptyRoom> templist = new List<EmptyRoom>();
             templist = fr.CreateFloor(size);
+            rnd = new Random();
 
             foreach(EmptyRoom r in templist)
             {
@@ -47,7 +46,6 @@ namespace MoRe
 
             displayPlayerName = new Code.Utility.Text(this.player.location - new Vector2(0, 35), 1 * GameObject.WorldScale, "", playerName);
             displayPlayerName.color = nameColor;
-
             
             this.hardmodeSelected = hardmodeSelected;
             this.fastmodeSelected = fastmodeSelected;
@@ -56,7 +54,6 @@ namespace MoRe
             {
                 this.player.Health = 1;
                 this.player.PowerMultiplier *= (float)rnd.NextDouble();
-                Debug.Write(this.player.PowerMultiplier);
             }
 
             if (fastmodeSelected)
@@ -182,25 +179,6 @@ namespace MoRe
                         (g as RangedEnemy).shotSpeed *= (float)(rnd.NextDouble() + 1);
                 }
             }
-        }
-
-        internal Tuple<Gate[], GateButton[]> GateButtonPair(Point[] gates, Point[] buttons, int color)
-        {
-            int gateLenght = gates.Length;
-            Gate[] tempGates = new Gate[gateLenght];
-            for (int i = 0; i < gateLenght; i++)
-                tempGates[i] = new Gate(gates[i], color);
-            int buttonLenght = buttons.Length;
-            GateButton[] tempButtons = new GateButton[buttonLenght];
-            for (int i = 0; i < buttonLenght; i++)
-                tempButtons[i] = new GateButton(buttons[i], color);
-            return new Tuple<Gate[], GateButton[]>(tempGates, tempButtons);
-        }
-
-        internal void checkGateButtonPair(Tuple<Gate[], GateButton[]> pair)
-        {
-            if (Array.TrueForAll(pair.Item2, button => button.isDown))
-                foreach (Gate gate in pair.Item1) gate.Switch();
         }
     }
 }

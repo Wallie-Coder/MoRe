@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using MoRe;
+using MoRe.Code.Utility;
 
 namespace Engine
 {
@@ -10,8 +11,8 @@ namespace Engine
     {
         List<GameObject> gameObjects = new List<GameObject>();
 
-        // a play button to start the game;
-        Button play = new Button(new Vector2(Game1.worldSize.X /2, 200), 0.2f, "playbutton");
+        private Button play, settings, exit, selectWarrior, selectAssassin, selectHealer;
+        private StartScreenBox selectBox;
 
         internal MenuState()
         {
@@ -36,10 +37,11 @@ namespace Engine
 
         internal override void Update(GameTime gameTime)
         {
-            play.Update(gameTime);
+            foreach (GameObject g in gameObjects)
+                if (g is Button)
+                    g.Update(gameTime);
 
-            // if play button has been pressed have play state as desired state.
-            if (play.pressed)
+            if (play.clicked)
                 nextState = States.Play;
             else if (settings.clicked)
                 nextState = States.Settings;
@@ -56,7 +58,16 @@ namespace Engine
         }
         internal override void Draw(SpriteBatch batch)
         {
-            play.Draw(batch);
+            Game1.GameInstance.GraphicsDevice.Clear(Color.LightGray);
+            foreach (GameObject g in gameObjects)
+            {
+                if (g.location.X > 200)
+                    g.DrawCustomSize(batch, new Vector2(5, 1));
+                else
+                    g.DrawCustomSize(batch, new Vector2(1, 1));
+
+                g.Draw(batch);
+            }
         }
     }
 }

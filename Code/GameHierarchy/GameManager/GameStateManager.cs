@@ -12,6 +12,8 @@ namespace Engine
         // the previous GameState.
         private GameState oldState = null;
 
+        public Player chosenPlayer;
+
         internal GameState Update(GameState currentState)
         {
             // if there is no previous gamestate, set it to the currentstate (Menu), and update the current state to the next state (Play).
@@ -19,7 +21,7 @@ namespace Engine
             if(oldState == null)
             {
                 oldState = currentState;
-                currentState = new PlayState();
+
             }
             else
             {
@@ -35,9 +37,11 @@ namespace Engine
             switch(currentState.nextState)
             {
                 case GameState.States.Play:
-                    return new PlayState();
+                    return new PlayState(chosenPlayer);
                 case GameState.States.Menu:
                     return new MenuState();
+                case GameState.States.Settings:
+                    return new SettingsState();
             }
 
             // in case of error or mistake, just return a new MenuState.

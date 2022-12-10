@@ -25,6 +25,18 @@
 /processorParam:TextureFormat=Color
 /build:background.jpg
 
+#begin button.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:button.png
+
 #begin Door.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -121,6 +133,13 @@
 /processorParam:TextureFormat=Color
 /build:Enemy/KnifeRoombaEnemyR.png
 
+#begin File.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:File.spritefont
+
 #begin Item/DamageUp.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -192,6 +211,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:playbutton.png
+
+#begin Player/Assassin/Assassin.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Player/Assassin/Assassin.png
 
 #begin Player/Assassin/AssassinPlayer.png
 /importer:TextureImporter
@@ -397,6 +428,18 @@
 /processorParam:TextureFormat=Color
 /build:Player/Assassin/AssassinPlayerU4.png
 
+#begin Player/Healer/Healer.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Player/Healer/Healer.png
+
 #begin Player/Healer/HealerPlayer.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -600,6 +643,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Player/Healer/HealerPlayerU4.png
+
+#begin Player/Warrior/Warrior.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Player/Warrior/Warrior.png
 
 #begin Player/Warrior/WarriorPlayer.png
 /importer:TextureImporter
@@ -1066,11 +1121,11 @@
 #begin RoomTemplates/Room_W_1.txt
 /copy:RoomTemplates/Room_W_1.txt
 
-#begin Sounds/TetrisClear.mp3
+#begin SoundEffects/TetrisClear.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Sounds/TetrisClear.mp3
+/build:SoundEffects/TetrisClear.mp3
 
 #begin UI/BarHolder.png
 /importer:TextureImporter

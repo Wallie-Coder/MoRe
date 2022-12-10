@@ -26,7 +26,7 @@ namespace Engine
             s_playerNameList = new List<string>();
 
             exit = new Button(new Vector2(1200, 125), 3f, "button", "Exit");
-            fullscreen  = new Button(new Vector2(500, 125), 3f, "button", "Fullscreen", !s_windowedSelected);
+            fullscreen = new Button(new Vector2(500, 125), 3f, "button", "Fullscreen", !s_windowedSelected);
             windowed = new Button(new Vector2(400, 125), 3f, "button", "Windowed", s_windowedSelected);
             hardmode = new Button(new Vector2(600, 125), 3f, "button", "Hardmode", s_hardmodeSelected, true);
             fastmode = new Button(new Vector2(700, 125), 3f, "button", "Fastmode", s_fastmodeSelected, true);
@@ -104,22 +104,22 @@ namespace Engine
                 s_fastmodeSelected = false;
 
             if (soundtest.clicked)
-                Game1.GameInstance.getSoundEffect("Sounds//TetrisClear").Play(Game1.s_volume, 0, 0);
+                Game1.GameInstance.getSoundEffect("SoundEffects//TetrisClear").Play(Game1.s_volume, 0, 0);
 
             if (inputName.turnedOn)
                 InputBox();
             inputName.textColor = new Color(s_red, s_green, s_blue);
             
             s_soundBoxPosition = soundSlider.location;
-            s_soundSliderPosition = soundSlider.originalLocation;
+            s_soundSliderPosition = soundSlider.OriginalLocation;
             Game1.s_volume = soundSlider.CorrectValue;
 
             s_redBoxPosition = redSlider.location;
-            s_redSliderPosition = redSlider.originalLocation;
+            s_redSliderPosition = redSlider.OriginalLocation;
             s_greenBoxPosition = greenSlider.location;
-            s_greenSliderPosition = greenSlider.originalLocation;
+            s_greenSliderPosition = greenSlider.OriginalLocation;
             s_blueBoxPosition = blueSlider.location;
-            s_blueSliderPosition = blueSlider.originalLocation;
+            s_blueSliderPosition = blueSlider.OriginalLocation;
             s_red = (int)redSlider.CorrectValue;
             s_green = (int)greenSlider.CorrectValue;
             s_blue = (int)blueSlider.CorrectValue;
@@ -129,7 +129,6 @@ namespace Engine
             Game1.GameInstance.GraphicsDevice.Clear(Color.LightGray);
             foreach (GameObject g in gameObjects)
             {
-
                 if (g is Button && g != inputName && !(g as Button).text.Contains("Key"))
                     g.DrawCustomSize(batch, new Vector2(1, 1));
                 else if (g is Button && g == inputName && !(g as Button).text.Contains("Key"))
@@ -138,10 +137,9 @@ namespace Engine
                     g.DrawCustomSize(batch, new Vector2(3, 1));
                 else if (g is StartScreenBox)
                     g.DrawCustomSize(batch, new Vector2(30, 25));
-                else if (g is StartScreenSlider)
-                    g.DrawCustomSize(batch, new Vector2(1, 1));
-
                 g.Draw(batch);
+                if (g is StartScreenSlider)
+                    g.DrawCustomSize(batch, new Vector2(1, 1));
             }
         }
 

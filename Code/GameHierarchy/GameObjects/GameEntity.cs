@@ -13,11 +13,11 @@ namespace Engine
     internal class GameEntity : GameObject
     {
         public float MaxHealth { get; protected set; }
-        public float Health { get; protected set; }
+        public float Health { get; set; }
         public bool IsAlive { get; protected set; }
         public bool CanTakeDamage { get; protected set; }
         protected internal float Damage { get; protected set; }
-        protected internal float PowerMultiplier { get; protected set; }
+        protected internal float PowerMultiplier { get; set; }
         protected float AttackSpeed;
 
         public EntityOrientation orientation { get; protected set; }

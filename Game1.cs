@@ -3,12 +3,13 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Diagnostics;
 
 namespace MoRe
 {
     public class Game1 : Game
     {
-        private GraphicsDeviceManager _graphics;
+        public GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
         // a static version of the game class to access game wide methods like getSprite();
@@ -96,9 +97,6 @@ namespace MoRe
 
             // TODO: Add your drawing code here
             _spriteBatch.Begin();
-
-            // Draw the background sprite with the correct size.
-            _spriteBatch.Draw(getSprite("background"), new Rectangle(0, 0, (int)(worldSize.X * GameObject.WorldScale), (int)(worldSize.Y * GameObject.WorldScale)), Color.White); ;
             
             // Draw the current GameState.
             gameState.Draw(_spriteBatch);
@@ -132,7 +130,6 @@ namespace MoRe
             try
             {
                 font = GameInstance.Content.Load<SpriteFont>(assetName);
-
             }
             catch
             {

@@ -18,7 +18,7 @@ namespace MoRe.Code.Utility
         internal protected bool clicked { get; set; }
         internal protected bool soloButton { get; private set; }
         internal protected string text { get; set; }
-        internal protected Vector2 textSize { get { return Game1.GameInstance.font.MeasureString(text) * WorldScale; } set {; } }
+        internal protected Vector2 textSize { get { return Game1.GameInstance.getFont("File").MeasureString(text) * WorldScale; } set {; } }
         internal protected Color textColor { get; set; }
         public Button(Vector2 location, float scale, string assetName = " ", string text = "", bool turnedOn = false, bool soloButton = false) : base(location, scale, assetName)
         {
@@ -59,7 +59,7 @@ namespace MoRe.Code.Utility
 
         internal override void Draw(SpriteBatch batch)
         {
-            batch.DrawString(Game1.GameInstance.font, text, location * WorldScale - textSize / 2, textColor, MathHelper.ToRadians(rotationInDegrees), Vector2.Zero, 1 * WorldScale, spriteEffect, Depth);
+            batch.DrawString(Game1.GameInstance.getFont("File"), text, location * WorldScale - textSize / 2, textColor, MathHelper.ToRadians(rotationInDegrees), Vector2.Zero, WorldScale, spriteEffect, Depth);
         }
     }
 }

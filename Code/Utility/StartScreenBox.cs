@@ -15,7 +15,7 @@ namespace MoRe.Code.Utility
     internal class StartScreenBox : GameObject
     {
         internal protected string text { get; protected set; }
-        internal protected Vector2 textSize { get { return Game1.GameInstance.font.MeasureString(text); } set {; } }
+        internal protected Vector2 textSize { get { return Game1.GameInstance.getFont("File").MeasureString(text); } set {; } }
         internal StartScreenBox(Vector2 location, float scale, string assetName = " ", string text = "") : base(location, scale, assetName)
         {
             this.text = text;

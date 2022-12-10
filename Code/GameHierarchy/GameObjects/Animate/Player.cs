@@ -18,7 +18,7 @@ namespace Engine
         //All variables for weapons
         Weapon weapon1;
         Weapon weapon2;
-        Weapon[] weaponList = new Weapon[2];
+        public Weapon[] weaponList = new Weapon[2];
         Weapon currentWeapon;
         float weaponSwapCooldown;
         bool canSwapWeapon;
@@ -73,6 +73,7 @@ namespace Engine
             Health = 200;
             MaxHealth = Health;
             baseSpeed = 5;
+            orientation = EntityOrientation.Down;
 
             this.Depth = 1f;
 
