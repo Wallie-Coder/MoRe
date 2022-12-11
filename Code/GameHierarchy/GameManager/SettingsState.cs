@@ -25,13 +25,13 @@ namespace Engine
             gameObjects = new List<GameObject>();
             s_playerNameList = new List<string>();
 
-            exit = new Button(new Vector2(1200, 125), 3f, "button", "Exit");
-            fullscreen = new Button(new Vector2(500, 125), 3f, "button", "Fullscreen", !s_windowedSelected);
-            windowed = new Button(new Vector2(400, 125), 3f, "button", "Windowed", s_windowedSelected);
-            hardmode = new Button(new Vector2(600, 125), 3f, "button", "Hardmode", s_hardmodeSelected, true);
-            fastmode = new Button(new Vector2(700, 125), 3f, "button", "Fastmode", s_fastmodeSelected, true);
-            soundtest = new Button(new Vector2(800, 125), 3f, "button", "Sound Test", false, false);
-            inputName = new Button(new Vector2(500, 325), 3f, "button", "PlayerName is " + s_playerName, false, true);
+            exit = new Button(new Vector2(650, 50), 2f, "button", "Exit");
+            fullscreen = new Button(new Vector2(150, 50), 2f, "button", "Fullscreen", !s_windowedSelected);
+            windowed = new Button(new Vector2(240, 50), 2f, "button", "Windowed", s_windowedSelected);
+            hardmode = new Button(new Vector2(330, 50), 2f, "button", "Hardmode", s_hardmodeSelected, true);
+            fastmode = new Button(new Vector2(420, 50), 2f, "button", "Fastmode", s_fastmodeSelected, true);
+            soundtest = new Button(new Vector2(510, 50), 2f, "button", "Sound Test", false, false);
+            inputName = new Button(new Vector2(210, 175), 1.5f, "button", s_playerName, false, true);
             inputName.color = Color.Black;
             soundSlider = new StartScreenSlider(s_soundBoxPosition, s_soundSliderPosition, 1f, 90, "button", "Volume", 1f);
             redSlider = new StartScreenSlider(s_redBoxPosition, s_redSliderPosition, 1f, 90, "button", "Red", 255f);
@@ -39,14 +39,14 @@ namespace Engine
             blueSlider = new StartScreenSlider(s_blueBoxPosition, s_blueSliderPosition, 1f, 90, "button", "Blue", 255f);
 
             //keybindings
-            WASDKey = new Button(new Vector2(800, 425), 3f, "button", "WASDKeys For Walking", false, false);
-            SpaceKey = new Button(new Vector2(1100, 425), 3f, "button", "SpaceKey For Shooting", false, false);
-            EKey = new Button(new Vector2(800, 525), 3f, "button", "EKey For Dashing", false, false);
-            QKey = new Button(new Vector2(1100, 525), 3f, "button", "QKey For Switching", false, false);
-            XKey = new Button(new Vector2(800, 625), 3f, "button", "XKey For Picking Up", false, false);
-            FKey = new Button(new Vector2(1100, 625), 3f, "button", "FKey For Special Ability", false, false);
+            WASDKey = new Button(new Vector2(420, 250), 2f, "button", "WASDKeys To Walk", false, false);
+            SpaceKey = new Button(new Vector2(600, 250), 2f, "button", "SpaceKey For Shooting", false, false);
+            EKey = new Button(new Vector2(420, 310), 2f, "button", "EKey For Dashing", false, false);
+            QKey = new Button(new Vector2(600, 310), 2f, "button", "QKey For Switching", false, false);
+            XKey = new Button(new Vector2(420, 370), 2f, "button", "XKey For Picking Up", false, false);
+            FKey = new Button(new Vector2(600, 370), 2f, "button", "FKey For Special Ability", false, false);
 
-            settingsBox = new StartScreenBox(new Vector2(800, 450), 1f, "button");
+            settingsBox = new StartScreenBox(new Vector2(400, 225), 1f, "button");
 
             gameObjects.Add(settingsBox);
             gameObjects.Add(exit);
@@ -130,13 +130,13 @@ namespace Engine
             foreach (GameObject g in gameObjects)
             {
                 if (g is Button && g != inputName && !(g as Button).text.Contains("Key"))
-                    g.DrawCustomSize(batch, new Vector2(1, 1));
+                    g.DrawCustomSize(batch, new Vector2(1.5f, 1));
                 else if (g is Button && g == inputName && !(g as Button).text.Contains("Key"))
-                    g.DrawCustomSize(batch, new Vector2(3, 1));
+                    g.DrawCustomSize(batch, new Vector2(4.5f, 1));
                 else if (g is Button && (g as Button).text.Contains("Key"))
                     g.DrawCustomSize(batch, new Vector2(3, 1));
                 else if (g is StartScreenBox)
-                    g.DrawCustomSize(batch, new Vector2(30, 25));
+                    g.DrawCustomSize(batch, new Vector2(20, 15));
                 g.Draw(batch);
                 if (g is StartScreenSlider)
                     g.DrawCustomSize(batch, new Vector2(1, 1));
@@ -149,9 +149,9 @@ namespace Engine
             for (int i = 0; i < InputHelper.currentKeys.Length; i++)
             {
                 currentKey = InputHelper.currentKeys[i];
-                if (InputHelper.IsKeyDown(currentKey) && InputHelper.IsKeyJustPressed(currentKey) && currentKey != Keys.Back && currentKey != Keys.LeftShift && !InputHelper.IsKeyDown(Keys.LeftShift))
+                if (InputHelper.IsKeyDown(currentKey) && InputHelper.IsKeyJustPressed(currentKey) && currentKey != Keys.Back && currentKey != Keys.LeftShift && !InputHelper.IsKeyDown(Keys.LeftShift) && s_playerNameList.Count < 11)
                     s_playerNameList.Add(currentKey.ToString().ToLower());
-                if (InputHelper.IsKeyDown(currentKey) && InputHelper.IsKeyJustPressed(currentKey) && currentKey != Keys.Back && currentKey != Keys.LeftShift && InputHelper.IsKeyDown(Keys.LeftShift))
+                if (InputHelper.IsKeyDown(currentKey) && InputHelper.IsKeyJustPressed(currentKey) && currentKey != Keys.Back && currentKey != Keys.LeftShift && InputHelper.IsKeyDown(Keys.LeftShift) && s_playerNameList.Count < 11)
                     s_playerNameList.Add(currentKey.ToString());
                 else if (InputHelper.IsKeyDown(currentKey) && InputHelper.IsKeyJustPressed(currentKey) && currentKey == Keys.Back && s_playerNameList.Count > 0)
                     s_playerNameList.RemoveAt(s_playerNameList.Count - 1);
@@ -163,7 +163,7 @@ namespace Engine
                 addedName += s_playerNameList[i];
             }
             s_playerName = addedName;
-            inputName.text = "PlayerName is " + s_playerName;
+            inputName.text = s_playerName;
         }
     }
 }

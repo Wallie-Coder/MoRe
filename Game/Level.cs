@@ -32,7 +32,7 @@ namespace MoRe
 
         private bool hardmodeSelected, fastmodeSelected;
 
-        internal Level(int size, Player player, bool hardmodeSelected, bool fastmodeSelected, string playerName,Color nameColor)
+        internal Level(int size, Player player, bool hardmodeSelected, bool fastmodeSelected, string playerName, Color nameColor)
         {
             FloorRandomizer fr = new FloorRandomizer();
             List<EmptyRoom> templist = new List<EmptyRoom>();
@@ -71,7 +71,7 @@ namespace MoRe
             if (this.player == null)
                 this.player = new Warrior(new Vector2(200, 200), 1f);
 
-            displayPlayerName = new Code.Utility.Text(this.player.location - new Vector2(0, 35), 1 * GameObject.WorldScale, "", playerName);
+            displayPlayerName = new Code.Utility.Text(this.player.location - new Vector2(0, 20), 1 * GameObject.WorldScale, "", playerName);
             displayPlayerName.color = nameColor;
 
             this.hardmodeSelected = hardmodeSelected;
@@ -81,7 +81,8 @@ namespace MoRe
             {
                 this.player.Health = 1;
                 this.player.PowerMultiplier *= (float)rnd.NextDouble();
-                Debug.Write(this.player.PowerMultiplier);
+                if (this.player.PowerMultiplier < 0.5f)
+                    this.player.PowerMultiplier *= (float)rnd.NextDouble();
             }
 
             if (fastmodeSelected)
@@ -102,7 +103,7 @@ namespace MoRe
         public void Update(GameTime gameTime)
         {
             activeRoom.Update(gameTime);
-            displayPlayerName.location = this.player.location - new Vector2(0, 35);
+            displayPlayerName.location = this.player.location - new Vector2(0, 20);
 
 
             if (levelState == LevelState.Play)
@@ -125,8 +126,14 @@ namespace MoRe
             if(levelState == LevelState.Frozen)
                 batch.Draw(Game1.GameInstance.getSprite("FrozenScreenEffect"), Vector2.Zero, Color.White);
 
+            if (hardmodeSelected)
+            {
+                this.player.Health = 1;
+                if (this.player.PowerMultiplier < 0.5f)
+                    this.player.PowerMultiplier *= (float)rnd.NextDouble();
+            }
 
-            foreach (RegularRoom r in _rooms)
+                foreach (RegularRoom r in _rooms)
             {
                 if (r.roomType == RoomTypes.boss && r.Discovered)
                     batch.Draw(r.sprite, r.Location * r.sprite.Width, Color.Red);

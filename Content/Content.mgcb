@@ -1301,6 +1301,12 @@
 #begin RoomTemplates/Room_W_1.txt
 /copy:RoomTemplates/Room_W_1.txt
 
+#begin SoundEffects/TetrisClear.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/TetrisClear.mp3
+
 #begin Traps/BarrelTrap.png
 /importer:TextureImporter
 /processor:TextureProcessor

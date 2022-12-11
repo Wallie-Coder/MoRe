@@ -16,14 +16,17 @@ namespace MoRe.Code.Utility
     {
         internal protected string text { get; protected set; }
         internal protected Vector2 textSize { get { return Game1.GameInstance.getFont("File").MeasureString(text) * WorldScale; } set {; } }
+        internal protected float TextScale { get; set; }
         internal Text(Vector2 location, float scale, string assetName = " ", string text = "") : base(location, scale, assetName)
         {
             this.text = text;
+            base.location = location;
+            this.TextScale = 1;
         }
 
         internal override void Draw(SpriteBatch batch)
         {
-            batch.DrawString(Game1.GameInstance.getFont("File"), text, location * WorldScale - textSize / 2, color, MathHelper.ToRadians(rotationInDegrees), Vector2.Zero, 1 * WorldScale, spriteEffect, Depth);
+            batch.DrawString(Game1.GameInstance.getFont("File"), text, location * WorldScale - textSize / 4, color, MathHelper.ToRadians(rotationInDegrees), Vector2.Zero, TextScale * 0.5f * WorldScale, spriteEffect, Depth);
         }
     }
 }

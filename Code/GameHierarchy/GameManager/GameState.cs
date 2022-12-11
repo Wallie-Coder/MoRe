@@ -26,19 +26,19 @@ namespace Engine
         internal static protected Color s_nameColor;
 
         internal static protected List<string> s_playerNameList;
-        internal static protected string s_playerName = "";
+        internal static protected string s_playerName = "Player";
 
         internal static protected Vector2 s_selectBoxPos = new Vector2(100, 100);
 
-        internal static protected Vector2 s_soundSliderPosition = new Vector2(500, 225);
-        internal static protected Vector2 s_soundBoxPosition = new Vector2(500, 225);
+        internal static protected Vector2 s_soundSliderPosition = new Vector2(210, 125);
+        internal static protected Vector2 s_soundBoxPosition = new Vector2(210, 125);
 
-        internal static protected Vector2 s_redSliderPosition = new Vector2(500, 425);
-        internal static protected Vector2 s_redBoxPosition = new Vector2(410, 425);
-        internal static protected Vector2 s_greenSliderPosition = new Vector2(500, 525);
-        internal static protected Vector2 s_greenBoxPosition = new Vector2(410, 525);
-        internal static protected Vector2 s_blueSliderPosition = new Vector2(500, 625);
-        internal static protected Vector2 s_blueBoxPosition = new Vector2(410, 625);
+        internal static protected Vector2 s_redSliderPosition = new Vector2(210, 250);
+        internal static protected Vector2 s_redBoxPosition = new Vector2(120, 250);
+        internal static protected Vector2 s_greenSliderPosition = new Vector2(210, 310);
+        internal static protected Vector2 s_greenBoxPosition = new Vector2(120, 310);
+        internal static protected Vector2 s_blueSliderPosition = new Vector2(210, 380);
+        internal static protected Vector2 s_blueBoxPosition = new Vector2(120, 380);
 
         internal GameState()
         {

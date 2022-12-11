@@ -15,7 +15,7 @@ namespace MoRe
         internal string projectileName = "RedProjectile";
         internal List<Projectile> projectiles = new List<Projectile>();
         internal int shot = 30;
-        internal float shotSpeed = 10;
+        internal float shotSpeed = 5;
 
         internal RangedEnemy(Vector2 location, float scale, int range, int damage, int health, RegularRoom room, string assetName = "DroneEnemy") : base(location, scale, 0, health, room, assetName)
         {

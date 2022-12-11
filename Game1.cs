@@ -99,7 +99,7 @@ namespace MoRe
             GraphicsDevice.Clear(Color.White);
 
             // TODO: Add your drawing code here
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp);
             
             // Draw the current GameState.
             gameState.Draw(_spriteBatch);
