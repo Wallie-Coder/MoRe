@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MoRe.Code.Utility;
 using System.Diagnostics;
 
 namespace MoRe
@@ -11,15 +12,16 @@ namespace MoRe
     {
         public GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        public SpriteFont font;
 
         // a static version of the game class to access game wide methods like getSprite();
         public static Game1 GameInstance;
 
         // the worldSize as seen by the game objects, with 16:9 ratio.
-        public static Vector2 worldSize = new Vector2(1600, 900);
+        public static Vector2 worldSize = new Vector2(800, 352);
 
-        // a GameState and GameStateManager to Update the current state if neccesairy.
-        GameStateManager GSM = new GameStateManager();
+        // a GameState and GameStateManager to Update the current state if neccesary.
+        private GameStateManager GSM = new GameStateManager();
         GameState gameState;
 
         // volume for all the games sound and music, changable via the settings menu
@@ -59,6 +61,7 @@ namespace MoRe
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            font = Content.Load<SpriteFont>("File");
 
             // TODO: use this.Content to load your game content here
         }
@@ -93,7 +96,7 @@ namespace MoRe
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
+            GraphicsDevice.Clear(Color.White);
 
             // TODO: Add your drawing code here
             _spriteBatch.Begin();

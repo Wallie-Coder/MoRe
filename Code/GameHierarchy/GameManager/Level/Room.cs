@@ -4,6 +4,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MoRe;
+using MoRe.Code.Utility;
+using static MoRe.Level;
 
 namespace Engine
 {
@@ -15,6 +17,7 @@ namespace Engine
 
         // possible neighborslocations.
         public enum NeighborLocation { top, bottom, left, right, Null }
+     
 
         // the locaiton where the player wants to go and from which room the player enter to set the corresponding player location.
         internal protected NeighborLocation nextRoom;
@@ -32,12 +35,13 @@ namespace Engine
         protected bool Beaten = false;
 
         // string with the neighbors. example: "NE", "ESW" (compas locations).
-        private string neighbors = " ";
+        protected string neighbors = " ";
 
         // Lists for the gamobjects, doors and projectiles in the room.
         internal List<GameObject> gameObjects= new List<GameObject>();
+        internal List<Tile> tiles = new List<Tile>();
         protected List<Door> doors = new List<Door>();
-        protected static List<Projectile> projectiles = new List<Projectile>();
+        internal static List<Projectile> projectiles = new List<Projectile>();
 
         internal Room(Vector2 location, bool isBossRoom, bool safeRoom, string neighbors, Level level)
         {
@@ -53,29 +57,10 @@ namespace Engine
             setRoomSprite(neighbors);
 
             this.neighbors = neighbors;
-
-            // add doors to the room dependent on the neighbors. so there are no doors to rooms that dont exsist.
-            if(neighbors.Contains('N'))
-                doors.Add(new Door(new Vector2(Game1.worldSize.X / 2, 32), 1f, NeighborLocation.top));
-            if (neighbors.Contains('E'))
-                doors.Add(new Door(new Vector2(Game1.worldSize.X - 32, Game1.worldSize.Y/ 2), 1f, NeighborLocation.right));
-            if (neighbors.Contains('S'))
-                doors.Add(new Door(new Vector2(Game1.worldSize.X / 2, Game1.worldSize.Y - 32), 1f, NeighborLocation.bottom));
-            if (neighbors.Contains('W'))
-                doors.Add(new Door(new Vector2(32, Game1.worldSize.Y / 2), 1f, NeighborLocation.left));
         }
 
         internal virtual void Update(GameTime gameTime)
         {
-            // Update each projectile, and handel lazers
-            foreach (Projectile p in projectiles.ToArray())
-            {
-                p.Update(gameTime);
-                if (p.Health <= 0 || p.IsAlive == false)
-                    projectiles.Remove(p);
-            }
-            HandleLazers();
-
             // update all the doors in the room.
             foreach (Door d in doors)
             {
@@ -96,6 +81,8 @@ namespace Engine
                 d.Draw(batch);
             foreach(GameObject g in gameObjects)
                 g.Draw(batch);
+            foreach (Tile t in tiles)
+                t.Draw(batch);
             foreach (Projectile p in projectiles)
                 p.Draw(batch);
         }
@@ -109,18 +96,7 @@ namespace Engine
         {
             projectiles.Add(p);
         }
-        internal void HandleLazers()
-        {
-            bool lazer = false;
-            for (int i = projectiles.Count - 1; i >= 0; i--)
-                if (projectiles[i].assetName == "Projectiles\\laser")
-                {
-                    if (lazer == true || !InputHelper.IsKeyDown(Keys.Space) || 1 == 1)
-                        projectiles.RemoveAt(i);
-                    else
-                        lazer = true;
-                }
-        }
+
         internal void DropItem(Vector2 location)
         {
             Random rnd = new Random();
@@ -128,16 +104,16 @@ namespace Engine
             switch (r)
             {
                 case 1:
-                    gameObjects.Add(new HealthUp(location, 1.5f));
+                    gameObjects.Add(new HealthUp(location, 1f));
                     break;
                 case 2:
-                    gameObjects.Add(new DamageUp(location, 1.5f));
+                    gameObjects.Add(new DamageUp(location, 1f));
                     break;
                 case 3:
-                    gameObjects.Add(new DashRefill(location, 1.5f));
+                    gameObjects.Add(new DashRefill(location, 1f));
                     break;
                 default:
-                    gameObjects.Add(new ShieldUp(location, 1.5f));
+                    gameObjects.Add(new ShieldUp(location, 1f));
                     break;
             }
         }

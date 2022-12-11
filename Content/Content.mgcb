@@ -140,6 +140,150 @@
 /processorParam:TextureFormat=Compressed
 /build:File.spritefont
 
+#begin FrozenScreenEffect.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:FrozenScreenEffect.png
+
+#begin GridObjects/Buttons/0/0.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:GridObjects/Buttons/0/0.png
+
+#begin GridObjects/Buttons/0/1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:GridObjects/Buttons/0/1.png
+
+#begin GridObjects/Buttons/1/0.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:GridObjects/Buttons/1/0.png
+
+#begin GridObjects/Buttons/1/1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:GridObjects/Buttons/1/1.png
+
+#begin GridObjects/Gates/0/0.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:GridObjects/Gates/0/0.png
+
+#begin GridObjects/Gates/0/1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:GridObjects/Gates/0/1.png
+
+#begin GridObjects/Gates/1/0.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:GridObjects/Gates/1/0.png
+
+#begin GridObjects/Gates/1/1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:GridObjects/Gates/1/1.png
+
+#begin GridObjects/Spike.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:GridObjects/Spike.png
+
+#begin GridObjects/Wall.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:GridObjects/Wall.png
+
+#begin Item/BounceUp.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Item/BounceUp.png
+
 #begin Item/DamageUp.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -175,6 +319,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Item/HealthUp.png
+
+#begin Item/PierceUp.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Item/PierceUp.png
 
 #begin Item/ShieldUp.png
 /importer:TextureImporter
@@ -644,6 +800,12 @@
 /processorParam:TextureFormat=Color
 /build:Player/Healer/HealerPlayerU4.png
 
+#begin Player/Saves/Autosaves/PlayerStats_1.txt
+/copy:Player/Saves/Autosaves/PlayerStats_1.txt
+
+#begin Player/Saves/PlayerStats.txt
+/copy:Player/Saves/PlayerStats.txt
+
 #begin Player/Warrior/Warrior.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1088,11 +1250,17 @@
 /processorParam:TextureFormat=Color
 /build:RoomSprites/RoomSprite(W).png
 
+#begin RoomTemplates/Room_Boss.txt
+/copy:RoomTemplates/Room_Boss.txt
+
 #begin RoomTemplates/Room_E_1.txt
 /copy:RoomTemplates/Room_E_1.txt
 
 #begin RoomTemplates/Room_ES_1.txt
 /copy:RoomTemplates/Room_ES_1.txt
+
+#begin RoomTemplates/Room_ESW_1.txt
+/copy:RoomTemplates/Room_ESW_1.txt
 
 #begin RoomTemplates/Room_EW_1.txt
 /copy:RoomTemplates/Room_EW_1.txt
@@ -1103,11 +1271,20 @@
 #begin RoomTemplates/Room_NE_1.txt
 /copy:RoomTemplates/Room_NE_1.txt
 
+#begin RoomTemplates/Room_NES_1.txt
+/copy:RoomTemplates/Room_NES_1.txt
+
 #begin RoomTemplates/Room_NESW_1.txt
 /copy:RoomTemplates/Room_NESW_1.txt
 
+#begin RoomTemplates/Room_NEW_1.txt
+/copy:RoomTemplates/Room_NEW_1.txt
+
 #begin RoomTemplates/Room_NS_1.txt
 /copy:RoomTemplates/Room_NS_1.txt
+
+#begin RoomTemplates/Room_NSW_1.txt
+/copy:RoomTemplates/Room_NSW_1.txt
 
 #begin RoomTemplates/Room_NW_1.txt
 /copy:RoomTemplates/Room_NW_1.txt
@@ -1115,17 +1292,74 @@
 #begin RoomTemplates/Room_S_1.txt
 /copy:RoomTemplates/Room_S_1.txt
 
+#begin RoomTemplates/Room_Start.txt
+/copy:RoomTemplates/Room_Start.txt
+
 #begin RoomTemplates/Room_SW_1.txt
 /copy:RoomTemplates/Room_SW_1.txt
 
 #begin RoomTemplates/Room_W_1.txt
 /copy:RoomTemplates/Room_W_1.txt
 
-#begin SoundEffects/TetrisClear.mp3
-/importer:Mp3Importer
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEffects/TetrisClear.mp3
+#begin Traps/BarrelTrap.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Traps/BarrelTrap.png
+
+#begin Traps/BearTrap.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Traps/BearTrap.png
+
+#begin Traps/BearTrapActivated.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Traps/BearTrapActivated.png
+
+#begin Traps/BoostEnemyTrap.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Traps/BoostEnemyTrap.png
+
+#begin Traps/FreezeTrap.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Traps/FreezeTrap.png
 
 #begin UI/BarHolder.png
 /importer:TextureImporter
@@ -1162,6 +1396,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:UI/CheckedBox.png
+
+#begin UI/Empty.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:UI/Empty.png
 
 #begin UI/FlashingBarHolder.png
 /importer:TextureImporter
@@ -1259,6 +1505,18 @@
 /processorParam:TextureFormat=Color
 /build:UI/MenuColor.png
 
+#begin UI/RedCross.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:UI/RedCross.png
+
 #begin UI/SelectedBox.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1282,6 +1540,66 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:UI/WhitePixel.png
+
+#begin Usables/HealthPot.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Usables/HealthPot.png
+
+#begin Usables/ManaPot.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Usables/ManaPot.png
+
+#begin Usables/RandomPot.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Usables/RandomPot.png
+
+#begin Usables/TimedHealthPot.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Usables/TimedHealthPot.png
+
+#begin Usables/TimedManaPot.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Usables/TimedManaPot.png
 
 #begin Weapon/LaserRifle.png
 /importer:TextureImporter

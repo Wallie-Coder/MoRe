@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Engine;
+using MoRe.Code.Utility;
 
 namespace MoRe
 {
@@ -20,10 +21,15 @@ namespace MoRe
 
         public Vector2 startPosition;
 
-        public Projectile(Vector2 location, Vector2 direction, float moveSpeed, int damage, string assetName, float range, float scale, ProjectileParent Parent = ProjectileParent.Player) : base(location, scale, "Projectiles\\" + assetName)
+        public int pierce;
+        public int bounces;
+
+        private List<GameObject> hitObjects = new List<GameObject>();
+
+        public Projectile(Vector2 location, Vector2 direction, float moveSpeed, int damage, string assetName, float range, float scale, ProjectileParent Parent = ProjectileParent.Player, int pierce = 1, int bounces = 0) : base(location, scale, "Projectiles\\" + assetName)
         {
             Damage = damage;
-            baseSpeed = moveSpeed;
+            BaseSpeed = moveSpeed;
             StartMoving();
             IsAlive = true;
             Health = 1;
@@ -34,6 +40,8 @@ namespace MoRe
             this.Depth = 0.8f;
             this.Parent = Parent;
             PowerMultiplier = 1;
+            this.pierce = pierce;
+            this.bounces = bounces;
         }
 
         internal override void Update(GameTime gameTime)
@@ -43,6 +51,7 @@ namespace MoRe
                 Health = 0;
                 Die(this);
             }
+            bounced = false;
             base.Update(gameTime);
         }
 
@@ -60,15 +69,38 @@ namespace MoRe
         {
             base.Die(entity);
         }
-        internal void HitObject()
+        internal bool HitObject(GameObject obj)
         {
-            Die(this);
+            if (!hitObjects.Contains(obj))
+            {
+                if (pierce > 1)
+                {
+                    hitObjects.Add(obj);
+                    pierce--;
+                }
+                else Die(this);
+                return true;
+            }
+            return false;
+        }
+        bool bounced;
+        internal void HitWall(GameObject obj)
+        {
+            
+            if (bounces > 0 && !bounced)
+            {
+                Vector2 diff = location - obj.location;
+                Direction = Vector2.Reflect(Direction, Math.Abs(diff.X) > Math.Abs(diff.Y) ? Vector2.UnitX : Vector2.UnitY);
+                bounces--;
+                bounced = true;
+            }
+            else Die(this);
         }
 
         internal override void Draw(SpriteBatch batch)
         {
             if (assetName != "Projectiles\\laser")
-                base.Draw(batch);
+                  base.Draw(batch);
             else
             {
                 this.location = (InputHelper.MousePosition - startPosition) / 2 + startPosition;

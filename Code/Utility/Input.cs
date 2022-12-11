@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Engine;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using SharpDX.Direct3D9;
 using System;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Engine
+namespace MoRe
 {
     // static InputHandler class. (still missing some methods, but has the essential ones.
     public static class InputHelper
@@ -18,7 +19,7 @@ namespace Engine
         public static MouseState currentMouseState;
 
 
-        
+
         static InputHelper()
         {
             currentKeys = Keyboard.GetState().GetPressedKeys();
@@ -27,10 +28,10 @@ namespace Engine
             currentMouseState = Mouse.GetState();
             previousMouseState = currentMouseState;
         }
-        public static void Update() 
+        public static void Update()
         {
             previousKeys = currentKeys;
-            currentKeys= Keyboard.GetState().GetPressedKeys();
+            currentKeys = Keyboard.GetState().GetPressedKeys();
 
             previousMouseState = currentMouseState;
             currentMouseState = Mouse.GetState();
@@ -68,10 +69,10 @@ namespace Engine
 
         internal static bool IsMouseOver(GameObject g)
         {
-            if (MousePosition.X < g.location.X + g.sprite.Width/2 * g.ObjectScale &&
-                MousePosition.Y < g.location.Y + g.sprite.Height/2 * g.ObjectScale &&
-                MousePosition.X > g.location.X - g.sprite.Width/2 * g.ObjectScale &&
-                MousePosition.Y > g.location.Y - g.sprite.Width/2 * g.ObjectScale)
+            if (MousePosition.X < g.location.X + g.sprite.Width / 2 * g.ObjectScale &&
+                MousePosition.Y < g.location.Y + g.sprite.Height / 2 * g.ObjectScale &&
+                MousePosition.X > g.location.X - g.sprite.Width / 2 * g.ObjectScale &&
+                MousePosition.Y > g.location.Y - g.sprite.Width / 2 * g.ObjectScale)
                 return true;
             else
                 return false;

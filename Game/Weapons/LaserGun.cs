@@ -4,12 +4,12 @@ using System.Diagnostics.Tracing;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Engine;
+using MoRe.Code.Utility;
 
 namespace MoRe
 {
     class LaserGun : Weapon
     {
-        bool firstLaser = true;
         public LaserGun(Vector2 location, float scale, string assetName = "LaserRifle") : base(location, scale, assetName)
         {
             weaponFireRate = 1000;

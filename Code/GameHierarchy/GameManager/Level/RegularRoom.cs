@@ -1,32 +1,36 @@
 ﻿using Microsoft.Xna.Framework;
 using Engine;
+using System;
 using MoRe;
-
+using MoRe.Code.Utility;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.VisualBasic.ApplicationServices;
+using SharpDX.Direct2D1;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework.Input;
+using System.Linq;
 
 namespace Engine
 {
-    internal class RegularRoom : Room
+    internal partial class RegularRoom : Room
     {
-        internal RegularRoom(Vector2 location, string roomTemplate, string neighbors, Level level) : base(location, false, false, neighbors, level)
+
+        public Level.RoomTypes roomType;
+        internal RegularRoom(Vector2 location, Level.RoomTypes roomType, string neighbors, Level level) : base(location, false, false, neighbors, level)
         {
-            RangedEnemy ranged = new RangedEnemy(new Vector2(500, 200), 2, 450, 1, 20, this);
-            gameObjects.Add(ranged);
-            ChasingEnemy chasing = new ChasingEnemy(new Vector2(800, 400), 2, 1, 20, this);
-            gameObjects.Add(chasing);
-
-            DamageUp DamageItem = new DamageUp(new Vector2(900, 200), 1.5f);
-            //gameObjects.Add(DamageItem);
-            HealthUp hpItem = new HealthUp(new Vector2(600, 400), 1.5f);
-            //gameObjects.Add(hpItem);
-            ShieldUp shield = new ShieldUp(new Vector2(300, 600), 1.5f);
-            gameObjects.Add(shield);
-            ShieldUp shield2 = new ShieldUp(new Vector2(200, 100), 1.5f);
-            //gameObjects.Add(shield2);
-            DashRefill dash = new DashRefill(new Vector2(100, 500), 1.5f);
-            gameObjects.Add(dash);
-
+            this.roomType = roomType;
+            if (roomType == Level.RoomTypes.start)
+            {
+                LoadFileLevel("Content/RoomTemplates/Room_Start.txt");
+            }
+            if (roomType == Level.RoomTypes.boss)
+            {
+                LoadFileLevel("Content/RoomTemplates/Room_Boss.txt");
+            }
+            else
+                LoadFileLevel("Content/RoomTemplates/Room_" + neighbors + "_1.txt");
         }
-
+        bool roomCleared;
         internal override void Update(GameTime gameTime)
         {
             // update each gameobject and handle the interaction with other entities.
@@ -35,43 +39,160 @@ namespace Engine
             // so the this update method is not HUGE!
             foreach (GameObject g in gameObjects.ToArray())
             {
+                level.player.room = this;
                 g.Update(gameTime);
+
                 foreach (Projectile p in projectiles)
                 {
-                    if ((p.Parent != Projectile.ProjectileParent.Player && g.GetType().IsSubclassOf(typeof(Player))) || (p.Parent != Projectile.ProjectileParent.Enemy && g.GetType().IsSubclassOf(typeof(Enemy))))
+                    if (p.Parent != Projectile.ProjectileParent.Enemy && g is Enemy)
                     {
                         if (p.Bounds.Intersects(g.Bounds))
                         {
-                            g.HandleCollision(p);
-                            p.HitObject();
+                            if (p.HitObject(g))
+                                g.HandleCollision(p);
                         }
                     }
                 }
-                if (g.GetType().IsSubclassOf(typeof(GameEntity)))
+                if (g is GameEntity)
                 {
-                    GameEntity temp = (GameEntity)g;
-                    if (temp.Health < 0)
+                    if ((g as GameEntity).Health < 0)
                     {
-                        if (g.GetType().IsSubclassOf(typeof(Enemy)))
+                        if (g is Enemy)
                         {
                             DropItem(g.location);
                         }
                         gameObjects.Remove(g);
                     }
                 }
-                if (g.GetType().IsSubclassOf(typeof(Item)))
+                if (g is Item)
                 {
                     if (g.Bounds.Intersects(level.player.Bounds))
                     {
-                        Item temp = (Item)g;
-                        level.player.ChangeStats(temp);
+                        level.player.ChangeStats(g as Item);
                         gameObjects.Remove(g);
                     }
                 }
+                if(g is Trap)
+                {
+                    (g as Trap).Update(gameTime);
+                    if (level.player.Bounds.Intersects(g.Bounds))
+                    {
+                        (g as Trap).HandleCollision(level.player);
+                    }
+                    if ((g as Trap).uses <= 0)
+                    {
+                        (g as Trap).DeActivateTrap();
+                        gameObjects.Remove(g);
+                    }
+                }
+                if (g is Usable)
+                {
+                    if (g.Bounds.Intersects(level.player.Bounds))
+                    {
+                        BoxMenu um = level.player.ui.usableMenu;
+                        if (um.boxes[um.selected].usable == null) 
+                        {
+                            g.location = um.boxes[um.selected].location;
+                            um.boxes[um.selected].usable = (g as Usable);
+                            gameObjects.Remove(g);
+                        }
+                    }
+                }
             }
-
+            foreach (Tile t in tiles)
+            {
+                foreach (Projectile p in projectiles)
+                {
+                    if (p.Bounds.Intersects(t.Bounds))
+                    {
+                        if (t is Wall)
+                        {
+                            p.HitWall(t);
+                        }
+                    }
+                }
+                if (t.Bounds.Intersects(level.player.Bounds))
+                {
+                    if (t is Spike)
+                        level.player.Heal(-1);
+                    else if (!(t as GateButton)?.isDown ?? false) (t as GateButton).Switch();
+                }
+            }
+            if(roomType == Level.RoomTypes.boss && !gameObjects.Exists(obj => obj is Enemy) && !roomCleared)
+            {
+                Random r = new Random();
+                switch (r.Next(0, 2))
+                {
+                    case 0:
+                        gameObjects.Add(new PierceUp(Game1.worldSize / 2)); break;
+                    case 1:
+                        gameObjects.Add(new BounceUp(Game1.worldSize / 2)); break;
+                    default: break;
+                }
+                roomCleared = true;
+            }
+            
+            if (roomType != Level.RoomTypes.boss && !gameObjects.Exists(obj => obj is Enemy) && !roomCleared)
+            {
+                /*
+                Random r = new Random();
+                switch (r.Next(0, 5))
+                {
+                    case 0: gameObjects.Add(new HealthPot(Game1.worldSize / 2)); break;
+                    case 1: gameObjects.Add(new TimedHealthPot(Game1.worldSize / 2)); break;
+                    case 2: gameObjects.Add(new ManaPot(Game1.worldSize / 2)); break;
+                    case 3: gameObjects.Add(new TimedManaPot(Game1.worldSize / 2)); break;
+                    case 4: gameObjects.Add(new RandomPot(Game1.worldSize / 2)); break;
+                    default: break;
+                }
+                */
+                roomCleared = true;
+            }
+            // Update each projectile, and handle lazers
+            foreach (Projectile p in projectiles.ToArray())
+            {
+                p.Update(gameTime);
+                if (p.Health <= 0 || p.IsAlive == false)
+                {
+                    projectiles.Remove(p);
+                    break;
+                }
+                if(p.Parent != Projectile.ProjectileParent.Player)
+                {
+                    if (p.Bounds.Intersects(level.player.Bounds))
+                    {
+                        level.player.HandleCollision(p);
+                        p.HitObject(level.player);
+                    }
+                }
+            }
+            HandleLazers();
             base.Update(gameTime);
 
+            foreach(Tuple<List<Gate>,List<GateButton>,int> pair in gateButtonPairs)
+            {
+                UpdateGateButtonPair(pair);
+            }
+        }
+
+        internal void UpdateGateButtonPair(Tuple<List<Gate>, List<GateButton>, int> pair)
+        {
+            if (pair.Item2.All(button => button.isDown) && pair.Item1.All(gate => gate.isClosed))
+                foreach (Gate gate in pair.Item1) gate.Switch();
+        }
+
+
+        internal void HandleLazers()
+        {
+            bool lazer = false;
+            for (int i = projectiles.Count - 1; i >= 0; i--)
+                if (projectiles[i].assetName == "Projectiles\\laser")
+                {
+                    if (lazer == true || !InputHelper.IsKeyDown(Keys.Space) || 1 == 1)
+                        projectiles.RemoveAt(i);
+                    else
+                        lazer = true;
+                }
         }
     }
 }

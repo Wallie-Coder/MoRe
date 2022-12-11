@@ -14,6 +14,7 @@ namespace Engine
     internal class Animated : Animate
     {
         protected ConditionalSprite conditionalSprite;
+        internal bool CanMove = true;
 
         public Animated(Vector2 location, float scale, string assetName) : base(location, scale, assetName)
         {
@@ -21,9 +22,10 @@ namespace Engine
             conditionalSprite.AssignType(assetName);
         }
         internal override void Update(GameTime gameTime)
-        {
+        { 
             conditionalSprite.Update(gameTime, orientation);
-            base.Update(gameTime);
+            if (CanMove)
+                Move(gameTime);
         }
         internal override void Draw(SpriteBatch batch)
         {

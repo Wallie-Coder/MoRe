@@ -42,5 +42,13 @@ namespace Engine
         {
             base.Die(entity);
         }
+
+        protected override void Move(GameTime time)
+        {
+            Vector2 previousLocation = location;
+
+            base.Move(time);
+            WallCheck(previousLocation, room);
+        }
     }
 }

@@ -156,7 +156,7 @@ namespace Engine
                 else if (InputHelper.IsKeyDown(currentKey) && InputHelper.IsKeyJustPressed(currentKey) && currentKey == Keys.Back && s_playerNameList.Count > 0)
                     s_playerNameList.RemoveAt(s_playerNameList.Count - 1);
             }
-            
+
             string addedName = "";
             for(int i = 0; i < s_playerNameList.Count; i++)
             {

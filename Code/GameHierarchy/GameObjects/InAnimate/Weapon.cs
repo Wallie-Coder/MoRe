@@ -7,8 +7,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using static System.Net.Mime.MediaTypeNames;
-using Engine;
 using MoRe;
+using MoRe.Code.Utility;
 
 namespace Engine
 {
@@ -20,6 +20,8 @@ namespace Engine
         public float projectileSize { get; protected set; }
         public float gunRange { get; protected set; }
         public int spreadStrength { get; protected set; }
+        public int pierce;
+        public int bounces;
 
         public string spriteName { get; protected set; }
 

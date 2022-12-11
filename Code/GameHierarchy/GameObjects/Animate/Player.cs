@@ -4,11 +4,21 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using MoRe;
+using System.Xml.Serialization;
+using System.IO;
+using System.Linq;
+using System.Reflection.Metadata;
+using MoRe.Code.Utility;
+
 
 namespace Engine
 {
     internal class Player : Animated
     {
+        //temp?
+        public float mana = 50;
+        public Room room;
+        public UserInterface ui;
         protected enum characterType
         {
             assassin, healer, warrior
@@ -18,7 +28,7 @@ namespace Engine
         //All variables for weapons
         Weapon weapon1;
         Weapon weapon2;
-        public Weapon[] weaponList = new Weapon[2];
+        internal Weapon[] weaponList = new Weapon[2];
         Weapon currentWeapon;
         float weaponSwapCooldown;
         bool canSwapWeapon;
@@ -36,6 +46,11 @@ namespace Engine
         bool canSpecialAbility;
         bool specialAbilityActive;
 
+        //Autosave variables
+        float AutosaveCooldownTimer;
+        float AutosaveCooldown;
+        bool canAutosave;
+
         //Lists for collected Items and orbitals
         public List<Item> items;
         public List<Orbital> orbitals;
@@ -43,10 +58,15 @@ namespace Engine
         public float SpecialAbilityCooldownTimer { get { return specialAbilityCooldownTimer; } protected set { specialAbilityCooldownTimer = value; } }
         public float NormalAbilityCooldownTimer { get { return normalAbilityCooldownTimer; } protected set { normalAbilityCooldownTimer = value; } }
 
-        internal Player(Vector2 location, float scale, string assetName = "Player") : base(location, scale, assetName)
+        /// <summary>
+        /// Used crudely for moving the player back. Bad implementation.
+        /// </summary>
+
+        internal Player(Vector2 location, float scale, string assetName = "Player", Room room = null) : base(location, scale, assetName)
         {
-            weapon2 = new Shotgun(location, 1f);
-            weapon1 = new LaserGun(location, 1f);
+            ui = new UserInterface(this);
+            weapon2 = new Pistol(location, 1f);
+            weapon1 = new Sniper(location, 1f);
             weaponList[0] = weapon1;
             weaponList[1] = weapon2;
             currentWeapon = weaponList[0];
@@ -59,8 +79,8 @@ namespace Engine
 
             orbitals.Add(new Orbital(location, 1, 1, 100, 10, "Projectiles\\BlueProjectile"));
 
-            //initializes the normal ability. (The 10 stands for 10 seconds, the 1000 converts from seconds to milliseconds).
-            normalAbilityCooldown = 10 * 1000;
+            //initializes the normal ability. (The 10 stands for 10 seconds).
+            normalAbilityCooldown = 10;
             //normalAbilityCooldownTimer = normalAbilityCooldown;
             canNormalAbility = true;
 
@@ -72,16 +92,23 @@ namespace Engine
             PowerMultiplier = 1;
             Health = 200;
             MaxHealth = Health;
-            baseSpeed = 5;
+            BaseSpeed = 5;
             orientation = EntityOrientation.Down;
-
             this.Depth = 1f;
 
+            AutosaveCooldown = 60;
+            AutosaveCooldownTimer = AutosaveCooldown;
+            canAutosave = true;
+
             this.StartMoving();
+
+            this.room = room;
         }
 
         internal override void Update(GameTime gameTime)
         {
+            ui.Update(gameTime);
+
             currentWeapon.Update(gameTime);
 
             //Update the cooldown timers
@@ -107,15 +134,16 @@ namespace Engine
                 orbital.Draw(batch);
 
             currentWeapon.Draw(batch);
+            ui.Draw(batch);
         }
 
         //Changes the player's stats when picking up an item
         public void ChangeStats(Item item)
         {
-            this.Health += item.Health;
+            this.MaxHealth += item.MaxHealth;
+            Heal(item.Health);
             this.PowerMultiplier += item.Damage;
             this.MoveSpeed += item.MoveSpeed;
-            this.MaxHealth += item.MaxHealth;
             if (item.Dash)
             {
                 normalAbilityCooldownTimer = 0;
@@ -167,7 +195,7 @@ namespace Engine
 
             if (!canNormalAbility)
             {
-                normalAbilityCooldownTimer -= gameTime.ElapsedGameTime.Milliseconds;
+                normalAbilityCooldownTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
                 if (normalAbilityCooldownTimer <= 0)
                 {
                     canNormalAbility = true;
@@ -198,6 +226,16 @@ namespace Engine
                     canSwapWeapon = true;
                 }
             }
+
+            if (canAutosave)
+            {
+                AutosaveCooldownTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+                if (AutosaveCooldownTimer <= 0)
+                {
+                    SaveStats(true);
+                    AutosaveCooldownTimer = AutosaveCooldown;
+                }
+            }
         }
 
         //Resets the special abilities
@@ -212,6 +250,81 @@ namespace Engine
         {
             this.location = location;
             orientation = EntityOrientation.Down;
+        }
+
+        private void SaveStats(bool autosave = false)
+        {
+            StreamWriter streamWriter;
+            if (!autosave)
+                streamWriter = new StreamWriter("Content/Player/Saves/PlayerStats.txt", false);
+            else
+            {
+                string[] files = Directory.GetFiles("Content/Player/Saves/Autosaves");
+                int number = files.Count() + 1;
+                streamWriter = new StreamWriter("Content/Player/Saves/Autosaves/PlayerStats_" + number + ".txt");
+            }
+
+            streamWriter.WriteLine("Class: " + currentClass);
+            streamWriter.WriteLine("MaxHealth: " + MaxHealth);
+            streamWriter.WriteLine("Health: " + Health);
+            streamWriter.WriteLine("PowerMultiplier: " + PowerMultiplier);
+            streamWriter.WriteLine("BaseSpeed: " + BaseSpeed);
+            streamWriter.WriteLine("AttackSpeed: " + AttackSpeed);
+            streamWriter.WriteLine("SpecialAbilityCooldown: " + specialAbilityCooldown);
+            streamWriter.WriteLine("SpecialAbilityDuration: " + specialAbilityDuration);
+
+            streamWriter.Close();
+        }
+
+        private void LoadStats(bool autosave = false)
+        {
+            StreamReader streamReader;
+            if (!autosave)
+                streamReader = new StreamReader("Content/Player/Saves/PlayerStats.txt", false);
+            else
+            {
+                string[] files = Directory.GetFiles("Content/Player/Saves/Autosaves");
+                int number = files.Count();
+                streamReader = new StreamReader("Content/Player/Saves/Autosaves/PlayerStats_" + number + ".txt");
+            }
+
+            string line = streamReader.ReadLine();
+            while (line != null)
+            {
+                LoadRightStats(line);
+                line = streamReader.ReadLine();
+            }
+
+            streamReader.Close();
+        }
+
+        private void LoadRightStats(string line)
+        {
+            string[] temp = line.Split(':');
+            switch (temp[0])
+            {
+                case ("MaxHealth"):
+                    MaxHealth = (float)Convert.ToDouble(temp[1]);
+                    break;
+                case ("Health"):
+                    Health = (float)Convert.ToDouble(temp[1]);
+                    break;
+                case ("PowerMultiplier"):
+                    PowerMultiplier = (float)Convert.ToDouble(temp[1]);
+                    break;
+                case ("BaseSpeed"):
+                    BaseSpeed = (float)Convert.ToDouble(temp[1]);
+                    break;
+                case ("AttackSpeed"):
+                    AttackSpeed = (float)Convert.ToDouble(temp[1]);
+                    break;
+                case ("SpecialAbilityCooldown"):
+                    specialAbilityCooldown = (float)Convert.ToDouble(temp[1]);
+                    break;
+                case ("SpecialAbilityDuration"):
+                    specialAbilityCooldown = (float)Convert.ToDouble(temp[1]);
+                    break;
+            }
         }
 
         //Helps with the inputs
@@ -282,13 +395,35 @@ namespace Engine
             if (InputHelper.IsKeyJustPressed(Keys.F))
                 if (canSpecialAbility)
                     SpecialAbility();
-
             if (InputHelper.IsKeyJustPressed(Keys.Q))
             {
                 if (canSwapWeapon)
                     SwapWeapon();
             }
+            if (InputHelper.IsKeyJustPressed(Keys.M))
+            {
+                SaveStats(false);
+            }
+            if (InputHelper.IsKeyJustPressed(Keys.N))
+            {
+                SaveStats(true);
+            }
+            if (InputHelper.IsKeyJustPressed(Keys.J))
+            {
+                LoadStats(true);
+            }
+            if (InputHelper.IsKeyJustPressed(Keys.K))
+            {
+                LoadStats(false);
+            }
+        }
 
-        }        
+        protected override void Move(GameTime time)
+        {
+            Vector2 previousLocation = location;
+            
+            base.Move(time);
+            WallCheck(previousLocation, room);
+        }
     }
 }

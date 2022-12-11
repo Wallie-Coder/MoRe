@@ -17,7 +17,7 @@ namespace MoRe
             this.MaxHealth = 125;
             this.Health = MaxHealth;
             this.PowerMultiplier = 1.5f;
-            this.MoveSpeed = 2;
+            this.BaseSpeed = 2;
             this.AttackSpeed = 10;
 
             specialAbilityCooldown = 30 * 1000;

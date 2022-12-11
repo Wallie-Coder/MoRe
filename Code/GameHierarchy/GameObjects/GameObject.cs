@@ -5,6 +5,7 @@ using System.Security.Policy;
 using MoRe;
 using System;
 using System.Configuration;
+using System.Diagnostics;
 
 namespace Engine
 {
@@ -62,8 +63,17 @@ namespace Engine
         {
             if (Visible)
             {
-                Rectangle rec = new Rectangle(new Point((int)(location.X * WorldScale), (int)(location.Y * WorldScale)), new Point((int)(Size.X * ObjectScale * sprite.Width * WorldScale), (int)(Size.Y * ObjectScale * sprite.Height * WorldScale)));
+                Rectangle rec = new Rectangle(new Point((int)(location.X*WorldScale), (int)(location.Y*WorldScale)), new Point((int)(Size.X * ObjectScale * sprite.Width * WorldScale), (int)(Size.Y * ObjectScale * sprite.Height * WorldScale)));
                 batch.Draw(sprite, rec, null, color, MathHelper.ToRadians(rotationInDegrees), Origin, spriteEffect, Depth);
+            } 
+        }
+
+        internal void DrawCustomSprite(SpriteBatch batch, Vector2 Size, Texture2D sprite, Vector2 pos)
+        {
+            if (Visible)
+            {
+                Rectangle rec = new Rectangle(new Point((int)(pos.X * WorldScale), (int)(pos.Y * WorldScale)), new Point((int)(Size.X * ObjectScale * sprite.Width * WorldScale), (int)(Size.Y * ObjectScale * sprite.Height * WorldScale)));
+                batch.Draw(sprite, rec, null, color, 0, sprite.Bounds.Size.ToVector2() / 2, spriteEffect, Depth);
             }
         }
 

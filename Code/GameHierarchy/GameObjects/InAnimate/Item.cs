@@ -6,7 +6,7 @@ using MoRe;
 
 namespace Engine
 {
-    // item class, this item drops on the floor an can be pickedup by the player.
+    // item class, this item drops on the floor an can be picked up by the player.
     class Item : InAnimate
     {
         public enum itemTypes
@@ -17,13 +17,13 @@ namespace Engine
             test
         }
 
-        public itemTypes type;
-
         public string name { get; protected set; }
         //public int Damage { get; protected set; }
         public float MoveSpeed { get; protected set; }
         public bool Dash { get; protected set; }
         public bool shield { get; protected set; }
+        public int Bounce { get; protected set; }
+        public int Pierce { get; protected set; }
 
         public Item(Vector2 location, float scale, string assetName) : base(location, scale, "Item\\" + assetName)
         {
@@ -82,6 +82,20 @@ namespace Engine
             Dash = false;
             shield = true;
             name = "damage up";
+        }
+    }
+    class BounceUp : Item
+    {
+        public BounceUp(Vector2 location) : base(location, 1, "BounceUp")
+        {
+            Bounce = 1;
+        }
+    }
+    class PierceUp : Item
+    {
+        public PierceUp(Vector2 location) : base(location, 1, "PierceUp")
+        {
+            Pierce = 1;
         }
     }
 }

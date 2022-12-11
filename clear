@@ -1,0 +1,95 @@
+[33mcommit 59c865bf6227e90778ea18e6b59a31b23906c70e[m[33m ([m[1;36mHEAD -> [m[1;32mAEA-1(traps)[m[33m, [m[1;31morigin/AEA-1(traps)[m[33m)[m
+Author: LuukvanDoorn <l.vandoorn@students.uu.nl>
+Date:   Thu Dec 8 13:20:35 2022 +0100
+
+    Added barrel and updated freeze trap
+
+[33mcommit 88d0c8163d34acaf3b8dd34fda07518b63cfa748[m
+Author: Luuk van Doorn <l.vandoorn@students.uu.nl>
+Date:   Thu Dec 8 00:11:30 2022 +0100
+
+    commit test
+
+[33mcommit 729fc5042faa30bfddd55acd7598d541065c852e[m
+Author: Luuk van Doorn <l.vandoorn@students.uu.nl>
+Date:   Wed Dec 7 23:50:30 2022 +0100
+
+    freeze fix
+
+[33mcommit a74f75afa770fe335e83313af5a30e7ca561407e[m
+Author: Luuk van Doorn <l.vandoorn@students.uu.nl>
+Date:   Wed Dec 7 16:18:51 2022 +0100
+
+    Added Enemy that freezes the screen
+
+[33mcommit 768a382ba5673affc88b0103bff76c6a1f81ca05[m
+Author: LuukvanDoorn <l.vandoorn@students.uu.nl>
+Date:   Wed Dec 7 14:28:05 2022 +0100
+
+    Added BearTrap
+
+[33mcommit e536a2f04d3bd4d65612c69f8e0116f3e9355f22[m[33m ([m[1;32mmaster[m[33m)[m
+Author: LuukvanDoorn <l.vandoorn@students.uu.nl>
+Date:   Mon Dec 5 17:37:09 2022 +0100
+
+    tiny change
+
+[33mcommit e031f38317fd72e2a1d3337cfa355ef9e95e44a4[m
+Author: LuukvanDoorn <l.vandoorn@students.uu.nl>
+Date:   Mon Dec 5 17:32:55 2022 +0100
+
+    Draw with scale and fixed lazer
+
+[33mcommit 54bd3ed72dc7911b1e9d72ce73d005652a7aba14[m
+Author: LuukvanDoorn <l.vandoorn@students.uu.nl>
+Date:   Mon Dec 5 15:34:10 2022 +0100
+
+    Moved Player form room to level class
+
+[33mcommit e6117b068673628da580ee285cde1ee5374791bd[m
+Author: LuukvanDoorn <l.vandoorn@students.uu.nl>
+Date:   Mon Dec 5 09:24:45 2022 +0100
+
+    Fixed Player when entering room
+
+[33mcommit 55e350e4745eec04b245b216d2addb10cde2ae06[m
+Author: Luuk van Doorn <l.vandoorn@students.uu.nl>
+Date:   Sun Dec 4 16:39:22 2022 +0100
+
+    or not
+
+[33mcommit 106a5ab3e91586bd83f44d91f4d1fee8fb35a757[m
+Author: Luuk van Doorn <l.vandoorn@students.uu.nl>
+Date:   Sun Dec 4 16:38:57 2022 +0100
+
+    minigun
+
+[33mcommit 90c22437495be782ea05bd6e538d3cb25ebac2bd[m
+Author: Luuk van Doorn <l.vandoorn@students.uu.nl>
+Date:   Sun Dec 4 16:36:52 2022 +0100
+
+    Commented Most Things
+
+[33mcommit 78bcabf37d0ea289f8de3edd23b60c00ebd50c98[m
+Author: Luuk van Doorn <l.vandoorn@students.uu.nl>
+Date:   Sun Dec 4 03:34:16 2022 +0100
+
+    a few fixes
+
+[33mcommit 26ad212079fe56d681a815b7b38bba1c9dc84dd1[m
+Author: Luuk van Doorn <l.vandoorn@students.uu.nl>
+Date:   Sun Dec 4 03:30:50 2022 +0100
+
+    A Lot of Changes
+
+[33mcommit 704d36ab3572ab1ef2d0b762b923c88fbed0e9f0[m
+Author: LuukvanDoorn <l.vandoorn@students.uu.nl>
+Date:   Sat Dec 3 13:07:41 2022 +0100
+
+    Add project files.
+
+[33mcommit c891b47fd3b1e2db52af72f673296c21d5e8141e[m
+Author: LuukvanDoorn <l.vandoorn@students.uu.nl>
+Date:   Sat Dec 3 13:07:39 2022 +0100
+
+    Add .gitattributes and .gitignore.
